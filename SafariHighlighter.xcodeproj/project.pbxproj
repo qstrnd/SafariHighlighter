@@ -26,6 +26,11 @@
 		B81D473929D575E900DB603C /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = B81D473829D575E900DB603C /* popup.css */; };
 		B81D473B29D575E900DB603C /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = B81D473A29D575E900DB603C /* popup.js */; };
 		B81D473D29D575E900DB603C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B81D471E29D575E900DB603C /* Assets.xcassets */; };
+		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
+		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
+		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
+		B871AC8F29D8B20200A5E720 /* MessageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8E29D8B20200A5E720 /* MessageError.swift */; };
+		B871AC9129D8B2FD00A5E720 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC9029D8B2FD00A5E720 /* MessageType.swift */; };
 		B876608129D5CC2F00B8E75C /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B876608029D5CC2F00B8E75C /* Common */; };
 		B876608329D5CC3700B8E75C /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B876608229D5CC3700B8E75C /* Common */; };
 /* End PBXBuildFile section */
@@ -79,6 +84,11 @@
 		B81D473C29D575E900DB603C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
+		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
+		B871AC8929D8AE8700A5E720 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTagsMessage.swift; sourceTree = "<group>"; };
+		B871AC8E29D8B20200A5E720 /* MessageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageError.swift; sourceTree = "<group>"; };
+		B871AC9029D8B2FD00A5E720 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		B876607E29D5C83900B8E75C /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Common; path = ../Common; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +163,7 @@
 			children = (
 				B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */,
 				B81D472929D575E900DB603C /* SafariWebExtensionHandler.swift */,
+				B871AC8B29D8B07600A5E720 /* Messages */,
 				B81D473C29D575E900DB603C /* Info.plist */,
 				B81D472B29D575E900DB603C /* Resources */,
 			);
@@ -166,12 +177,24 @@
 				B81D472E29D575E900DB603C /* images */,
 				B81D473029D575E900DB603C /* manifest.json */,
 				B81D473229D575E900DB603C /* background.js */,
+				B871AC8729D8AAB100A5E720 /* common.js */,
 				B81D473429D575E900DB603C /* content.js */,
 				B81D473629D575E900DB603C /* popup.html */,
 				B81D473829D575E900DB603C /* popup.css */,
 				B81D473A29D575E900DB603C /* popup.js */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B871AC8B29D8B07600A5E720 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				B871AC8929D8AE8700A5E720 /* Message.swift */,
+				B871AC9029D8B2FD00A5E720 /* MessageType.swift */,
+				B871AC8E29D8B20200A5E720 /* MessageError.swift */,
+				B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */,
+			);
+			path = Messages;
 			sourceTree = "<group>";
 		};
 		B876607F29D5CC2A00B8E75C /* Frameworks */ = {
@@ -281,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B871AC8829D8AAB100A5E720 /* common.js in Resources */,
 				B81D473329D575E900DB603C /* background.js in Resources */,
 				B81D473929D575E900DB603C /* popup.css in Resources */,
 				B81D473729D575E900DB603C /* popup.html in Resources */,
@@ -309,7 +333,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B871AC8F29D8B20200A5E720 /* MessageError.swift in Sources */,
 				B81D472A29D575E900DB603C /* SafariWebExtensionHandler.swift in Sources */,
+				B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */,
+				B871AC9129D8B2FD00A5E720 /* MessageType.swift in Sources */,
+				B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
