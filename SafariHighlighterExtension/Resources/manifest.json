@@ -15,12 +15,12 @@
     },
 
     "background": {
-        "scripts": ["background.js"],
+        "scripts": ["common.js", "background.js"],
         "persistent": false
     },
 
     "content_scripts": [{
-        "js": [ "content.js" ],
+        "js": [ "common.js", "content.js" ],
         "matches": [ "<all_urls>" ]
     }],
 
