@@ -7,6 +7,7 @@
 
 import CoreData
 
+/// This class handles C, U, D in the CRUD for Category objects
 final class CategoryService: NSObject {
 
     typealias OperationResult = Result<(), Error>
@@ -31,8 +32,6 @@ final class CategoryService: NSObject {
             save(context: context)
         }
     }
-
-    // MARK: Read
 
     // MARK: Update
 

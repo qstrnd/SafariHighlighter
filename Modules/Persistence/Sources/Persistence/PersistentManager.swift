@@ -14,11 +14,6 @@ final class PersistentManager {
 
     // MARK: - Nested
 
-    struct StoreOptions {
-        let isPersistenceEnabled: Bool
-        let isCloudSyncEnabled: Bool
-    }
-
     enum StoreLoadingState {
         case notLoaded
         case loading
@@ -37,14 +32,14 @@ final class PersistentManager {
     /// Options for underlying persistent store
     ///
     /// Each time this property is changed, reloading of the store is performed
-    var storeOptions: StoreOptions {
+    var storeOptions: PersistentStoreOptions {
         didSet {
             loadPersistentStore()
         }
     }
 
     init(
-        storeOptions: StoreOptions,
+        storeOptions: PersistentStoreOptions,
         loadPersistentStoreImmediately: Bool
     ) {
         self.storeOptions = storeOptions
