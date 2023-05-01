@@ -38,6 +38,9 @@ class SafariWebExtensionHandler: NSObject, NSExtensionRequestHandling {
 
         switch messageType {
         case .loadTags:
+//            messageParameters["handled"] = "true"
+//            let responseMessage = Message(type: ., parameters: <#T##<<error type>>#>)
+
             let response = NSExtensionItem()
             response.userInfo = [ SFExtensionMessageKey: [ "status": "handled load tags" ] ]
 

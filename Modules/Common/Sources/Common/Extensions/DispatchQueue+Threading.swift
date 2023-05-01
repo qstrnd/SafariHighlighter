@@ -8,7 +8,7 @@
 import Foundation
 
 public extension DispatchQueue {
-    public func performOnMain(_ block: @escaping (() -> Void)) {
+    static func performOnMain(_ block: @escaping (() -> Void)) {
         if Thread.isMainThread {
             block()
         } else {

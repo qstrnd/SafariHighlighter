@@ -8,67 +8,68 @@
 import CoreData
 
 /// This class handles C, U, D in the CRUD for Category objects
-final class CategoryService: NSObject {
+public final class CategoryService: NSObject {
 
-    typealias OperationResult = Result<(), Error>
-    typealias OperationCompletion = (OperationResult) -> Void
+    public typealias OperationResult = Result<(), Error>
+    public typealias OperationCompletion = (OperationResult) -> Void
 
-    // MARK: - Internal
+    // MARK: - Public
 
-    init(persistentManager: PersistentManager) {
-        self.persistentManager = persistentManager
+    public init(persistanceExecutor: PersistenceOperationsExecuting) {
+        self.persistanceExecutor = persistanceExecutor
     }
 
     // MARK: Creation
 
-    func create(category: Category, completion: OperationCompletion? = nil) {
+    public func create(category: Category, completion: OperationCompletion? = nil) {
         create(categories: [category], completion: completion)
     }
 
-    func create(categories: [Category], completion: OperationCompletion? = nil) {
-        persistentManager.execute { [unowned self] context in
+    public func create(categories: [Category], completion: OperationCompletion? = nil) {
+        persistanceExecutor.execute { [unowned self] context in
             categories.forEach { self.create(category: $0, in: context) }
 
-            save(context: context)
+            save(context: context, completion: completion)
         }
     }
 
     // MARK: Update
 
-    func update(category: Category, completion: OperationCompletion? = nil) {
+    public func update(category: Category, completion: OperationCompletion? = nil) {
         update(categories: [category], completion: completion)
     }
 
-    func update(categories: [Category], completion: OperationCompletion? = nil) {
-        persistentManager.execute { [unowned self] context in
+    public func update(categories: [Category], completion: OperationCompletion? = nil) {
+        persistanceExecutor.execute { [unowned self] context in
             categories.forEach { self.update(category: $0, in: context) }
 
-            save(context: context)
+            save(context: context, completion: completion)
         }
     }
 
     // MARK: Deletion
 
-    func delete(category: Category, completion: OperationCompletion? = nil) {
+    public func delete(category: Category, completion: OperationCompletion? = nil) {
         delete(categories: [category], completion: completion)
     }
 
-    func delete(categories: [Category], completion: OperationCompletion? = nil) {
-        persistentManager.execute { [unowned self] context in
+    public func delete(categories: [Category], completion: OperationCompletion? = nil) {
+        persistanceExecutor.execute { [unowned self] context in
             categories.forEach { self.delete(category: $0, in: context) }
 
-            save(context: context)
+            save(context: context, completion: completion)
         }
     }
 
     // MARK: - Private
 
-    private let persistentManager: PersistentManager
+    private let persistanceExecutor: PersistenceOperationsExecuting
 
     // MARK: CRUD
 
     private func create(category: Category, in context: NSManagedObjectContext) {
-        let persistedCategory = PersistedCategory(context: context)
+        let entity = NSEntityDescription.entity(forEntityName: "PersistedCategory", in: context)!
+        let persistedCategory = PersistedCategory(entity: entity, insertInto: context)
         updateProperties(of: persistedCategory, from: category)
     }
 
@@ -101,7 +102,8 @@ final class CategoryService: NSObject {
         if let fetchedCategory = fetchPersistedCategory(for: category, in: context) {
             return fetchedCategory
         } else {
-            return PersistedCategory(context: context)
+            let entity = NSEntityDescription.entity(forEntityName: "PersistedCategory", in: context)!
+            return PersistedCategory(entity: entity, insertInto: context)
         }
     }
 
@@ -109,6 +111,8 @@ final class CategoryService: NSObject {
 
     private func updateProperties(of persistedCategory: PersistedCategory, from category: Category) {
         persistedCategory.name = category.name
+        persistedCategory.creationDate = category.creationDate
+        persistedCategory.uniqueId = category.uniqueId
     }
 
     // MARK: Context saving

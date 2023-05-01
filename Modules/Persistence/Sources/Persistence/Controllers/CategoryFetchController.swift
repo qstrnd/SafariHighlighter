@@ -24,7 +24,6 @@ public final class CategoryFetchController: NSObject {
     typealias CategoryController = NSFetchedResultsController<PersistedCategory>
 
     public struct Options {
-
         public enum SortOrder {
             case creationDate
             case name
@@ -35,6 +34,14 @@ public final class CategoryFetchController: NSObject {
 
         let sortOrder: SortOrder
         let showOnlyCategoriesWithHighlights: Bool
+
+        public init(
+            sortOrder: CategoryFetchController.Options.SortOrder,
+            showOnlyCategoriesWithHighlights: Bool
+        ) {
+            self.sortOrder = sortOrder
+            self.showOnlyCategoriesWithHighlights = showOnlyCategoriesWithHighlights
+        }
     }
 
     private enum Constants {
@@ -55,7 +62,7 @@ public final class CategoryFetchController: NSObject {
     public init(
         delegate: CategoryFetchControllerDelegate? = nil,
         options: Options,
-        persistanceExecutor: PersistenceExecutor
+        persistanceExecutor: PersistenceOperationsExecuting
     ) {
         self.delegate = delegate
         self.options = options
@@ -97,7 +104,7 @@ public final class CategoryFetchController: NSObject {
 
     // MARK: - Private
 
-    private let persistanceExecutor: PersistenceExecutor
+    private let persistanceExecutor: PersistenceOperationsExecuting
 
     private var fetchedResultsController: CategoryController?
 
@@ -146,7 +153,7 @@ public final class CategoryFetchController: NSObject {
     private func getSortDescriptorForCurrentOptions() -> NSSortDescriptor {
         switch options.sortOrder {
         case .creationDate:
-            return NSSortDescriptor(key: "date", ascending: true)
+            return NSSortDescriptor(key: "creationDate", ascending: true)
         case .name:
             return NSSortDescriptor(key: "name", ascending: true)
         case .numberOfHighlights:
@@ -155,7 +162,7 @@ public final class CategoryFetchController: NSObject {
     }
 
     private func getPredicateForCurrentOptions() -> NSPredicate? {
-        guard !options.showOnlyCategoriesWithHighlights else { return nil }
+        guard options.showOnlyCategoriesWithHighlights else { return nil }
 
         return NSPredicate(format: "highlights.@count > 0")
     }

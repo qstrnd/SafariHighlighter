@@ -5,7 +5,7 @@ import CoreData
 final class PersistenceManagerTests: XCTestCase {
 
     private enum Constants {
-        static let defaultPersistentStoreOptions = PersistentManager.StoreOptions(
+        static let defaultPersistentStoreOptions = PersistentStoreOptions(
             isPersistenceEnabled: false,
             isCloudSyncEnabled: false
         )

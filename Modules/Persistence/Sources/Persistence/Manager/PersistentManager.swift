@@ -10,7 +10,7 @@ import CoreData
 import Common
 
 /// Manager responsible for setting up the persistent container and reload it with appropriate options
-final class PersistentManager {
+final class PersistentManager: PersistenceExecutor {
 
     // MARK: - Nested
 

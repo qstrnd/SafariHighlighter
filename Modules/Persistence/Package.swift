@@ -24,10 +24,7 @@ let package = Package(
         ),
         .testTarget(
             name: "PersistenceTests",
-            dependencies: ["Persistence"],
-            resources: [
-                .process("Resources")
-            ]
+            dependencies: ["Persistence"]
         ),
     ]
 )

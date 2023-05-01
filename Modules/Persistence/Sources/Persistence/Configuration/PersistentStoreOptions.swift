@@ -20,3 +20,6 @@ public struct PersistentStoreOptions {
         self.isCloudSyncEnabled = isCloudSyncEnabled
     }
 }
+
+// MARK: - Equatable
+extension PersistentStoreOptions: Equatable {}
