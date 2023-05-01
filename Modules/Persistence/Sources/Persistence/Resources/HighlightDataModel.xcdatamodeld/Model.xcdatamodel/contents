@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Category" representedClassName=".Category" syncable="YES" codeGenerationType="class">
+    <entity name="PersistedCategory" representedClassName=".PersistedCategory" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
-        <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Highlight" inverseName="category" inverseEntity="Highlight"/>
+        <attribute name="uniqueId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PersistedHighlight" inverseName="category" inverseEntity="PersistedHighlight"/>
     </entity>
-    <entity name="Highlight" representedClassName=".Highlight" syncable="YES" codeGenerationType="class">
+    <entity name="PersistedHighlight" representedClassName=".PersistedHighlight" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" customClassName="."/>
         <attribute name="location" optional="YES" attributeType="String" allowsCloudEncryption="YES" customClassName="."/>
         <attribute name="text" optional="YES" attributeType="String" allowsCloudEncryption="YES" spotlightIndexingEnabled="YES"/>
         <attribute name="uniqueId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="highlights" inverseEntity="Category"/>
-        <relationship name="website" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Website" inverseName="highlights" inverseEntity="Website"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersistedCategory" inverseName="highlights" inverseEntity="PersistedCategory"/>
+        <relationship name="website" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersistedWebsite" inverseName="highlights" inverseEntity="PersistedWebsite"/>
     </entity>
-    <entity name="Website" representedClassName=".Website" syncable="YES" codeGenerationType="class">
+    <entity name="PersistedWebsite" representedClassName=".PersistedWebsite" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" allowsCloudEncryption="YES" spotlightIndexingEnabled="YES"/>
         <attribute name="url" optional="YES" attributeType="String" allowsCloudEncryption="YES"/>
-        <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Highlight" inverseName="website" inverseEntity="Highlight"/>
+        <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PersistedHighlight" inverseName="website" inverseEntity="PersistedHighlight"/>
     </entity>
 </model>
