@@ -81,7 +81,7 @@ final class WebsitesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let website = websiteFetchController.object(at: indexPath)
 
-        let highlightsVC = highlightsCoordinator.buildHighlightsController(groupBy: .website(uniqueId: website.uniqueId))
+        let highlightsVC = highlightsCoordinator.buildHighlightsController(groupBy: .website(website))
         highlightsVC.title = website.name
 
         navigationController?.pushViewController(highlightsVC, animated: true)

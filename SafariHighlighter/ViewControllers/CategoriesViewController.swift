@@ -81,7 +81,7 @@ final class CategoriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = categoryFetchController.object(at: indexPath)
 
-        let highlightsVC = highlightsCoordinator.buildHighlightsController(groupBy: .category(uniqueId: category.uniqueId))
+        let highlightsVC = highlightsCoordinator.buildHighlightsController(groupBy: .category(category))
         highlightsVC.title = category.name
 
         navigationController?.pushViewController(highlightsVC, animated: true)

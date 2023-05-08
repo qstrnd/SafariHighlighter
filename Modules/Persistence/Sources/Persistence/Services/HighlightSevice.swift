@@ -61,6 +61,17 @@ public final class HighlightService: NSObject {
         }
     }
 
+    // MARK: - Internal
+
+    func fetchOrCreatePersistedHighlight(for highlight: Highlight, in context: NSManagedObjectContext) -> PersistedHighlight {
+        if let fetchedHighlight = fetchPersistedHighlight(for: highlight, in: context) {
+            return fetchedHighlight
+        } else {
+            let entity = NSEntityDescription.entity(forEntityName: "PersistedHighlight", in: context)!
+            return PersistedHighlight(entity: entity, insertInto: context)
+        }
+    }
+
     // MARK: - Private
 
     private let persistanceExecutor: PersistenceOperationsExecuting
@@ -95,15 +106,6 @@ public final class HighlightService: NSObject {
             return results.first
         } catch {
             return nil
-        }
-    }
-
-    private func fetchOrCreatePersistedHighlight(for highlight: Highlight, in context: NSManagedObjectContext) -> PersistedHighlight {
-        if let fetchedHighlight = fetchPersistedHighlight(for: highlight, in: context) {
-            return fetchedHighlight
-        } else {
-            let entity = NSEntityDescription.entity(forEntityName: "PersistedHighlight", in: context)!
-            return PersistedHighlight(entity: entity, insertInto: context)
         }
     }
 

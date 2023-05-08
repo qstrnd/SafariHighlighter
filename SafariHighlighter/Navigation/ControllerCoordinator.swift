@@ -12,13 +12,13 @@ protocol IRootControllerCoordinator: AnyObject {
     func buildInitialViewController() -> UIViewController
 }
 
-public enum HighlightsControllerGroupBy {
-    case category(uniqueId: UUID)
-    case website(uniqueId: UUID)
+public enum HighlightsGroupBy {
+    case website(Website)
+    case category(Persistence.Category)
 }
 
 protocol IHighlightsControllerCoordinator: AnyObject {
-    func buildHighlightsController(groupBy: HighlightsControllerGroupBy) -> UIViewController
+    func buildHighlightsController(groupBy: HighlightsGroupBy) -> UIViewController
 }
 
 final class ControllerCoordinator {
@@ -89,32 +89,41 @@ extension ControllerCoordinator: IRootControllerCoordinator {
 
 // MARK: - IHighlightsControllerCoordinator
 extension ControllerCoordinator: IHighlightsControllerCoordinator {
-    func buildHighlightsController(groupBy: HighlightsControllerGroupBy) -> UIViewController {
-        let groupBy = highlightsFetchControllerGroupBy(from: groupBy)
+    func buildHighlightsController(groupBy: HighlightsGroupBy) -> UIViewController {
+        let groupByOption = highlightsFetchControllerGroupBy(from: groupBy)
 
         let highlightFetchController = HighlightFetchController(
-            options: .init(sortOrder: .creationDate, groupBy: groupBy),
+            options: .init(sortOrder: .creationDate, groupBy: groupByOption),
             persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
         )
 
-        let highlightService = HighlightService(
+        let highlightService = HighlightService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
+        let categoryService = CategoryService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
+        let websiteService = WebsiteService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
+
+        let relationshipService = RelationshipService(
+            highlighService: highlightService,
+            categoryService: categoryService,
+            websiteService: websiteService,
             persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
         )
 
         let highlightsViewController = HighlightsViewController(
             highlightFetchController: highlightFetchController,
-            highlightService: highlightService
+            highlightService: highlightService,
+            relationshipService: relationshipService,
+            groupByTrait: groupBy
         )
 
         return highlightsViewController
     }
 
-    private func highlightsFetchControllerGroupBy(from groupBy: HighlightsControllerGroupBy) -> HighlightFetchController.Options.GroupBy {
+    private func highlightsFetchControllerGroupBy(from groupBy: HighlightsGroupBy) -> HighlightFetchController.Options.GroupBy {
         switch groupBy {
-        case .category(let uniqueId):
-            return .category(uniqueId: uniqueId)
-        case .website(let uniqueId):
-            return .website(uniqueId: uniqueId)
+        case .category(let category):
+            return .category(uniqueId: category.uniqueId)
+        case .website(let website):
+            return .website(uniqueId: website.uniqueId)
         }
     }
 }

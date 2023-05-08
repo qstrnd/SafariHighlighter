@@ -61,6 +61,17 @@ public final class WebsiteService: NSObject {
         }
     }
 
+    // MARK: - Internal
+
+    func fetchOrCreatePersistedWebsite(for website: Website, in context: NSManagedObjectContext) -> PersistedWebsite {
+        if let fetchedWebsite = fetchPersistedWebsite(for: website, in: context) {
+            return fetchedWebsite
+        } else {
+            let entity = NSEntityDescription.entity(forEntityName: "PersistedWebsite", in: context)!
+            return PersistedWebsite(entity: entity, insertInto: context)
+        }
+    }
+
     // MARK: - Private
 
     private let persistanceExecutor: PersistenceOperationsExecuting
@@ -95,15 +106,6 @@ public final class WebsiteService: NSObject {
             return results.first
         } catch {
             return nil
-        }
-    }
-
-    private func fetchOrCreatePersistedWebsite(for website: Website, in context: NSManagedObjectContext) -> PersistedWebsite {
-        if let fetchedWebsite = fetchPersistedWebsite(for: website, in: context) {
-            return fetchedWebsite
-        } else {
-            let entity = NSEntityDescription.entity(forEntityName: "PersistedWebsite", in: context)!
-            return PersistedWebsite(entity: entity, insertInto: context)
         }
     }
 

@@ -61,6 +61,17 @@ public final class CategoryService: NSObject {
         }
     }
 
+    // MARK: - Internal
+
+    func fetchOrCreatePersistedCategory(for category: Category, in context: NSManagedObjectContext) -> PersistedCategory {
+        if let fetchedCategory = fetchPersistedCategory(for: category, in: context) {
+            return fetchedCategory
+        } else {
+            let entity = NSEntityDescription.entity(forEntityName: "PersistedCategory", in: context)!
+            return PersistedCategory(entity: entity, insertInto: context)
+        }
+    }
+
     // MARK: - Private
 
     private let persistanceExecutor: PersistenceOperationsExecuting
@@ -95,15 +106,6 @@ public final class CategoryService: NSObject {
             return results.first
         } catch {
             return nil
-        }
-    }
-
-    private func fetchOrCreatePersistedCategory(for category: Category, in context: NSManagedObjectContext) -> PersistedCategory {
-        if let fetchedCategory = fetchPersistedCategory(for: category, in: context) {
-            return fetchedCategory
-        } else {
-            let entity = NSEntityDescription.entity(forEntityName: "PersistedCategory", in: context)!
-            return PersistedCategory(entity: entity, insertInto: context)
         }
     }
 

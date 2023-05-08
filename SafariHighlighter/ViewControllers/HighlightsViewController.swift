@@ -21,10 +21,14 @@ final class HighlightsViewController: UITableViewController {
 
     init(
         highlightFetchController: HighlightFetchController,
-        highlightService: HighlightService
+        highlightService: HighlightService,
+        relationshipService: RelationshipService,
+        groupByTrait: HighlightsGroupBy
     ) {
         self.highlightFetchController = highlightFetchController
         self.highlightService = highlightService
+        self.relationshipService = relationshipService
+        self.groupByTrait = groupByTrait
 
         super.init(nibName: nil, bundle: nil)
 
@@ -84,14 +88,22 @@ final class HighlightsViewController: UITableViewController {
 
     let highlightFetchController: HighlightFetchController
     let highlightService: HighlightService
+    let relationshipService: RelationshipService
+    let groupByTrait: HighlightsGroupBy
 
     // MARK: Actions
 
     @objc
     private func addButtonTapped() {
-        let newHighlight = Highlight(text: "BlaBla", location: "bla#bla")
-
+        let newHighlight = Highlight(text: "BlaBla", location: ".class[0]#id")
         highlightService.create(highlight: newHighlight)
+
+        switch groupByTrait {
+        case .category(let category):
+            relationshipService.associate(highlight: newHighlight, with: category)
+        case .website(let website):
+            relationshipService.associate(highlight: newHighlight, with: website)
+        }
     }
 
 }
