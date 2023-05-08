@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="PersistedCategory" representedClassName="Persistence.PersistedCategory" syncable="YES" codeGenerationType="class">
+    <entity name="PersistedCategory" representedClassName="PersistedCategory" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="uniqueId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PersistedHighlight" inverseName="category" inverseEntity="PersistedHighlight"/>
     </entity>
-    <entity name="PersistedHighlight" representedClassName="Persistence.PersistedHighlight" syncable="YES" codeGenerationType="class">
+    <entity name="PersistedHighlight" representedClassName="PersistedHighlight" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" customClassName="."/>
         <attribute name="location" optional="YES" attributeType="String" allowsCloudEncryption="YES" customClassName="."/>
         <attribute name="text" optional="YES" attributeType="String" allowsCloudEncryption="YES" spotlightIndexingEnabled="YES"/>
@@ -14,7 +14,7 @@
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersistedCategory" inverseName="highlights" inverseEntity="PersistedCategory"/>
         <relationship name="website" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersistedWebsite" inverseName="highlights" inverseEntity="PersistedWebsite"/>
     </entity>
-    <entity name="PersistedWebsite" representedClassName="Persistence.PersistedWebsite" syncable="YES" codeGenerationType="class">
+    <entity name="PersistedWebsite" representedClassName="PersistedWebsite" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String" allowsCloudEncryption="YES" spotlightIndexingEnabled="YES"/>
         <attribute name="uniqueId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
