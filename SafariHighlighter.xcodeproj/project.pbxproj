@@ -30,6 +30,7 @@
 		B876608129D5CC2F00B8E75C /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B876608029D5CC2F00B8E75C /* Common */; };
 		B876608329D5CC3700B8E75C /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B876608229D5CC3700B8E75C /* Common */; };
 		B898B88A29F43F08000A36D0 /* ControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B898B88929F43F08000A36D0 /* ControllerCoordinator.swift */; };
+		B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		B871AC8E29D8B20200A5E720 /* MessageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageError.swift; sourceTree = "<group>"; };
 		B871AC9029D8B2FD00A5E720 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		B898B88929F43F08000A36D0 /* ControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerCoordinator.swift; sourceTree = "<group>"; };
+		B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsitesViewController.swift; sourceTree = "<group>"; };
 		B8E7A94929FFB72B00C6D98B /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Common; sourceTree = "<group>"; };
 		B8E7A94A29FFB72B00C6D98B /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 				B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */,
 				B898B97F29F440B4000A36D0 /* Application */,
 				B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */,
+				B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */,
 				B898B88829F43EF3000A36D0 /* Navigation */,
 				B81D471E29D575E900DB603C /* Assets.xcassets */,
 				B81D471F29D575E900DB603C /* Info.plist */,
@@ -331,6 +334,7 @@
 				B81D470B29D575E800DB603C /* AppDelegate.swift in Sources */,
 				B898B88A29F43F08000A36D0 /* ControllerCoordinator.swift in Sources */,
 				B81D471529D575E800DB603C /* SceneDelegate.swift in Sources */,
+				B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

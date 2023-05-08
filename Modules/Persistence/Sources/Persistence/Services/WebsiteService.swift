@@ -112,7 +112,7 @@ public final class WebsiteService: NSObject {
     private func updateProperties(of persistedWebsite: PersistedWebsite, from website: Website) {
         persistedWebsite.name = website.name
         persistedWebsite.url = website.url.absoluteString
-        persistedWebsite.creationDate = persistedWebsite.creationDate
+        persistedWebsite.creationDate = website.creationDate
         persistedWebsite.uniqueId = website.uniqueId
     }
 

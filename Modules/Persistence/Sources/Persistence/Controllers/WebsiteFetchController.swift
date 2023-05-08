@@ -9,9 +9,9 @@ import CoreData
 import Common
 
 public protocol WebsiteFetchControllerDelegate: AnyObject {
-    func websiteFetchController(_ controller: WebsiteFetchController, didUpdateCategoriesAt indexPath: [IndexPath])
-    func websiteFetchController(_ controller: WebsiteFetchController, didAddCategories indexPath: [IndexPath])
-    func websiteFetchController(_ controller: WebsiteFetchController, didDeleteCategories indexPath: [IndexPath])
+    func websiteFetchController(_ controller: WebsiteFetchController, didUpdateWebsitesAt indexPath: [IndexPath])
+    func websiteFetchController(_ controller: WebsiteFetchController, didAddWebsites indexPath: [IndexPath])
+    func websiteFetchController(_ controller: WebsiteFetchController, didDeleteWebsites indexPath: [IndexPath])
 
     func websiteFetchControllerWillBeginUpdates(_ controller: WebsiteFetchController)
     func websiteFetchControllerDidFinishUpdates(_ controller: WebsiteFetchController)
@@ -33,14 +33,14 @@ public final class WebsiteFetchController: NSObject {
         }
 
         let sortOrder: SortOrder
-        let showOnlyCategoriesWithHighlights: Bool
+        let showOnlyWebsitesWithHighlights: Bool
 
         public init(
             sortOrder: WebsiteFetchController.Options.SortOrder,
-            showOnlyCategoriesWithHighlights: Bool
+            showOnlyWebsitesWithHighlights: Bool
         ) {
             self.sortOrder = sortOrder
-            self.showOnlyCategoriesWithHighlights = showOnlyCategoriesWithHighlights
+            self.showOnlyWebsitesWithHighlights = showOnlyWebsitesWithHighlights
         }
     }
 
@@ -83,7 +83,7 @@ public final class WebsiteFetchController: NSObject {
         }
     }
 
-    public func numberOfCategories() -> Int {
+    public func numberOfWebsites() -> Int {
         precondition(Thread.isMainThread, "Jobs related to frc must be executed on main thread")
 
         return fetchedResultsController?.fetchedObjects?.count ?? 0
@@ -162,7 +162,7 @@ public final class WebsiteFetchController: NSObject {
     }
 
     private func getPredicateForCurrentOptions() -> NSPredicate? {
-        guard options.showOnlyCategoriesWithHighlights else { return nil }
+        guard options.showOnlyWebsitesWithHighlights else { return nil }
 
         return NSPredicate(format: "highlights.@count > 0")
     }
@@ -192,20 +192,20 @@ extension WebsiteFetchController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             if let newIndexPath = newIndexPath {
-                delegate?.websiteFetchController(self, didAddCategories: [newIndexPath])
+                delegate?.websiteFetchController(self, didAddWebsites: [newIndexPath])
             }
         case .delete:
             if let indexPath = indexPath {
-                delegate?.websiteFetchController(self, didDeleteCategories: [indexPath])
+                delegate?.websiteFetchController(self, didDeleteWebsites: [indexPath])
             }
         case .update:
             if let indexPath = indexPath {
-                delegate?.websiteFetchController(self, didUpdateCategoriesAt: [indexPath])
+                delegate?.websiteFetchController(self, didUpdateWebsitesAt: [indexPath])
             }
         case .move:
             if let indexPath = indexPath, let newIndexPath = newIndexPath {
-                delegate?.websiteFetchController(self, didDeleteCategories: [indexPath])
-                delegate?.websiteFetchController(self, didAddCategories: [newIndexPath])
+                delegate?.websiteFetchController(self, didDeleteWebsites: [indexPath])
+                delegate?.websiteFetchController(self, didAddWebsites: [newIndexPath])
             }
         @unknown default:
             fatalError("Unhandled NSFetchedResultsChangeType")

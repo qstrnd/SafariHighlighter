@@ -21,19 +21,31 @@ final class ControllerCoordinator: IRootControllerCoordinator {
     func buildInitialViewController() -> UIViewController {
         let factory = PersistenceExecutorFactory(initialStoreOptions: .init(isPersistenceEnabled: false, isCloudSyncEnabled: false))
 
-        let categoryFetchController = CategoryFetchController(
-            options: .init(sortOrder: .creationDate, showOnlyCategoriesWithHighlights: false),
+//        let categoryFetchController = CategoryFetchController(
+//            options: .init(sortOrder: .creationDate, showOnlyCategoriesWithHighlights: false),
+//            persistanceExecutor: factory.getSharedPersistenceExecutor()
+//        )
+//
+//        let categoryService = CategoryService(persistanceExecutor: factory.getSharedPersistenceExecutor())
+//
+//        let categoriesViewController = CategoriesViewController(
+//            categoryFetchController: categoryFetchController,
+//            categoryService: categoryService
+//        )
+
+        let websiteFetchController = WebsiteFetchController(
+            options: .init(sortOrder: .creationDate, showOnlyWebsitesWithHighlights: false),
             persistanceExecutor: factory.getSharedPersistenceExecutor()
         )
 
-        let categoryService = CategoryService(persistanceExecutor: factory.getSharedPersistenceExecutor())
+        let websiteService = WebsiteService(persistanceExecutor: factory.getSharedPersistenceExecutor())
 
-        let categoryViewController = CategoriesViewController(
-            categoryFetchController: categoryFetchController,
-            categoryService: categoryService
+        let websitesViewController = WebsitesViewController(
+            websiteFetchController: websiteFetchController,
+            websiteService: websiteService
         )
 
-        let navigationController = UINavigationController(rootViewController: categoryViewController)
+        let navigationController = UINavigationController(rootViewController: websitesViewController)
 
         return navigationController
     }
