@@ -8,36 +8,41 @@
 import UIKit
 import Persistence
 
-protocol IRootControllerCoordinator {
+protocol IRootControllerCoordinator: AnyObject {
     func buildInitialViewController() -> UIViewController
 }
 
-final class ControllerCoordinator: IRootControllerCoordinator {
+public enum HighlightsControllerGroupBy {
+    case category(uniqueId: UUID)
+    case website(uniqueId: UUID)
+}
+
+protocol IHighlightsControllerCoordinator: AnyObject {
+    func buildHighlightsController(groupBy: HighlightsControllerGroupBy) -> UIViewController
+}
+
+final class ControllerCoordinator {
 
     // MARK: - Internal
 
     static let shared = ControllerCoordinator()
 
-    func buildInitialViewController() -> UIViewController {
-        let factory = PersistenceExecutorFactory(initialStoreOptions: .init(isPersistenceEnabled: false, isCloudSyncEnabled: false))
+    func buildGroupedHighlightsViewController() -> UIViewController {
+        let categoriesVC = buildCategoriesController()
+        let websitesVC = buildWebsitesController()
 
-        let categoriesVC = buildCategoriesController(persistenceExecutorFactory: factory)
-        let websitesVC = buildWebsitesController(persistenceExecutorFactory: factory)
-
-        let groupedHighlightsVC = GroupedHighlightsViewController(groupingVCs: [categoriesVC, websitesVC])
-
-        let navigationController = UINavigationController(rootViewController: groupedHighlightsVC)
-
-        return navigationController
+        return GroupedHighlightsViewController(groupingVCs: [categoriesVC, websitesVC])
     }
 
     // MARK: - Private
 
+    private let persistenceExecutorFactory = PersistenceExecutorFactory(
+        initialStoreOptions: .init(isPersistenceEnabled: false, isCloudSyncEnabled: false)
+    )
+
     private init() {}
 
-    private func buildCategoriesController(
-        persistenceExecutorFactory: PersistenceExecutorFactory
-    ) -> CategoriesViewController {
+    private func buildCategoriesController() -> CategoriesViewController {
         let categoryFetchController = CategoryFetchController(
             options: .init(sortOrder: .creationDate, showOnlyCategoriesWithHighlights: false),
             persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
@@ -47,15 +52,14 @@ final class ControllerCoordinator: IRootControllerCoordinator {
 
         let categoriesViewController = CategoriesViewController(
             categoryFetchController: categoryFetchController,
-            categoryService: categoryService
+            categoryService: categoryService,
+            highlightsCoordinator: self
         )
 
         return categoriesViewController
     }
 
-    private func buildWebsitesController(
-        persistenceExecutorFactory: PersistenceExecutorFactory
-    ) -> WebsitesViewController {
+    private func buildWebsitesController() -> WebsitesViewController {
         let websiteFetchController = WebsiteFetchController(
             options: .init(sortOrder: .creationDate, showOnlyWebsitesWithHighlights: false),
             persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
@@ -65,9 +69,52 @@ final class ControllerCoordinator: IRootControllerCoordinator {
 
         let websitesViewController = WebsitesViewController(
             websiteFetchController: websiteFetchController,
-            websiteService: websiteService
+            websiteService: websiteService,
+            highlightsCoordinator: self
         )
 
         return websitesViewController
+    }
+}
+
+// MARK: - IRootControllerCoordinator
+extension ControllerCoordinator: IRootControllerCoordinator {
+    func buildInitialViewController() -> UIViewController {
+        let groupedHighlightsVC = buildGroupedHighlightsViewController()
+        let navigationController = UINavigationController(rootViewController: groupedHighlightsVC)
+
+        return navigationController
+    }
+}
+
+// MARK: - IHighlightsControllerCoordinator
+extension ControllerCoordinator: IHighlightsControllerCoordinator {
+    func buildHighlightsController(groupBy: HighlightsControllerGroupBy) -> UIViewController {
+        let groupBy = highlightsFetchControllerGroupBy(from: groupBy)
+
+        let highlightFetchController = HighlightFetchController(
+            options: .init(sortOrder: .creationDate, groupBy: groupBy),
+            persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
+        )
+
+        let highlightService = HighlightService(
+            persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
+        )
+
+        let highlightsViewController = HighlightsViewController(
+            highlightFetchController: highlightFetchController,
+            highlightService: highlightService
+        )
+
+        return highlightsViewController
+    }
+
+    private func highlightsFetchControllerGroupBy(from groupBy: HighlightsControllerGroupBy) -> HighlightFetchController.Options.GroupBy {
+        switch groupBy {
+        case .category(let uniqueId):
+            return .category(uniqueId: uniqueId)
+        case .website(let uniqueId):
+            return .website(uniqueId: uniqueId)
+        }
     }
 }

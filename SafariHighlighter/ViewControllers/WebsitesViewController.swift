@@ -21,10 +21,12 @@ final class WebsitesViewController: UITableViewController {
 
     init(
         websiteFetchController: WebsiteFetchController,
-        websiteService: WebsiteService
+        websiteService: WebsiteService,
+        highlightsCoordinator: IHighlightsControllerCoordinator
     ) {
         self.websiteFetchController = websiteFetchController
         self.websiteService = websiteService
+        self.highlightsCoordinator = highlightsCoordinator
 
         super.init(nibName: nil, bundle: nil)
 
@@ -76,10 +78,21 @@ final class WebsitesViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let website = websiteFetchController.object(at: indexPath)
+
+        let highlightsVC = highlightsCoordinator.buildHighlightsController(groupBy: .website(uniqueId: website.uniqueId))
+        highlightsVC.title = website.name
+
+        navigationController?.pushViewController(highlightsVC, animated: true)
+    }
+
     // MARK: - Private
 
-    let websiteFetchController: WebsiteFetchController
-    let websiteService: WebsiteService
+    private let websiteFetchController: WebsiteFetchController
+    private let websiteService: WebsiteService
+    private let highlightsCoordinator: IHighlightsControllerCoordinator
+
 
     // MARK: Actions
 

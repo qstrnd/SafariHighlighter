@@ -33,6 +33,7 @@
 		B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */; };
 		B8ACADD22A096653005E45EC /* GroupedHighlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADD12A096653005E45EC /* GroupedHighlightsViewController.swift */; };
 		B8ACADD42A096694005E45EC /* HighlightsGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADD32A096694005E45EC /* HighlightsGrouping.swift */; };
+		B8ACADD82A097766005E45EC /* HighlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADD72A097766005E45EC /* HighlightsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsitesViewController.swift; sourceTree = "<group>"; };
 		B8ACADD12A096653005E45EC /* GroupedHighlightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedHighlightsViewController.swift; sourceTree = "<group>"; };
 		B8ACADD32A096694005E45EC /* HighlightsGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsGrouping.swift; sourceTree = "<group>"; };
+		B8ACADD72A097766005E45EC /* HighlightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsViewController.swift; sourceTree = "<group>"; };
 		B8E7A94929FFB72B00C6D98B /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Common; sourceTree = "<group>"; };
 		B8E7A94A29FFB72B00C6D98B /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +216,7 @@
 			children = (
 				B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */,
 				B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */,
+				B8ACADD72A097766005E45EC /* HighlightsViewController.swift */,
 				B8ACADD62A096DBB005E45EC /* GroupedHighlights */,
 			);
 			path = ViewControllers;
@@ -355,6 +358,7 @@
 				B8ACADD42A096694005E45EC /* HighlightsGrouping.swift in Sources */,
 				B8ACADD22A096653005E45EC /* GroupedHighlightsViewController.swift in Sources */,
 				B83041B82A002DFA00EF9AC5 /* CategoriesViewController.swift in Sources */,
+				B8ACADD82A097766005E45EC /* HighlightsViewController.swift in Sources */,
 				B81D470B29D575E800DB603C /* AppDelegate.swift in Sources */,
 				B898B88A29F43F08000A36D0 /* ControllerCoordinator.swift in Sources */,
 				B81D471529D575E800DB603C /* SceneDelegate.swift in Sources */,
