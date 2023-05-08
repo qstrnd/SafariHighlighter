@@ -21,31 +21,12 @@ final class ControllerCoordinator: IRootControllerCoordinator {
     func buildInitialViewController() -> UIViewController {
         let factory = PersistenceExecutorFactory(initialStoreOptions: .init(isPersistenceEnabled: false, isCloudSyncEnabled: false))
 
-//        let categoryFetchController = CategoryFetchController(
-//            options: .init(sortOrder: .creationDate, showOnlyCategoriesWithHighlights: false),
-//            persistanceExecutor: factory.getSharedPersistenceExecutor()
-//        )
-//
-//        let categoryService = CategoryService(persistanceExecutor: factory.getSharedPersistenceExecutor())
-//
-//        let categoriesViewController = CategoriesViewController(
-//            categoryFetchController: categoryFetchController,
-//            categoryService: categoryService
-//        )
+        let categoriesVC = buildCategoriesController(persistenceExecutorFactory: factory)
+        let websitesVC = buildWebsitesController(persistenceExecutorFactory: factory)
 
-        let websiteFetchController = WebsiteFetchController(
-            options: .init(sortOrder: .creationDate, showOnlyWebsitesWithHighlights: false),
-            persistanceExecutor: factory.getSharedPersistenceExecutor()
-        )
+        let groupedHighlightsVC = GroupedHighlightsViewController(groupingVCs: [categoriesVC, websitesVC])
 
-        let websiteService = WebsiteService(persistanceExecutor: factory.getSharedPersistenceExecutor())
-
-        let websitesViewController = WebsitesViewController(
-            websiteFetchController: websiteFetchController,
-            websiteService: websiteService
-        )
-
-        let navigationController = UINavigationController(rootViewController: websitesViewController)
+        let navigationController = UINavigationController(rootViewController: groupedHighlightsVC)
 
         return navigationController
     }
@@ -53,4 +34,40 @@ final class ControllerCoordinator: IRootControllerCoordinator {
     // MARK: - Private
 
     private init() {}
+
+    private func buildCategoriesController(
+        persistenceExecutorFactory: PersistenceExecutorFactory
+    ) -> CategoriesViewController {
+        let categoryFetchController = CategoryFetchController(
+            options: .init(sortOrder: .creationDate, showOnlyCategoriesWithHighlights: false),
+            persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
+        )
+
+        let categoryService = CategoryService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
+
+        let categoriesViewController = CategoriesViewController(
+            categoryFetchController: categoryFetchController,
+            categoryService: categoryService
+        )
+
+        return categoriesViewController
+    }
+
+    private func buildWebsitesController(
+        persistenceExecutorFactory: PersistenceExecutorFactory
+    ) -> WebsitesViewController {
+        let websiteFetchController = WebsiteFetchController(
+            options: .init(sortOrder: .creationDate, showOnlyWebsitesWithHighlights: false),
+            persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
+        )
+
+        let websiteService = WebsiteService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
+
+        let websitesViewController = WebsitesViewController(
+            websiteFetchController: websiteFetchController,
+            websiteService: websiteService
+        )
+
+        return websitesViewController
+    }
 }

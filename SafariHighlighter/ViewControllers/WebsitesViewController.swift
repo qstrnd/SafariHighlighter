@@ -14,6 +14,7 @@ final class WebsitesViewController: UITableViewController {
 
     private enum Constants {
         static let cellReuseId = "websiteCell"
+        static let name = "Websites"
     }
 
     // MARK: - Internal
@@ -39,10 +40,6 @@ final class WebsitesViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
-
-        let addButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-
-        navigationItem.rightBarButtonItem = addButton
     }
 
 
@@ -93,6 +90,19 @@ final class WebsitesViewController: UITableViewController {
         websiteService.create(website: newWebsite)
     }
 
+}
+
+// MARK: - HighlightsGrouping
+extension WebsitesViewController: HighlightsGrouping {
+    var name: String {
+        Constants.name
+    }
+
+    var navigationItems: [UIBarButtonItem] {
+        let newItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        
+        return [newItemButton]
+    }
 }
 
 // MARK: - WebsiteFetchControllerDelegate

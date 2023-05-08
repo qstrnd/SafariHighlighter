@@ -31,6 +31,8 @@
 		B876608329D5CC3700B8E75C /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B876608229D5CC3700B8E75C /* Common */; };
 		B898B88A29F43F08000A36D0 /* ControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B898B88929F43F08000A36D0 /* ControllerCoordinator.swift */; };
 		B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */; };
+		B8ACADD22A096653005E45EC /* GroupedHighlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADD12A096653005E45EC /* GroupedHighlightsViewController.swift */; };
+		B8ACADD42A096694005E45EC /* HighlightsGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADD32A096694005E45EC /* HighlightsGrouping.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,8 @@
 		B871AC9029D8B2FD00A5E720 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		B898B88929F43F08000A36D0 /* ControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerCoordinator.swift; sourceTree = "<group>"; };
 		B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsitesViewController.swift; sourceTree = "<group>"; };
+		B8ACADD12A096653005E45EC /* GroupedHighlightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedHighlightsViewController.swift; sourceTree = "<group>"; };
+		B8ACADD32A096694005E45EC /* HighlightsGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsGrouping.swift; sourceTree = "<group>"; };
 		B8E7A94929FFB72B00C6D98B /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Common; sourceTree = "<group>"; };
 		B8E7A94A29FFB72B00C6D98B /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,8 +138,7 @@
 			children = (
 				B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */,
 				B898B97F29F440B4000A36D0 /* Application */,
-				B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */,
-				B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */,
+				B8ACADD52A096699005E45EC /* ViewControllers */,
 				B898B88829F43EF3000A36D0 /* Navigation */,
 				B81D471E29D575E900DB603C /* Assets.xcassets */,
 				B81D471F29D575E900DB603C /* Info.plist */,
@@ -204,6 +207,25 @@
 				B81D471429D575E800DB603C /* SceneDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		B8ACADD52A096699005E45EC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */,
+				B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */,
+				B8ACADD62A096DBB005E45EC /* GroupedHighlights */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B8ACADD62A096DBB005E45EC /* GroupedHighlights */ = {
+			isa = PBXGroup;
+			children = (
+				B8ACADD32A096694005E45EC /* HighlightsGrouping.swift */,
+				B8ACADD12A096653005E45EC /* GroupedHighlightsViewController.swift */,
+			);
+			path = GroupedHighlights;
 			sourceTree = "<group>";
 		};
 		B8E7A94829FFB72B00C6D98B /* Modules */ = {
@@ -330,6 +352,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8ACADD42A096694005E45EC /* HighlightsGrouping.swift in Sources */,
+				B8ACADD22A096653005E45EC /* GroupedHighlightsViewController.swift in Sources */,
 				B83041B82A002DFA00EF9AC5 /* CategoriesViewController.swift in Sources */,
 				B81D470B29D575E800DB603C /* AppDelegate.swift in Sources */,
 				B898B88A29F43F08000A36D0 /* ControllerCoordinator.swift in Sources */,

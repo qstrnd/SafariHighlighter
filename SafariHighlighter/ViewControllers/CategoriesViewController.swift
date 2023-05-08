@@ -14,6 +14,7 @@ final class CategoriesViewController: UITableViewController {
 
     private enum Constants {
         static let cellReuseId = "categoryCell"
+        static let name = "Categories"
     }
 
     // MARK: - Internal
@@ -39,10 +40,6 @@ final class CategoriesViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
-
-        let addButton =  UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-
-        navigationItem.rightBarButtonItem = addButton
     }
     
 
@@ -93,6 +90,19 @@ final class CategoriesViewController: UITableViewController {
         categoryService.create(category: newCategory)
     }
 
+}
+
+// MARK: - HighlightsGrouping
+extension CategoriesViewController: HighlightsGrouping {
+    var name: String {
+        Constants.name
+    }
+
+    var navigationItems: [UIBarButtonItem] {
+        let newItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+
+        return [newItemButton]
+    }
 }
 
 // MARK: - CategoryFetchControllerDelegate
