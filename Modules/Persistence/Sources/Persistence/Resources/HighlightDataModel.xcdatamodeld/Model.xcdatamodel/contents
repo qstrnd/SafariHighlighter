@@ -15,7 +15,9 @@
         <relationship name="website" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersistedWebsite" inverseName="highlights" inverseEntity="PersistedWebsite"/>
     </entity>
     <entity name="PersistedWebsite" representedClassName="Persistence.PersistedWebsite" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String" allowsCloudEncryption="YES" spotlightIndexingEnabled="YES"/>
+        <attribute name="uniqueId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="url" optional="YES" attributeType="String" allowsCloudEncryption="YES"/>
         <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PersistedHighlight" inverseName="website" inverseEntity="PersistedHighlight"/>
     </entity>
