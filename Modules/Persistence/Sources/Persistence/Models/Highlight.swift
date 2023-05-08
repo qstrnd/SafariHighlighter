@@ -24,4 +24,11 @@ public struct Highlight {
         self.text = text
         self.location = location
     }
+
+    init(from persistedHighlight: PersistedHighlight) {
+        self.uniqueId = persistedHighlight.uniqueId!
+        self.creationDate = persistedHighlight.creationDate!
+        self.text = persistedHighlight.text!
+        self.location = persistedHighlight.location!
+    }
 }
