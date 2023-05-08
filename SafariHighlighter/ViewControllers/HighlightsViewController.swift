@@ -84,6 +84,10 @@ final class HighlightsViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+
     // MARK: - Private
 
     let highlightFetchController: HighlightFetchController
