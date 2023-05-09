@@ -214,10 +214,7 @@
 		B8ACADD52A096699005E45EC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */,
-				B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */,
-				B8ACADD72A097766005E45EC /* HighlightsViewController.swift */,
-				B8ACADD62A096DBB005E45EC /* GroupedHighlights */,
+				B8ACADD92A0A265A005E45EC /* Highlights */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -229,6 +226,17 @@
 				B8ACADD12A096653005E45EC /* GroupedHighlightsViewController.swift */,
 			);
 			path = GroupedHighlights;
+			sourceTree = "<group>";
+		};
+		B8ACADD92A0A265A005E45EC /* Highlights */ = {
+			isa = PBXGroup;
+			children = (
+				B8ACADD62A096DBB005E45EC /* GroupedHighlights */,
+				B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */,
+				B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */,
+				B8ACADD72A097766005E45EC /* HighlightsViewController.swift */,
+			);
+			path = Highlights;
 			sourceTree = "<group>";
 		};
 		B8E7A94829FFB72B00C6D98B /* Modules */ = {
