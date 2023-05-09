@@ -86,15 +86,31 @@ struct SettingsView: View {
 }
 
 struct HeaderView: View {
+    
+    private var iconFileName: String? {
+        guard let icons = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
+              let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
+              let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
+              let iconFileName = iconFiles.last
+        else { return nil }
+        return iconFileName
+    }
+    
+    private var appIconImage: Image {
+        iconFileName
+            .map { UIImage(named: $0)! }
+            .map { Image(uiImage: $0) }!
+    }
 
     var body: some View {
         VStack(spacing: 4) {
-            Image(systemName: "square.grid.3x3.fill")
+            appIconImage
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.blue)
-                .frame(width: 100, height: 100)
-                .padding(.bottom, 20)
+                .frame(width: 114, height: 114)
+                .cornerRadius(20)
+                .padding(.bottom, 8)
 
             Text("Highlighter for Safari")
                 .font(.headline)
