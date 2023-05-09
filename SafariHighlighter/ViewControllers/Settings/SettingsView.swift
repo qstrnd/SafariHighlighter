@@ -9,68 +9,79 @@ import SwiftUI
 import Common
 
 struct SettingsView: View {
+    
+    @State private var isShowingTutorialView = false
+    
     var body: some View {
-        VStack(spacing: 0) {
-            List {
-                HeaderView()
-
-                Section(header: Text("How To Use")) {
-                    MyListCell(title: "Show tutorial")
-                }
-
-                Section(header: Text("Keep In Touch")) {
-                    MyListCell(iconName: "twitter-16", iconColor: Color(hex: "#00acee")!, title: "Follow on Twitter", subtitle: "@qstrnd")
-                        .onTapGesture {
-                            let twitterUrl = URL(string: "https://twitter.com/qstrnd")!
-                            UIApplication.shared.open(twitterUrl)
+        NavigationView {
+            VStack(spacing: 0) {
+                List {
+                    HeaderView()
+                    
+                    Section(header: Text("How To Use")) {
+                        NavigationLink(destination: TutorialView(), isActive: $isShowingTutorialView) {
+                            MyListCell(title: "Show tutorial", showChevron: false)
+                                .onTapGesture {
+                                    isShowingTutorialView = true
+                                }
                         }
-                        .contextMenu {
-                            Button(action: {
-                                UIPasteboard.general.string = "@qstrnd"
-                            }) {
-                                Text("Copy")
+                    }
+                    
+                    Section(header: Text("Keep In Touch")) {
+                        MyListCell(iconName: "twitter-16", iconColor: Color(hex: "#00acee")!, title: "Follow on Twitter", subtitle: "@qstrnd")
+                            .onTapGesture {
+                                let twitterUrl = URL(string: "https://twitter.com/qstrnd")!
+                                UIApplication.shared.open(twitterUrl)
                             }
-                        }
-                    
-                    MyListCell(systemIconName: "envelope.fill", iconColor: .blue, title: "Contact by Email", subtitle: "a.yakovlev@qstrnd.com")
-                        .onTapGesture {
-                            let email = "a.yakovlev@qstrnd.com"
-                            let subject = "Highlighter%20for%20Safari"
-                            
-                            let mailtoString = "mailto:\(email)?subject=\(subject)"
-                            let mailtoUrl = URL(string: mailtoString)!
-                            
-                            UIApplication.shared.open(mailtoUrl)
-                        }
-                        .contextMenu {
-                            Button(action: {
-                                UIPasteboard.general.string = "a.yakovlev@qstrnd.com"
-                            }) {
-                                Text("Copy")
+                            .contextMenu {
+                                Button(action: {
+                                    UIPasteboard.general.string = "@qstrnd"
+                                }) {
+                                    Text("Copy")
+                                }
                             }
-                        }
-                }
-                
-                Section {
-                    MyListCell(systemIconName: "star.fill", iconColor: .yellow, title: "Rate on the App Store")
-                        .onTapGesture {
-                            // TODO: Also use SKStoreProductViewController
-                            let appStoreUrl = URL(string: "itms-apps://itunes.apple.com/app/idXXX")!
-                            
-                            UIApplication.shared.open(appStoreUrl)
-                        }
+                        
+                        MyListCell(systemIconName: "envelope.fill", iconColor: .blue, title: "Contact by Email", subtitle: "a.yakovlev@qstrnd.com")
+                            .onTapGesture {
+                                let email = "a.yakovlev@qstrnd.com"
+                                let subject = "Highlighter%20for%20Safari"
+                                
+                                let mailtoString = "mailto:\(email)?subject=\(subject)"
+                                let mailtoUrl = URL(string: mailtoString)!
+                                
+                                UIApplication.shared.open(mailtoUrl)
+                            }
+                            .contextMenu {
+                                Button(action: {
+                                    UIPasteboard.general.string = "a.yakovlev@qstrnd.com"
+                                }) {
+                                    Text("Copy")
+                                }
+                            }
+                    }
                     
-                    MyListCell(systemIconName: "hand.raised.fill", iconColor: .purple, title: "Terms & Privacy Policy")
-                        .onTapGesture {
-                            let privacy = URL(string: "https://qstrnd.com/apps/safariHighlighter/legal")!
-                            
-                            UIApplication.shared.open(privacy)
-                        }
-                    
-                    MyListCell(systemIconName: "heart.fill", iconColor: .pink, title: "Acknowledgments")
+                    Section {
+                        MyListCell(systemIconName: "star.fill", iconColor: .yellow, title: "Rate on the App Store")
+                            .onTapGesture {
+                                // TODO: Also use SKStoreProductViewController
+                                let appStoreUrl = URL(string: "itms-apps://itunes.apple.com/app/idXXX")!
+                                
+                                UIApplication.shared.open(appStoreUrl)
+                            }
+                        
+                        MyListCell(systemIconName: "hand.raised.fill", iconColor: .purple, title: "Terms & Privacy Policy")
+                            .onTapGesture {
+                                let privacy = URL(string: "https://qstrnd.com/apps/safariHighlighter/legal")!
+                                
+                                UIApplication.shared.open(privacy)
+                            }
+                        
+                        MyListCell(systemIconName: "heart.fill", iconColor: .pink, title: "Acknowledgments")
+                    }
                 }
             }
         }
+        .listStyle(InsetGroupedListStyle())
     }
 }
 
@@ -127,7 +138,7 @@ struct MyListCell: View {
     
     let title: String
     var subtitle: String?
-    var showShevron: Bool = true
+    var showChevron: Bool = true
 
     var body: some View {
         HStack(spacing: 20) {
@@ -155,9 +166,10 @@ struct MyListCell: View {
                 }
             }
             
-            if showShevron {
+            if showChevron {
                 Spacer()
                 Image(systemName: "chevron.right")
+                    .font(.body)
                     .foregroundColor(.separator)
             }
         }
