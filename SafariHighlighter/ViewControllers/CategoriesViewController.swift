@@ -31,7 +31,9 @@ final class CategoriesViewController: UITableViewController {
         super.init(nibName: nil, bundle: nil)
 
         categoryFetchController.delegate = self
-        categoryFetchController.fetchResults()
+        categoryFetchController.fetchResults { [unowned self] in
+            self.tableView.reloadData()
+        }
     }
 
     required init?(coder: NSCoder) {

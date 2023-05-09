@@ -73,7 +73,7 @@ public final class HighlightFetchController: NSObject {
         self.persistanceExecutor = persistanceExecutor
     }
 
-    public func fetchResults() {
+    public func fetchResults(_ completion: (() -> Void)? = nil) {
         getFetchResultsController { [weak self] frc in
             guard let self else { return }
 
@@ -81,6 +81,8 @@ public final class HighlightFetchController: NSObject {
 
             do {
                 try frc.performFetch()
+
+                completion?()
             } catch {
                 self.handle(error: error)
             }

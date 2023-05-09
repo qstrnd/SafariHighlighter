@@ -33,7 +33,9 @@ final class HighlightsViewController: UITableViewController {
         super.init(nibName: nil, bundle: nil)
 
         highlightFetchController.delegate = self
-        highlightFetchController.fetchResults()
+        highlightFetchController.fetchResults { [unowned self] in
+            self.tableView.reloadData()
+        }
     }
 
     required init?(coder: NSCoder) {

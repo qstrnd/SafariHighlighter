@@ -31,7 +31,9 @@ final class WebsitesViewController: UITableViewController {
         super.init(nibName: nil, bundle: nil)
 
         websiteFetchController.delegate = self
-        websiteFetchController.fetchResults()
+        websiteFetchController.fetchResults { [unowned self] in
+            self.tableView.reloadData()
+        }
     }
 
     required init?(coder: NSCoder) {
