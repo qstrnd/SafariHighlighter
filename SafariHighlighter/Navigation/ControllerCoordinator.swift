@@ -81,9 +81,16 @@ final class ControllerCoordinator {
 extension ControllerCoordinator: IRootControllerCoordinator {
     func buildInitialViewController() -> UIViewController {
         let groupedHighlightsVC = buildGroupedHighlightsViewController()
-        let navigationController = UINavigationController(rootViewController: groupedHighlightsVC)
+        let highlightsNavigationVC = UINavigationController(rootViewController: groupedHighlightsVC)
+        highlightsNavigationVC.tabBarItem = UITabBarItem(title: "Highlights", image: UIImage(systemName: "bookmark"), tag: 0)
 
-        return navigationController
+        let settingsVC = SettingsViewController()
+        settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), tag: 1)
+
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [highlightsNavigationVC, settingsVC]
+
+        return tabBarController
     }
 }
 
