@@ -22,7 +22,7 @@ final class CategoriesViewController: UITableViewController {
     init(
         categoryFetchController: CategoryFetchController,
         categoryService: CategoryService,
-        highlightsCoordinator: IHighlightsControllerCoordinator
+        highlightsCoordinator: HighlightsCoordinatorProtocol
     ) {
         self.categoryFetchController = categoryFetchController
         self.categoryService = categoryService
@@ -83,17 +83,14 @@ final class CategoriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = categoryFetchController.object(at: indexPath)
 
-        let highlightsVC = highlightsCoordinator.buildHighlightsController(groupBy: .category(category))
-        highlightsVC.title = category.name
-
-        navigationController?.pushViewController(highlightsVC, animated: true)
+        highlightsCoordinator.openHighlights(groupBy: .category(category))
     }
 
     // MARK: - Private
 
     private let categoryFetchController: CategoryFetchController
     private let categoryService: CategoryService
-    private let highlightsCoordinator: IHighlightsControllerCoordinator
+    private let highlightsCoordinator: HighlightsCoordinatorProtocol
 
     // MARK: Actions
 

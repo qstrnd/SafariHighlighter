@@ -1,5 +1,5 @@
 //
-//  ControllerCoordinator.swift
+//  HighlightsCoordinator.swift
 //  SafariHighlighter
 //
 //  Created by Andrey Yakovlev on 22.04.2023.
@@ -8,95 +8,99 @@
 import UIKit
 import Persistence
 
-protocol IRootControllerCoordinator: AnyObject {
-    func buildInitialViewController() -> UIViewController
-}
-
 public enum HighlightsGroupBy {
     case website(Website)
     case category(Persistence.Category)
+    
+    var title: String {
+        switch self {
+        case .category(let category):
+            return category.name
+        case .website(let website):
+            return website.name
+        }
+    }
 }
 
-protocol IHighlightsControllerCoordinator: AnyObject {
-    func buildHighlightsController(groupBy: HighlightsGroupBy) -> UIViewController
+protocol HighlightsCoordinatorProtocol: CoordinatorProtocol {
+    func openHighlights(groupBy: HighlightsGroupBy)
 }
 
-final class ControllerCoordinator {
-
+final class HighlightsCoordinator: HighlightsCoordinatorProtocol {
+    
     // MARK: - Internal
 
-    static let shared = ControllerCoordinator()
-
-    func buildGroupedHighlightsViewController() -> UIViewController {
+    init(persistenceExecutorFactory: PersistenceExecutorFactory) {
+        self.persistenceExecutorFactory = persistenceExecutorFactory
+    }
+    
+    // MARK: - Private
+    
+    private let persistenceExecutorFactory: PersistenceExecutorFactory
+    private var navigationCoordinator: NavigationCoordinator?
+    
+    private func buildGroupedHighlightsViewController() -> UIViewController {
         let categoriesVC = buildCategoriesController()
         let websitesVC = buildWebsitesController()
-
+        
         return GroupedHighlightsViewController(groupingVCs: [categoriesVC, websitesVC])
     }
-
-    // MARK: - Private
-
-    private let persistenceExecutorFactory = PersistenceExecutorFactory(
-        initialStoreOptions: .init(isPersistenceEnabled: false, isCloudSyncEnabled: false)
-    )
-
-    private init() {}
-
+    
     private func buildCategoriesController() -> CategoriesViewController {
         let categoryFetchController = CategoryFetchController(
             options: .init(sortOrder: .creationDate, showOnlyCategoriesWithHighlights: false),
             persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
         )
-
+        
         let categoryService = CategoryService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
-
+        
         let categoriesViewController = CategoriesViewController(
             categoryFetchController: categoryFetchController,
             categoryService: categoryService,
             highlightsCoordinator: self
         )
-
+        
         return categoriesViewController
     }
-
+    
     private func buildWebsitesController() -> WebsitesViewController {
         let websiteFetchController = WebsiteFetchController(
             options: .init(sortOrder: .creationDate, showOnlyWebsitesWithHighlights: false),
             persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
         )
-
+        
         let websiteService = WebsiteService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
-
+        
         let websitesViewController = WebsitesViewController(
             websiteFetchController: websiteFetchController,
             websiteService: websiteService,
             highlightsCoordinator: self
         )
-
+        
         return websitesViewController
     }
 }
 
-// MARK: - IRootControllerCoordinator
-extension ControllerCoordinator: IRootControllerCoordinator {
+// MARK: - Coordinator
+extension HighlightsCoordinator {
     func buildInitialViewController() -> UIViewController {
         let groupedHighlightsVC = buildGroupedHighlightsViewController()
         let highlightsNavigationVC = UINavigationController(rootViewController: groupedHighlightsVC)
-        highlightsNavigationVC.tabBarItem = UITabBarItem(title: "Highlights", image: UIImage(systemName: "bookmark"), tag: 0)
-
-        let settingsVC = SettingsViewController()
-        settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), tag: 1)
-
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [highlightsNavigationVC, settingsVC]
-
-        return tabBarController
+        
+        navigationCoordinator = NavigationCoordinator(navigationController: highlightsNavigationVC)
+        
+        return highlightsNavigationVC
     }
 }
 
-// MARK: - IHighlightsControllerCoordinator
-extension ControllerCoordinator: IHighlightsControllerCoordinator {
-    func buildHighlightsController(groupBy: HighlightsGroupBy) -> UIViewController {
+// MARK: - HighlightsCoordinatorProtocol
+extension HighlightsCoordinator {
+    func openHighlights(groupBy: HighlightsGroupBy) {
+        let highlightsVC = buildHighlightsController(groupBy: groupBy)
+        navigationCoordinator?.perform(navigation: .push(vc: highlightsVC))
+    }
+    
+    private func buildHighlightsController(groupBy: HighlightsGroupBy) -> UIViewController {
         let groupByOption = highlightsFetchControllerGroupBy(from: groupBy)
 
         let highlightFetchController = HighlightFetchController(
@@ -121,6 +125,8 @@ extension ControllerCoordinator: IHighlightsControllerCoordinator {
             relationshipService: relationshipService,
             groupByTrait: groupBy
         )
+        
+        highlightsViewController.title = groupBy.title
 
         return highlightsViewController
     }

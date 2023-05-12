@@ -7,6 +7,19 @@
 
 import UIKit
 
-class SettingsViewModel: NSObject {
-
-}
+//final class SettingsViewModel: ObservableObject {
+//    struct Section {
+//        let title: String
+//        let cells: SettingsCell.Model
+//    }
+//    
+//    @Published var sections: [Section] = []
+//    
+//    var coordinator: SettingsCoordinator
+//    
+//    func performNavigation(for token: String) {
+//        
+//    }
+//    
+//    
+//}

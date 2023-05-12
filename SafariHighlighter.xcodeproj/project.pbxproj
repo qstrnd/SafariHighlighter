@@ -24,6 +24,14 @@
 		B83041BA2A0036BD00EF9AC5 /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = B83041B92A0036BD00EF9AC5 /* Persistence */; };
 		B85123302A0E659C003AD592 /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851232F2A0E659C003AD592 /* AcknowledgmentsView.swift */; };
 		B85123322A0E7915003AD592 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85123312A0E7915003AD592 /* SettingsViewModel.swift */; };
+		B85123392A0E7A44003AD592 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85123382A0E7A44003AD592 /* SettingsCell.swift */; };
+		B851233B2A0E7B66003AD592 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851233A2A0E7B66003AD592 /* SettingsCoordinator.swift */; };
+		B851233D2A0E7C1E003AD592 /* LinkCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851233C2A0E7C1E003AD592 /* LinkCoordinator.swift */; };
+		B851233F2A0E7D0E003AD592 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851233E2A0E7D0E003AD592 /* NavigationCoordinator.swift */; };
+		B85123422A0E894C003AD592 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85123412A0E894C003AD592 /* Navigation.swift */; };
+		B85123482A0E8A6D003AD592 /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85123472A0E8A6D003AD592 /* TabCoordinator.swift */; };
+		B851234A2A0E8A90003AD592 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85123492A0E8A90003AD592 /* Coordinator.swift */; };
+		B85124502A0E906A003AD592 /* CompositionRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851244F2A0E906A003AD592 /* CompositionRoot.swift */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
 		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
@@ -32,7 +40,7 @@
 		B876608129D5CC2F00B8E75C /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B876608029D5CC2F00B8E75C /* Common */; };
 		B876608329D5CC3700B8E75C /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = B876608229D5CC3700B8E75C /* Common */; };
 		B87F91BC2A0A59A900740E40 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87F91BB2A0A59A900740E40 /* TutorialView.swift */; };
-		B898B88A29F43F08000A36D0 /* ControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B898B88929F43F08000A36D0 /* ControllerCoordinator.swift */; };
+		B898B88A29F43F08000A36D0 /* HighlightsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B898B88929F43F08000A36D0 /* HighlightsCoordinator.swift */; };
 		B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */; };
 		B8ACADD22A096653005E45EC /* GroupedHighlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADD12A096653005E45EC /* GroupedHighlightsViewController.swift */; };
 		B8ACADD42A096694005E45EC /* HighlightsGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADD32A096694005E45EC /* HighlightsGrouping.swift */; };
@@ -85,6 +93,14 @@
 		B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		B851232F2A0E659C003AD592 /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
 		B85123312A0E7915003AD592 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		B85123382A0E7A44003AD592 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		B851233A2A0E7B66003AD592 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		B851233C2A0E7C1E003AD592 /* LinkCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkCoordinator.swift; sourceTree = "<group>"; };
+		B851233E2A0E7D0E003AD592 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		B85123412A0E894C003AD592 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		B85123472A0E8A6D003AD592 /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		B85123492A0E8A90003AD592 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		B851244F2A0E906A003AD592 /* CompositionRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRoot.swift; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
 		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
@@ -93,7 +109,7 @@
 		B871AC8E29D8B20200A5E720 /* MessageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageError.swift; sourceTree = "<group>"; };
 		B871AC9029D8B2FD00A5E720 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		B87F91BB2A0A59A900740E40 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
-		B898B88929F43F08000A36D0 /* ControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerCoordinator.swift; sourceTree = "<group>"; };
+		B898B88929F43F08000A36D0 /* HighlightsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsCoordinator.swift; sourceTree = "<group>"; };
 		B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsitesViewController.swift; sourceTree = "<group>"; };
 		B8ACADD12A096653005E45EC /* GroupedHighlightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedHighlightsViewController.swift; sourceTree = "<group>"; };
 		B8ACADD32A096694005E45EC /* HighlightsGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsGrouping.swift; sourceTree = "<group>"; };
@@ -202,6 +218,7 @@
 			children = (
 				B85123312A0E7915003AD592 /* SettingsViewModel.swift */,
 				B8ACADDD2A0A2824005E45EC /* SettingsView.swift */,
+				B85123382A0E7A44003AD592 /* SettingsCell.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -220,6 +237,35 @@
 				B851232F2A0E659C003AD592 /* AcknowledgmentsView.swift */,
 			);
 			path = Acknowledgments;
+			sourceTree = "<group>";
+		};
+		B85123402A0E8938003AD592 /* NavigationCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				B851233E2A0E7D0E003AD592 /* NavigationCoordinator.swift */,
+				B85123412A0E894C003AD592 /* Navigation.swift */,
+			);
+			path = NavigationCoordinator;
+			sourceTree = "<group>";
+		};
+		B85123432A0E8A09003AD592 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B85123402A0E8938003AD592 /* NavigationCoordinator */,
+				B851233C2A0E7C1E003AD592 /* LinkCoordinator.swift */,
+				B85123492A0E8A90003AD592 /* Coordinator.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B85123442A0E8A18003AD592 /* ScreenCoordinators */ = {
+			isa = PBXGroup;
+			children = (
+				B85123472A0E8A6D003AD592 /* TabCoordinator.swift */,
+				B898B88929F43F08000A36D0 /* HighlightsCoordinator.swift */,
+				B851233A2A0E7B66003AD592 /* SettingsCoordinator.swift */,
+			);
+			path = ScreenCoordinators;
 			sourceTree = "<group>";
 		};
 		B871AC8B29D8B07600A5E720 /* Messages */ = {
@@ -243,7 +289,8 @@
 		B898B88829F43EF3000A36D0 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				B898B88929F43F08000A36D0 /* ControllerCoordinator.swift */,
+				B85123432A0E8A09003AD592 /* Core */,
+				B85123442A0E8A18003AD592 /* ScreenCoordinators */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -253,6 +300,7 @@
 			children = (
 				B81D470A29D575E800DB603C /* AppDelegate.swift */,
 				B81D471429D575E800DB603C /* SceneDelegate.swift */,
+				B851244F2A0E906A003AD592 /* CompositionRoot.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -413,17 +461,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B85123392A0E7A44003AD592 /* SettingsCell.swift in Sources */,
 				B8ACADD42A096694005E45EC /* HighlightsGrouping.swift in Sources */,
+				B851233D2A0E7C1E003AD592 /* LinkCoordinator.swift in Sources */,
+				B85123482A0E8A6D003AD592 /* TabCoordinator.swift in Sources */,
 				B8ACADD22A096653005E45EC /* GroupedHighlightsViewController.swift in Sources */,
 				B83041B82A002DFA00EF9AC5 /* CategoriesViewController.swift in Sources */,
 				B8ACADD82A097766005E45EC /* HighlightsViewController.swift in Sources */,
 				B81D470B29D575E800DB603C /* AppDelegate.swift in Sources */,
 				B8ACADDE2A0A2824005E45EC /* SettingsView.swift in Sources */,
-				B898B88A29F43F08000A36D0 /* ControllerCoordinator.swift in Sources */,
+				B898B88A29F43F08000A36D0 /* HighlightsCoordinator.swift in Sources */,
 				B85123302A0E659C003AD592 /* AcknowledgmentsView.swift in Sources */,
 				B85123322A0E7915003AD592 /* SettingsViewModel.swift in Sources */,
+				B851234A2A0E8A90003AD592 /* Coordinator.swift in Sources */,
+				B851233B2A0E7B66003AD592 /* SettingsCoordinator.swift in Sources */,
+				B851233F2A0E7D0E003AD592 /* NavigationCoordinator.swift in Sources */,
 				B87F91BC2A0A59A900740E40 /* TutorialView.swift in Sources */,
 				B81D471529D575E800DB603C /* SceneDelegate.swift in Sources */,
+				B85124502A0E906A003AD592 /* CompositionRoot.swift in Sources */,
+				B85123422A0E894C003AD592 /* Navigation.swift in Sources */,
 				B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */,
 				B8ACADDC2A0A27C7005E45EC /* SettingsViewController.swift in Sources */,
 			);
