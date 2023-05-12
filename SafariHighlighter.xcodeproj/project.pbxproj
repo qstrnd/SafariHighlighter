@@ -23,6 +23,7 @@
 		B83041B82A002DFA00EF9AC5 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */; };
 		B83041BA2A0036BD00EF9AC5 /* Persistence in Frameworks */ = {isa = PBXBuildFile; productRef = B83041B92A0036BD00EF9AC5 /* Persistence */; };
 		B85123302A0E659C003AD592 /* AcknowledgmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851232F2A0E659C003AD592 /* AcknowledgmentsView.swift */; };
+		B85123322A0E7915003AD592 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85123312A0E7915003AD592 /* SettingsViewModel.swift */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
 		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
@@ -83,6 +84,7 @@
 		B81D473C29D575E900DB603C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		B851232F2A0E659C003AD592 /* AcknowledgmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgmentsView.swift; sourceTree = "<group>"; };
+		B85123312A0E7915003AD592 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
 		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			children = (
 				B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */,
 				B898B97F29F440B4000A36D0 /* Application */,
+				B85123342A0E792B003AD592 /* SwiftUIScreens */,
 				B8ACADD52A096699005E45EC /* ViewControllers */,
 				B898B88829F43EF3000A36D0 /* Navigation */,
 				B81D471E29D575E900DB603C /* Assets.xcassets */,
@@ -182,6 +185,41 @@
 				B81D473A29D575E900DB603C /* popup.js */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B85123342A0E792B003AD592 /* SwiftUIScreens */ = {
+			isa = PBXGroup;
+			children = (
+				B85123372A0E7972003AD592 /* Acknowledgments */,
+				B85123362A0E794C003AD592 /* Tutorial */,
+				B85123352A0E7945003AD592 /* Settings */,
+			);
+			path = SwiftUIScreens;
+			sourceTree = "<group>";
+		};
+		B85123352A0E7945003AD592 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B85123312A0E7915003AD592 /* SettingsViewModel.swift */,
+				B8ACADDD2A0A2824005E45EC /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		B85123362A0E794C003AD592 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				B87F91BB2A0A59A900740E40 /* TutorialView.swift */,
+			);
+			path = Tutorial;
+			sourceTree = "<group>";
+		};
+		B85123372A0E7972003AD592 /* Acknowledgments */ = {
+			isa = PBXGroup;
+			children = (
+				B851232F2A0E659C003AD592 /* AcknowledgmentsView.swift */,
+			);
+			path = Acknowledgments;
 			sourceTree = "<group>";
 		};
 		B871AC8B29D8B07600A5E720 /* Messages */ = {
@@ -222,7 +260,7 @@
 		B8ACADD52A096699005E45EC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B8ACADDA2A0A269F005E45EC /* Settings */,
+				B8ACADDB2A0A27C7005E45EC /* SettingsViewController.swift */,
 				B8ACADD92A0A265A005E45EC /* Highlights */,
 			);
 			path = ViewControllers;
@@ -246,17 +284,6 @@
 				B8ACADD72A097766005E45EC /* HighlightsViewController.swift */,
 			);
 			path = Highlights;
-			sourceTree = "<group>";
-		};
-		B8ACADDA2A0A269F005E45EC /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				B8ACADDB2A0A27C7005E45EC /* SettingsViewController.swift */,
-				B8ACADDD2A0A2824005E45EC /* SettingsView.swift */,
-				B87F91BB2A0A59A900740E40 /* TutorialView.swift */,
-				B851232F2A0E659C003AD592 /* AcknowledgmentsView.swift */,
-			);
-			path = Settings;
 			sourceTree = "<group>";
 		};
 		B8E7A94829FFB72B00C6D98B /* Modules */ = {
@@ -394,6 +421,7 @@
 				B8ACADDE2A0A2824005E45EC /* SettingsView.swift in Sources */,
 				B898B88A29F43F08000A36D0 /* ControllerCoordinator.swift in Sources */,
 				B85123302A0E659C003AD592 /* AcknowledgmentsView.swift in Sources */,
+				B85123322A0E7915003AD592 /* SettingsViewModel.swift in Sources */,
 				B87F91BC2A0A59A900740E40 /* TutorialView.swift in Sources */,
 				B81D471529D575E800DB603C /* SceneDelegate.swift in Sources */,
 				B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */,
