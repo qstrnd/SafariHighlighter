@@ -13,30 +13,27 @@ struct SettingsView: View {
     @ObservedObject var viewModel: SettingsViewModel
     
     var body: some View {
-        NavigationView {
-            VStack(spacing: 0) {
-                List {
-                    SettingsHeaderView(viewModel: SettingsHeaderViewModel())
+        VStack(spacing: 0) {
+            List {
+                SettingsHeaderView(viewModel: SettingsHeaderViewModel())
+                
+                ForEach(viewModel.sections, id: \.title) { section in
+                    let cells = ForEach(section.cells, id: \.title) { cellModel in
+                        SettingsCell(model: cellModel)
+                    }
                     
-                    ForEach(viewModel.sections, id: \.title) { section in
-                        let cells = ForEach(section.cells, id: \.title) { cellModel in
-                            SettingsCell(model: cellModel)
+                    if let title = section.title {
+                        Section(header: Text(title)) {
+                            cells
                         }
-                        
-                        if let title = section.title {
-                            Section(header: Text(title)) {
-                                cells
-                            }
-                        } else {
-                            Section {
-                                cells
-                            }
+                    } else {
+                        Section {
+                            cells
                         }
                     }
                 }
             }
         }
-        .listStyle(InsetGroupedListStyle())
     }
     
 }

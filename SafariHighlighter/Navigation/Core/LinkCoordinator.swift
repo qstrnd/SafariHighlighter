@@ -33,7 +33,7 @@ final class LinkCoordinator: LinkCoordinatorProtocol {
     func open(url: URL, options: Set<LinkCoordinatorOption>) {
         if options.contains(.openInApp) {
             let safariVC = SFSafariViewController(url: url)
-            navigationCoordinator.perform(navigation: .push(vc: safariVC))
+            navigationCoordinator.perform(navigation: .present(vc: safariVC))
         } else {
             UIApplication.shared.open(url)
         }
