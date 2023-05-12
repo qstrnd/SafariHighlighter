@@ -34,6 +34,7 @@
 		B85124502A0E906A003AD592 /* CompositionRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851244F2A0E906A003AD592 /* CompositionRoot.swift */; };
 		B85124582A0EAB5F003AD592 /* SettingsHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124572A0EAB5F003AD592 /* SettingsHeaderViewModel.swift */; };
 		B851245C2A0EAB97003AD592 /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851245B2A0EAB97003AD592 /* SettingsHeaderView.swift */; };
+		B851245E2A0EBD0B003AD592 /* AppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851245D2A0EBD0B003AD592 /* AppStorage.swift */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
 		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
@@ -105,6 +106,7 @@
 		B851244F2A0E906A003AD592 /* CompositionRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRoot.swift; sourceTree = "<group>"; };
 		B85124572A0EAB5F003AD592 /* SettingsHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderViewModel.swift; sourceTree = "<group>"; };
 		B851245B2A0EAB97003AD592 /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
+		B851245D2A0EBD0B003AD592 /* AppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorage.swift; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
 		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				B81D470A29D575E800DB603C /* AppDelegate.swift */,
 				B81D471429D575E800DB603C /* SceneDelegate.swift */,
 				B851244F2A0E906A003AD592 /* CompositionRoot.swift */,
+				B851245D2A0EBD0B003AD592 /* AppStorage.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				B85123302A0E659C003AD592 /* AcknowledgmentsView.swift in Sources */,
 				B85123322A0E7915003AD592 /* SettingsViewModel.swift in Sources */,
 				B851234A2A0E8A90003AD592 /* Coordinator.swift in Sources */,
+				B851245E2A0EBD0B003AD592 /* AppStorage.swift in Sources */,
 				B851233B2A0E7B66003AD592 /* SettingsCoordinator.swift in Sources */,
 				B851233F2A0E7D0E003AD592 /* NavigationCoordinator.swift in Sources */,
 				B87F91BC2A0A59A900740E40 /* TutorialView.swift in Sources */,

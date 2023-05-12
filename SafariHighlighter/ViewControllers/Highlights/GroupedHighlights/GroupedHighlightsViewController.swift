@@ -11,8 +11,12 @@ final class GroupedHighlightsViewController: UIViewController {
 
     // MARK: - Internal
 
-    init(groupingVCs: [HighlightsGrouping]) {
+    init(
+        groupingVCs: [HighlightsGrouping],
+        appStorage: AppStorage
+    ) {
         self.groupingVCs = groupingVCs
+        self.appStorage = appStorage
 
         precondition(groupingVCs.count > 0, "Container vc is used without the content vcs")
         groupingVCs.forEach {
@@ -29,6 +33,7 @@ final class GroupedHighlightsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        visibleControllerIndex = appStorage.groupedHighlightsSelectedSegment
         setupSegmentedControl()
         showController(at: visibleControllerIndex)
     }
@@ -36,10 +41,13 @@ final class GroupedHighlightsViewController: UIViewController {
     // MARK: - Private
 
     private let groupingVCs: [HighlightsGrouping]
+    private let appStorage: AppStorage
 
     private var visibleControllerIndex = 0 {
         didSet {
             guard oldValue != visibleControllerIndex else { return }
+            
+            appStorage.groupedHighlightsSelectedSegment = visibleControllerIndex
 
             showController(at: visibleControllerIndex)
         }

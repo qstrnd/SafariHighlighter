@@ -30,20 +30,25 @@ final class HighlightsCoordinator: HighlightsCoordinatorProtocol {
     
     // MARK: - Internal
 
-    init(persistenceExecutorFactory: PersistenceExecutorFactory) {
+    init(
+        persistenceExecutorFactory: PersistenceExecutorFactory,
+        appStorage: AppStorage
+    ) {
         self.persistenceExecutorFactory = persistenceExecutorFactory
+        self.appStorage = appStorage
     }
     
     // MARK: - Private
     
     private let persistenceExecutorFactory: PersistenceExecutorFactory
+    private let appStorage: AppStorage
     private var navigationCoordinator: NavigationCoordinator?
     
     private func buildGroupedHighlightsViewController() -> UIViewController {
         let categoriesVC = buildCategoriesController()
         let websitesVC = buildWebsitesController()
         
-        return GroupedHighlightsViewController(groupingVCs: [categoriesVC, websitesVC])
+        return GroupedHighlightsViewController(groupingVCs: [categoriesVC, websitesVC], appStorage: appStorage)
     }
     
     private func buildCategoriesController() -> CategoriesViewController {

@@ -15,6 +15,10 @@ final class CompositionRoot {
     
     static let shared = CompositionRoot()
     
+    lazy var appStorage: AppStorage = {
+        AppStorage()
+    }()
+    
     lazy var persistentExecutorFactory: PersistenceExecutorFactory = {
         PersistenceExecutorFactory(
             initialStoreOptions: .init(isPersistenceEnabled: false, isCloudSyncEnabled: false)
@@ -22,7 +26,10 @@ final class CompositionRoot {
     }()
     
     lazy var highlightsCoordinator: HighlightsCoordinatorProtocol = {
-        HighlightsCoordinator(persistenceExecutorFactory: persistentExecutorFactory)
+        HighlightsCoordinator(
+            persistenceExecutorFactory: persistentExecutorFactory,
+            appStorage: appStorage
+        )
     }()
     
     lazy var settingsCoordinator: SettingsCoordinatorProtocol = {
@@ -32,7 +39,8 @@ final class CompositionRoot {
     lazy var tabsCoordinator: TabCoordinator = {
         TabCoordinator(
             highlightsCoordinator: highlightsCoordinator,
-            settingsCoordinator: settingsCoordinator
+            settingsCoordinator: settingsCoordinator,
+            appStorage: appStorage
         )
     }()
     
