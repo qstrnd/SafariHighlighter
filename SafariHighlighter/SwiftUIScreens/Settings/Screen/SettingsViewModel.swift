@@ -53,7 +53,7 @@ final class SettingsViewModel: ObservableObject {
                             name: .asset("twitter-16"),
                             color: Color(hex: "#00acee")
                         ),
-                        title: "Follow On Twitter",
+                        title: "Follow on Twitter",
                         action: { [unowned self] in
                             coordinator.openTwitter()
                         }
@@ -63,7 +63,7 @@ final class SettingsViewModel: ObservableObject {
                             name: .system("envelope.fill"),
                             color: .blue
                         ),
-                        title: "Contact By Email",
+                        title: "Contact by Email",
                         action: { [unowned self] in
                             coordinator.openEmail()
                         }
