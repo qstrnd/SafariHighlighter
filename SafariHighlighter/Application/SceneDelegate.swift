@@ -14,6 +14,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
+        CompositionRoot.shared = CompositionRoot(windowScene: windowScene)
+        
         let initialViewController = CompositionRoot.shared.tabsCoordinator.buildInitialViewController()
 
         let window = UIWindow(windowScene: windowScene)

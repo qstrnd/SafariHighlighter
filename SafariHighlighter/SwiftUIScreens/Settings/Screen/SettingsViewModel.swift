@@ -92,7 +92,7 @@ final class SettingsViewModel: ObservableObject {
                         ),
                         title: "Terms & Privacy Policy",
                         action: { [unowned self] in
-                            coordinator.openTermsAndPrivacyPocily()
+                            coordinator.openTermsAndPrivacyPolicy()
                         }
                     ),
                     .init(

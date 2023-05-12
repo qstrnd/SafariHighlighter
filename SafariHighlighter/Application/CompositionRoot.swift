@@ -5,7 +5,7 @@
 //  Created by Andrey Yakovlev on 12.05.2023.
 //
 
-import Foundation
+import UIKit
 import Persistence
 
 /// The Root for all DI in the app
@@ -13,7 +13,13 @@ final class CompositionRoot {
     
     // MARK: - Internal
     
-    static let shared = CompositionRoot()
+    static var shared: CompositionRoot!
+    
+    init(windowScene: UIWindowScene) {
+        self.windowScene = windowScene
+    }
+    
+    let windowScene: UIWindowScene
     
     lazy var appStorage: AppStorage = {
         AppStorage()
@@ -33,7 +39,7 @@ final class CompositionRoot {
     }()
     
     lazy var settingsCoordinator: SettingsCoordinatorProtocol = {
-        SettingsCoordinator()
+        SettingsCoordinator(windowScene: windowScene)
     }()
     
     lazy var tabsCoordinator: TabCoordinator = {
@@ -43,8 +49,4 @@ final class CompositionRoot {
             appStorage: appStorage
         )
     }()
-    
-    // MARK: - Private
-    
-    private init() {}
 }
