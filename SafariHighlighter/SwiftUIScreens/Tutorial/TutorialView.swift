@@ -27,6 +27,7 @@ struct TutorialView: View {
         }
         .tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+        .navigationBarHidden(false)
     }
 }
 

@@ -54,6 +54,7 @@ final class SettingsViewModel: ObservableObject {
                             color: Color(hex: "#00acee")
                         ),
                         title: "Follow on Twitter",
+                        subtitle: "@qstrnd",
                         action: { [unowned self] in
                             coordinator.openTwitter()
                         }
@@ -64,6 +65,7 @@ final class SettingsViewModel: ObservableObject {
                             color: .blue
                         ),
                         title: "Contact by Email",
+                        subtitle: "a.yakovlev@qstrnd.com",
                         action: { [unowned self] in
                             coordinator.openEmail()
                         }

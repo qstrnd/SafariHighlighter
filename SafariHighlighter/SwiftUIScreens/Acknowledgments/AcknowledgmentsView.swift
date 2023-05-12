@@ -51,6 +51,8 @@ struct AcknowledgmentsView: View {
                     .foregroundColor(.separator)
             }
         }
+        .navigationBarHidden(false)
+        .navigationTitle("Acknowledgements")
     }
 }
 
