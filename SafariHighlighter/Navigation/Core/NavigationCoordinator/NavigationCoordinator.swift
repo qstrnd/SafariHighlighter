@@ -58,6 +58,7 @@ final class NavigationCoordinator: NSObject, NavigationCoordinatorProtocol {
     private func push(vc: UIViewController) {
         navigations.append(.push(vc: vc))
         
+        vc.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(vc, animated: true)
     }
     
