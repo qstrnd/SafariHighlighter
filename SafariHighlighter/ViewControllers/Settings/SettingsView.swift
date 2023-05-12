@@ -11,6 +11,7 @@ import Common
 struct SettingsView: View {
     
     @State private var isShowingTutorialView = false
+    @State private var isShowingAcknowledgementsView = false
     
     var body: some View {
         NavigationView {
@@ -76,7 +77,9 @@ struct SettingsView: View {
                                 UIApplication.shared.open(privacy)
                             }
                         
-                        MyListCell(systemIconName: "heart.fill", iconColor: .pink, title: "Acknowledgments")
+                        NavigationLink(destination: AcknowledgmentsView(acknowledgements: AcknowledgmentsView.defaultAcknowledgements), isActive: $isShowingAcknowledgementsView) {
+                            MyListCell(systemIconName: "heart.fill", iconColor: .pink, title: "Acknowledgments", showChevron: false)
+                        }
                     }
                 }
             }
