@@ -12,7 +12,9 @@ final class SettingsViewController: UIViewController {
 
     // MARK: - Internal
 
-    init() {
+    init(coordinator: SettingsCoordinatorProtocol) {
+        self.coordinator = coordinator
+        
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -31,7 +33,9 @@ final class SettingsViewController: UIViewController {
     }
 
     // MARK: - Private
+    
+    private let coordinator: SettingsCoordinatorProtocol
 
-    private let hostingController = UIHostingController(rootView: SettingsView())
+    private lazy var hostingController = UIHostingController(rootView: SettingsView(viewModel: SettingsViewModel(coordinator: coordinator)))
 
 }

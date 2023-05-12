@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 protocol SettingsCoordinatorProtocol: CoordinatorProtocol {
     func openTutorial()
@@ -24,10 +25,12 @@ final class SettingsCoordinator: SettingsCoordinatorProtocol {
     // MARK: - Internal
     
     func buildInitialViewController() -> UIViewController {
-        let settingsVC = SettingsViewController()
+        let settingsVC = SettingsViewController(coordinator: self)
         let navigationVC = UINavigationController(rootViewController: settingsVC)
         
         let navigationCoordinator = NavigationCoordinator(navigationController: navigationVC)
+        self.navigationCoordinator = navigationCoordinator
+        
         linkCoordinator = LinkCoordinator(navigationCoordinator: navigationCoordinator)
         
         return navigationVC
@@ -35,7 +38,8 @@ final class SettingsCoordinator: SettingsCoordinatorProtocol {
     
         
     func openTutorial() {
-        
+        let tutorialVC = UIHostingController(rootView: TutorialView())
+        navigationCoordinator?.perform(navigation: .push(vc: tutorialVC))
     }
     
     func openTwitter() {
@@ -55,7 +59,10 @@ final class SettingsCoordinator: SettingsCoordinatorProtocol {
     }
     
     func openRateOnAppStore() {
+        // TODO: Also use SKStoreProductViewController
+        guard let appStoreUrl = URL(string: "itms-apps://itunes.apple.com/app/idXXX") else { return }
         
+        linkCoordinator?.open(url: appStoreUrl)
     }
     
     func openTermsAndPrivacyPocily() {
@@ -63,12 +70,13 @@ final class SettingsCoordinator: SettingsCoordinatorProtocol {
     }
     
     func openAcknowledgements() {
-       
+        let acknowledgementsVC = UIHostingController(rootView: AcknowledgmentsView(acknowledgements: AcknowledgmentsView.defaultAcknowledgements))
+        navigationCoordinator?.perform(navigation: .push(vc: acknowledgementsVC))
     }
     
     // MARK: - Private
     
     private var linkCoordinator: LinkCoordinatorProtocol?
-    
+    private var navigationCoordinator: NavigationCoordinator?
     
 }
