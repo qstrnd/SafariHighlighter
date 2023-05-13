@@ -145,5 +145,9 @@ extension CategoriesViewController: CategoryFetchControllerDelegate {
     func categoryFetchControllerDidFinishUpdates(_ controller: Persistence.CategoryFetchController) {
         tableView.endUpdates()
     }
+    
+    func categoryFetchControllerDidRequestDataReload(_ controller: CategoryFetchController) {
+        tableView.reloadData()
+    }
 
 }

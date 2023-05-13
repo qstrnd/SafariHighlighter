@@ -15,6 +15,7 @@ public protocol CategoryFetchControllerDelegate: AnyObject {
 
     func categoryFetchControllerWillBeginUpdates(_ controller: CategoryFetchController)
     func categoryFetchControllerDidFinishUpdates(_ controller: CategoryFetchController)
+    func categoryFetchControllerDidRequestDataReload(_ controller: CategoryFetchController)
 }
 
 public final class CategoryFetchController: NSObject {
@@ -51,6 +52,7 @@ public final class CategoryFetchController: NSObject {
     public private(set) var options: Options {
         didSet {
             fetchedResultsController = nil // clean frc configured for old options
+            _fetchedObjectsSortedByNumberOfHighlights = []
         }
     }
 
@@ -97,8 +99,15 @@ public final class CategoryFetchController: NSObject {
         guard let frc = fetchedResultsController else {
             preconditionFailure("Requested the object that wasn't fetched")
         }
+        
+        let persitedCategory: PersistedCategory
+        switch options.sortOrder {
+        case .numberOfHighlights:
+            persitedCategory = fetchedObjectsSortedByNumberOfHighlights[indexPath.row]
+        default:
+            persitedCategory = frc.object(at: indexPath)
+        }
 
-        let persitedCategory = frc.object(at: indexPath)
         let category = Category(from: persitedCategory)
 
         return category
@@ -109,6 +118,28 @@ public final class CategoryFetchController: NSObject {
     private let persistanceExecutor: PersistenceOperationsExecuting
 
     private var fetchedResultsController: CategoryController?
+    
+    private var isFullReloadUpdateInProgress = false
+    
+    private var _fetchedObjectsSortedByNumberOfHighlights: [PersistedCategory] = []
+    
+    /// Sorting with aggregate functions is not supported in mysql :(
+    /// That's why this property is used to store objects that are sorted AFTER fetch
+    private var fetchedObjectsSortedByNumberOfHighlights: [PersistedCategory] {
+        guard _fetchedObjectsSortedByNumberOfHighlights.isEmpty else {
+            return _fetchedObjectsSortedByNumberOfHighlights
+        }
+        
+        guard let frc = fetchedResultsController else {
+            preconditionFailure("Requested sorted objects before fetch was performed")
+        }
+        
+        _fetchedObjectsSortedByNumberOfHighlights = frc.fetchedObjects?.sorted(by: {
+            $0.highlights?.count ?? 0 > $1.highlights?.count ?? 0
+        }) ?? []
+        
+        return _fetchedObjectsSortedByNumberOfHighlights
+    }
 
     private func getFetchResultsController(_ completion: @escaping (CategoryController) -> Void) {
         DispatchQueue.performOnMain {
@@ -154,12 +185,10 @@ public final class CategoryFetchController: NSObject {
 
     private func getSortDescriptorForCurrentOptions() -> NSSortDescriptor {
         switch options.sortOrder {
-        case .creationDate:
+        case .creationDate, .numberOfHighlights:
             return NSSortDescriptor(key: "creationDate", ascending: true)
         case .name:
             return NSSortDescriptor(key: "name", ascending: true)
-        case .numberOfHighlights:
-            return NSSortDescriptor(key: "highlights.@count", ascending: false)
         }
     }
 
@@ -182,14 +211,24 @@ public final class CategoryFetchController: NSObject {
 // MARK: - NSFetchedResultsControllerDelegate
 extension CategoryFetchController: NSFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if options.sortOrder == .numberOfHighlights {
+            isFullReloadUpdateInProgress = true
+        }
         delegate?.categoryFetchControllerWillBeginUpdates(self)
     }
 
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        if isFullReloadUpdateInProgress {
+            delegate?.categoryFetchControllerDidRequestDataReload(self)
+            
+            isFullReloadUpdateInProgress = false
+            _fetchedObjectsSortedByNumberOfHighlights = []
+        }
         delegate?.categoryFetchControllerDidFinishUpdates(self)
     }
 
     public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard !isFullReloadUpdateInProgress else { return }
 
         switch type {
         case .insert:
