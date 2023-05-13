@@ -52,8 +52,10 @@ final class HighlightsCoordinator: HighlightsCoordinatorProtocol {
     }
     
     private func buildCategoriesController() -> CategoriesViewController {
+        let sortOrder = CategoryFetchController.Options.SortOrder(rawValue: appStorage.categoriesSortOrderRaw ?? "") ?? .creationDate
+        
         let categoryFetchController = CategoryFetchController(
-            options: .init(sortOrder: .creationDate, showOnlyCategoriesWithHighlights: false),
+            options: .init(sortOrder: sortOrder, showOnlyCategoriesWithHighlights: false),
             persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor()
         )
         

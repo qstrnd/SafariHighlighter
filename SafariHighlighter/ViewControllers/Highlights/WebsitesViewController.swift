@@ -17,6 +17,8 @@ final class WebsitesViewController: UITableViewController {
     }
 
     // MARK: - Internal
+    
+    weak var delegate: HighlightsGroupingDelegate?
 
     init(
         websiteFetchController: WebsiteFetchController,

@@ -16,6 +16,16 @@ enum Localized {
         static let settings = NSLocalizedString("tabs-settings", comment: "Settings tab name")
     }
     
+    enum General {
+        static let sort = NSLocalizedString("general-sort", comment: "")
+    }
+    
+    enum Categories {
+        static let sortByDefault = NSLocalizedString("categories-sortByDefault", comment: "")
+        
+        static let sortByNumberOfHighlights = NSLocalizedString("categories-sortByNumberOfHighlights", comment: "")
+    }
+    
     enum GroupedHighlights {
         
         static let categories = NSLocalizedString("groupedHighlights-categories", comment: "")

@@ -13,6 +13,18 @@
 "tabs-settings" = "Settings";
 
 
+// General
+
+"general-sort" = "Sort";
+
+
+// Categories
+
+"categories-sortByDefault" = "By Default";
+
+"categories-sortByNumberOfHighlights" = "By Number of Highlights";
+
+
 
 // Grouped Highlights
 

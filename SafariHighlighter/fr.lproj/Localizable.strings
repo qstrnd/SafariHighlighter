@@ -13,6 +13,15 @@
 
 "tabs-settings" = "Paramètres";
 
+// General
+
+"general-sort" = "Trier";
+
+// Categories
+
+"categories-sortByDefault" = "Par défaut";
+
+"categories-sortByNumberOfHighlights" = "Par nombre de mises en évidence";
 
 // Grouped Highlights
 

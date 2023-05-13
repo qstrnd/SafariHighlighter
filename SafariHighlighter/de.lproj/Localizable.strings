@@ -12,6 +12,21 @@
 "tabs-highlights" = "Highlights";
 "tabs-settings" = "Einstellungen";
 
+
+// General
+
+"general-sort" = "Sortierung";
+
+
+
+// Categories
+
+"categories-sortByDefault" = "Standardmäßig";
+
+"categories-sortByNumberOfHighlights" = "Nach Anzahl der Highlights";
+
+
+
 // Grouped Highlights
 
 "groupedHighlights-categories" = "Kategorien";

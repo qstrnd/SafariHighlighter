@@ -12,6 +12,18 @@
 "tabs-highlights" = "Хайлайты";
 "tabs-settings" = "Настройки";
 
+// General
+
+"general-sort" = "Сортировка";
+
+
+// Categories
+
+"categories-sortByDefault" = "По умолчанию";
+
+"categories-sortByNumberOfHighlights" = "По количеству заметок";
+
+
 // Grouped Highlights
 
 "groupedHighlights-categories" = "Категории";

@@ -18,12 +18,13 @@ final class GroupedHighlightsViewController: UIViewController {
         self.groupingVCs = groupingVCs
         self.appStorage = appStorage
 
+        super.init(nibName: nil, bundle: nil)
+        
         precondition(groupingVCs.count > 0, "Container vc is used without the content vcs")
         groupingVCs.forEach {
+            $0.delegate = self
             precondition($0 is UIViewController, "Only UIViewControllers can implement HighlightsGrouping")
         }
-
-        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -106,4 +107,14 @@ final class GroupedHighlightsViewController: UIViewController {
         visibleControllerIndex = segmentedControl.selectedSegmentIndex
     }
 
+}
+
+// MARK: - HighlightsGroupingDelegate
+
+extension GroupedHighlightsViewController: HighlightsGroupingDelegate {
+    
+    func highlightGroupingRequestNavigationItemsUpdate(_ self: HighlightsGrouping) {
+        updateNavigationItems(forControllerAt: visibleControllerIndex)
+    }
+    
 }

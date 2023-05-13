@@ -24,7 +24,7 @@ public final class CategoryFetchController: NSObject {
     typealias CategoryController = NSFetchedResultsController<PersistedCategory>
 
     public struct Options {
-        public enum SortOrder {
+        public enum SortOrder: String {
             case creationDate
             case name
             case numberOfHighlights
@@ -32,8 +32,8 @@ public final class CategoryFetchController: NSObject {
             static let `default` = SortOrder.creationDate
         }
 
-        let sortOrder: SortOrder
-        let showOnlyCategoriesWithHighlights: Bool
+        public let sortOrder: SortOrder
+        public let showOnlyCategoriesWithHighlights: Bool
 
         public init(
             sortOrder: CategoryFetchController.Options.SortOrder,
@@ -52,10 +52,9 @@ public final class CategoryFetchController: NSObject {
 
     public weak var delegate: CategoryFetchControllerDelegate?
 
-    public var options: Options {
+    public private(set) var options: Options {
         didSet {
             fetchedResultsController = nil // clean frc configured for old options
-            fetchResults()
         }
     }
 
@@ -67,6 +66,11 @@ public final class CategoryFetchController: NSObject {
         self.delegate = delegate
         self.options = options
         self.persistanceExecutor = persistanceExecutor
+    }
+    
+    public func updateOptions(_ newOptions: Options, completion:  (() -> Void)? = nil) {
+        options = newOptions
+        fetchResults(completion)
     }
 
     public func fetchResults(_ completion: (() -> Void)? = nil) {

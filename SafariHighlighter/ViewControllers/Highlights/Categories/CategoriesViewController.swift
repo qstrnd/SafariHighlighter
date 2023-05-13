@@ -17,6 +17,8 @@ final class CategoriesViewController: UITableViewController {
     }
 
     // MARK: - Internal
+    
+    weak var delegate: HighlightsGroupingDelegate?
 
     init(
         appStorage: AppStorage,
@@ -27,6 +29,7 @@ final class CategoriesViewController: UITableViewController {
         self.categoryFetchController = categoryFetchController
         self.categoryService = categoryService
         self.highlightsCoordinator = highlightsCoordinator
+        self.appStorage = appStorage
         self.categoriesCellViewModelMapper = CategoriesCellViewModelMapper(appStorage: appStorage)
 
         super.init(nibName: nil, bundle: nil)
@@ -90,19 +93,11 @@ final class CategoriesViewController: UITableViewController {
 
     // MARK: - Private
 
+    private let appStorage: AppStorage
     private let categoryFetchController: CategoryFetchController
     private let categoryService: CategoryService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
     private let categoriesCellViewModelMapper: CategoriesCellViewModelMapper
-
-    // MARK: Actions
-
-    @objc
-    private func addButtonTapped() {
-        let newCategory = Category(name: "New category")
-
-        categoryService.create(category: newCategory)
-    }
 
 }
 
@@ -113,9 +108,37 @@ extension CategoriesViewController: HighlightsGrouping {
     }
 
     var navigationItems: [UIBarButtonItem] {
-        let newItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        let sortButton = UIBarButtonItem(
+            title: Localized.General.sort,
+            menu: sortMenuForCurrentOptions()
+        )
 
-        return [newItemButton]
+        return [sortButton]
+    }
+    
+    private func sortMenuForCurrentOptions() -> UIMenu {
+        let currentSortOrder = categoryFetchController.options.sortOrder
+                
+        let actions: [(title: String, sortOrder: CategoryFetchController.Options.SortOrder)] = [
+            (Localized.Categories.sortByDefault, .creationDate),
+            (Localized.Categories.sortByNumberOfHighlights, .numberOfHighlights)
+        ]
+
+        let menuChildren = actions.map { action in
+            UIAction(
+                title: action.title,
+                image: currentSortOrder == action.sortOrder ? UIImage(systemName: "checkmark") : nil
+            ) { [unowned self] _ in
+                self.categoryFetchController.updateOptions(.init(sortOrder: action.sortOrder, showOnlyCategoriesWithHighlights: false)) {
+                    self.tableView.reloadData()
+                    self.delegate?.highlightGroupingRequestNavigationItemsUpdate(self)
+                    
+                    self.appStorage.categoriesSortOrderRaw = action.sortOrder.rawValue
+                }
+            }
+        }
+
+        return UIMenu(title: "", children: menuChildren)
     }
 }
 
