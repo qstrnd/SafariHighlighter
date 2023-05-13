@@ -13,9 +13,11 @@ final class SettingsHeaderViewModel: ObservableObject {
     
     @Published var versionText: String?
     @Published var iconName: String?
+    @Published var fullAppName: String
     
     
     init() {
+        fullAppName = Localized.Settings.fullName
         iconName = iconNameResourceString
         updateVersionText()
     }
@@ -38,7 +40,7 @@ final class SettingsHeaderViewModel: ObservableObject {
             return
         }
 
-        var versionText = "Version \(appVersion)"
+        var versionText = "\(Localized.Settings.version) \(appVersion)"
 
         if let buildNumber = buildNumber {
             versionText += " (\(buildNumber))"

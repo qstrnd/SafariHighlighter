@@ -35,10 +35,10 @@ final class SettingsViewModel: ObservableObject {
     private func loadSections() {
         sections = [
             .init(
-                title: "How To Use",
+                title: Localized.Settings.howToUse,
                 cells: [
                     .init(
-                        title: "Show Tutorial",
+                        title: Localized.Settings.showTutorial,
                         action: { [unowned self] in
                             coordinator.openTutorial()
                         }
@@ -46,14 +46,14 @@ final class SettingsViewModel: ObservableObject {
                 ]
             ),
             .init(
-                title: "Keep In Touch",
+                title: Localized.Settings.keepInTouch,
                 cells: [
                     .init(
                         icon: .init(
                             name: .asset("twitter-16"),
                             color: Color(hex: "#00acee")
                         ),
-                        title: "Follow on Twitter",
+                        title: Localized.Settings.followOnTwitter,
                         subtitle: "@qstrnd",
                         action: { [unowned self] in
                             coordinator.openTwitter()
@@ -64,7 +64,7 @@ final class SettingsViewModel: ObservableObject {
                             name: .system("envelope.fill"),
                             color: .blue
                         ),
-                        title: "Contact by Email",
+                        title: Localized.Settings.contactByEmail,
                         subtitle: "a.yakovlev@qstrnd.com",
                         action: { [unowned self] in
                             coordinator.openEmail()
@@ -80,7 +80,7 @@ final class SettingsViewModel: ObservableObject {
                             name: .system("star.fill"),
                             color: .yellow
                         ),
-                        title: "Rate on the App Store",
+                        title: Localized.Settings.rateOnTheAppStore,
                         action: { [unowned self] in
                             coordinator.openRateOnAppStore()
                         }
@@ -90,7 +90,7 @@ final class SettingsViewModel: ObservableObject {
                             name: .system("hand.raised.fill"),
                             color: .purple
                         ),
-                        title: "Terms & Privacy Policy",
+                        title: Localized.Settings.termsAndPrivacyPolicy,
                         action: { [unowned self] in
                             coordinator.openTermsAndPrivacyPolicy()
                         }
@@ -100,7 +100,7 @@ final class SettingsViewModel: ObservableObject {
                             name: .system("heart.fill"),
                             color: .pink
                         ),
-                        title: "Acknowledgments",
+                        title: Localized.Settings.acknowledgements,
                         action: { [unowned self] in
                             coordinator.openAcknowledgements()
                         }

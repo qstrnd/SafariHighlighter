@@ -21,7 +21,7 @@ struct SettingsHeaderView: View {
                 .cornerRadius(20)
                 .padding(.bottom, 8)
 
-            Text("Highlighter for Safari")
+            Text(viewModel.fullAppName)
                 .font(.headline)
 
             if let version = viewModel.versionText {

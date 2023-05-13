@@ -24,10 +24,10 @@ final class TabCoordinator: NSObject, CoordinatorProtocol {
     
     func buildInitialViewController() -> UIViewController {
         let highlightsVC = highlightsCoordinator.buildInitialViewController()
-        highlightsVC.tabBarItem = UITabBarItem(title: "Highlights", image: UIImage(systemName: "bookmark.fill"), tag: 0)
+        highlightsVC.tabBarItem = UITabBarItem(title: Localized.Tabs.highlights, image: UIImage(systemName: "bookmark.fill"), tag: 0)
 
         let settingsVC = settingsCoordinator.buildInitialViewController()
-        settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gearshape.fill"), tag: 1)
+        settingsVC.tabBarItem = UITabBarItem(title: Localized.Tabs.settings, image: UIImage(systemName: "gearshape.fill"), tag: 1)
 
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [highlightsVC, settingsVC]

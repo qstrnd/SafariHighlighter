@@ -1,0 +1,45 @@
+/* 
+  Localizable.strings
+  SafariHighlighter
+
+  Created by Andrey Yakovlev on 13.05.2023.
+  
+*/
+
+
+// Tabs
+
+"tabs-highlights" = "Surlignages";
+
+"tabs-settings" = "Paramètres";
+
+
+// Grouped Highlights
+
+"groupedHighlights-categories" = "Catégories";
+
+"groupedHighlights-websites" = "Sites Web";
+
+
+// Settings
+
+"settings-fullName" = "Surligneur pour Safari";
+
+"settings-version" = "Version";
+
+"settings-howToUse" = "Comment utiliser";
+
+"settings-showTutorial" = "Montrer le tutoriel";
+
+"settings-keepInTouch" = "Restez en contact";
+
+"settings-followOnTwitter" = "Suivre sur Twitter";
+
+"settings-contactByEmail" = "Contacter par e-mail";
+
+"settings-rateOnTheAppStore" = "Évaluer sur l'App Store";
+
+"settings-termsAndPrivacyPolicy" = "Conditions et politique de confidentialité";
+
+"settings-acknowledgements" = "Remerciements";
+

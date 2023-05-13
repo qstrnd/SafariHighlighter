@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  SafariHighlighter
+
+  Created by Andrey Yakovlev on 13.05.2023.
+  
+*/
+
+
+// Tabs
+
+"tabs-highlights" = "Хайлайты";
+"tabs-settings" = "Настройки";
+
+// Grouped Highlights
+
+"groupedHighlights-categories" = "Категории";
+
+"groupedHighlights-websites" = "Веб-сайты";
+
+// Settings
+
+"settings-fullName" = "Хайлайтер для Safari";
+
+"settings-version" = "Версия";
+
+"settings-howToUse" = "Как использовать";
+
+"settings-showTutorial" = "Показать туториал";
+
+"settings-keepInTouch" = "Оставайтесь на связи";
+
+"settings-followOnTwitter" = "Подписаться на Twitter";
+
+"settings-contactByEmail" = "Связаться по электронной почте";
+
+"settings-rateOnTheAppStore" = "Оценить в App Store";
+
+"settings-termsAndPrivacyPolicy" = "Условия использования и политика конфиденциальности";
+
+"settings-acknowledgements" = "Благодарности";

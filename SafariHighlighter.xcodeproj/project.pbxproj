@@ -35,6 +35,9 @@
 		B85124582A0EAB5F003AD592 /* SettingsHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124572A0EAB5F003AD592 /* SettingsHeaderViewModel.swift */; };
 		B851245C2A0EAB97003AD592 /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851245B2A0EAB97003AD592 /* SettingsHeaderView.swift */; };
 		B851245E2A0EBD0B003AD592 /* AppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851245D2A0EBD0B003AD592 /* AppStorage.swift */; };
+		B85124632A0F655B003AD592 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B85124652A0F655B003AD592 /* Localizable.strings */; };
+		B851246A2A0F66EC003AD592 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124692A0F66EC003AD592 /* Localized.swift */; };
+		B851246D2A0F6D1D003AD592 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B851246F2A0F6D1D003AD592 /* InfoPlist.strings */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
 		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
@@ -107,6 +110,15 @@
 		B85124572A0EAB5F003AD592 /* SettingsHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderViewModel.swift; sourceTree = "<group>"; };
 		B851245B2A0EAB97003AD592 /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
 		B851245D2A0EBD0B003AD592 /* AppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorage.swift; sourceTree = "<group>"; };
+		B85124642A0F655B003AD592 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B85124662A0F656E003AD592 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B85124672A0F6573003AD592 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B85124682A0F6579003AD592 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B85124692A0F66EC003AD592 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
+		B851246E2A0F6D1D003AD592 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B85124702A0F6D1F003AD592 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B85124712A0F6D20003AD592 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B85124722A0F6D20003AD592 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
 		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
@@ -177,6 +189,8 @@
 				B898B88829F43EF3000A36D0 /* Navigation */,
 				B81D471E29D575E900DB603C /* Assets.xcassets */,
 				B81D471F29D575E900DB603C /* Info.plist */,
+				B851246F2A0F6D1D003AD592 /* InfoPlist.strings */,
+				B85124652A0F655B003AD592 /* Localizable.strings */,
 			);
 			path = SafariHighlighter;
 			sourceTree = "<group>";
@@ -326,6 +340,7 @@
 				B81D471429D575E800DB603C /* SceneDelegate.swift */,
 				B851244F2A0E906A003AD592 /* CompositionRoot.swift */,
 				B851245D2A0EBD0B003AD592 /* AppStorage.swift */,
+				B85124692A0F66EC003AD592 /* Localized.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -438,7 +453,9 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				ru,
+				de,
+				fr,
 			);
 			mainGroup = B81D46FE29D575E800DB603C;
 			packageReferences = (
@@ -460,6 +477,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B81D473D29D575E900DB603C /* Assets.xcassets in Resources */,
+				B851246D2A0F6D1D003AD592 /* InfoPlist.strings in Resources */,
+				B85124632A0F655B003AD592 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +525,7 @@
 				B851233F2A0E7D0E003AD592 /* NavigationCoordinator.swift in Sources */,
 				B87F91BC2A0A59A900740E40 /* TutorialView.swift in Sources */,
 				B81D471529D575E800DB603C /* SceneDelegate.swift in Sources */,
+				B851246A2A0F66EC003AD592 /* Localized.swift in Sources */,
 				B85124502A0E906A003AD592 /* CompositionRoot.swift in Sources */,
 				B85123422A0E894C003AD592 /* Navigation.swift in Sources */,
 				B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */,
@@ -535,11 +555,37 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		B85124652A0F655B003AD592 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B85124642A0F655B003AD592 /* en */,
+				B85124662A0F656E003AD592 /* ru */,
+				B85124672A0F6573003AD592 /* de */,
+				B85124682A0F6579003AD592 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		B851246F2A0F6D1D003AD592 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B851246E2A0F6D1D003AD592 /* en */,
+				B85124702A0F6D1F003AD592 /* fr */,
+				B85124712A0F6D20003AD592 /* de */,
+				B85124722A0F6D20003AD592 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		B81D473E29D575E900DB603C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -601,6 +647,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -661,7 +708,6 @@
 				DEVELOPMENT_TEAM = C8ZP5CBZNS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafariHighlighterExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Safari Highlighter";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -692,7 +738,6 @@
 				DEVELOPMENT_TEAM = C8ZP5CBZNS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafariHighlighterExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Safari Highlighter";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -726,7 +771,6 @@
 				DEVELOPMENT_TEAM = C8ZP5CBZNS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafariHighlighter/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Highlighter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -763,7 +807,6 @@
 				DEVELOPMENT_TEAM = C8ZP5CBZNS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SafariHighlighter/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Highlighter;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

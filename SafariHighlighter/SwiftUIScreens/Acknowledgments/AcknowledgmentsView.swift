@@ -52,7 +52,7 @@ struct AcknowledgmentsView: View {
             }
         }
         .navigationBarHidden(false)
-        .navigationTitle("Acknowledgements")
+        .navigationTitle(Localized.Settings.acknowledgements)
     }
 }
 

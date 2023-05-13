@@ -14,7 +14,6 @@ final class CategoriesViewController: UITableViewController {
 
     private enum Constants {
         static let cellReuseId = "categoryCell"
-        static let name = "Categories"
     }
 
     // MARK: - Internal
@@ -106,7 +105,7 @@ final class CategoriesViewController: UITableViewController {
 // MARK: - HighlightsGrouping
 extension CategoriesViewController: HighlightsGrouping {
     var name: String {
-        Constants.name
+        Localized.GroupedHighlights.categories
     }
 
     var navigationItems: [UIBarButtonItem] {

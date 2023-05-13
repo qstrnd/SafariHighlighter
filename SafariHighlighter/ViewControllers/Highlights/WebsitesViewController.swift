@@ -14,7 +14,6 @@ final class WebsitesViewController: UITableViewController {
 
     private enum Constants {
         static let cellReuseId = "websiteCell"
-        static let name = "Websites"
     }
 
     // MARK: - Internal
@@ -107,7 +106,7 @@ final class WebsitesViewController: UITableViewController {
 // MARK: - HighlightsGrouping
 extension WebsitesViewController: HighlightsGrouping {
     var name: String {
-        Constants.name
+        Localized.GroupedHighlights.websites
     }
 
     var navigationItems: [UIBarButtonItem] {

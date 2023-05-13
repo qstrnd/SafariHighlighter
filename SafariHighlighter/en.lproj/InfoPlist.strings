@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  SafariHighlighter
+
+  Created by Andrey Yakovlev on 13.05.2023.
+  
+*/
+
+"CFBundleDisplayName" = "Highlighter";

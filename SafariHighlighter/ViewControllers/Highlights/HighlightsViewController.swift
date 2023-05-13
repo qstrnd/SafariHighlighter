@@ -14,7 +14,6 @@ final class HighlightsViewController: UITableViewController {
 
     private enum Constants {
         static let cellReuseId = "highlightCell"
-        static let name = "Highlights"
     }
 
     // MARK: - Internal
