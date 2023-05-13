@@ -45,6 +45,7 @@
 		B851247F2A0FDD19003AD592 /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851247E2A0FDD19003AD592 /* NewCategoryViewController.swift */; };
 		B85124832A0FDD95003AD592 /* CategoriesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124822A0FDD95003AD592 /* CategoriesCoordinator.swift */; };
 		B85124852A0FEBF0003AD592 /* NewCategoryColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124842A0FEBF0003AD592 /* NewCategoryColorPickerView.swift */; };
+		B85124872A100E40003AD592 /* ColorCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124862A100E40003AD592 /* ColorCircleView.swift */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
 		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
@@ -133,6 +134,7 @@
 		B851247E2A0FDD19003AD592 /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
 		B85124822A0FDD95003AD592 /* CategoriesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCoordinator.swift; sourceTree = "<group>"; };
 		B85124842A0FEBF0003AD592 /* NewCategoryColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryColorPickerView.swift; sourceTree = "<group>"; };
+		B85124862A100E40003AD592 /* ColorCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCircleView.swift; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
 		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 			children = (
 				B851247E2A0FDD19003AD592 /* NewCategoryViewController.swift */,
 				B85124842A0FEBF0003AD592 /* NewCategoryColorPickerView.swift */,
+				B85124862A100E40003AD592 /* ColorCircleView.swift */,
 			);
 			path = NewCategory;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				B8ACADD82A097766005E45EC /* HighlightsViewController.swift in Sources */,
 				B81D470B29D575E800DB603C /* AppDelegate.swift in Sources */,
 				B8ACADDE2A0A2824005E45EC /* SettingsView.swift in Sources */,
+				B85124872A100E40003AD592 /* ColorCircleView.swift in Sources */,
 				B85124752A0F7049003AD592 /* CategoriesTableViewCell.swift in Sources */,
 				B898B88A29F43F08000A36D0 /* HighlightsCoordinator.swift in Sources */,
 				B85123302A0E659C003AD592 /* AcknowledgmentsView.swift in Sources */,

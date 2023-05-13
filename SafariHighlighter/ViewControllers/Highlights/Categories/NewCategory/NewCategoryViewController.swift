@@ -12,6 +12,7 @@ final class NewCategoryViewController: UIViewController {
     
     private enum Constants {
         static let horizontalInset: CGFloat = 16
+        static let colorsHorizontalInset: CGFloat = 8
         static let verticalInset: CGFloat = 12
         static let colorButtonSize: CGSize = .init(square: 32)
         static let horizontalSpacing: CGFloat = 16
@@ -47,7 +48,11 @@ final class NewCategoryViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButtonItem
         navigationItem.rightBarButtonItem = saveButtonItem
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(areaOutsideTextfieldTapped))
+        view.addGestureRecognizer(tap)
+        
         categoryColorPicker.delegate = self
+        categoryColorPicker.numberOfCircles = 24
         
         updateSaveButton()
         setupLayout()
@@ -116,8 +121,8 @@ final class NewCategoryViewController: UIViewController {
             helpLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.horizontalInset),
             helpLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.horizontalInset),
             
-            categoryColorPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoryColorPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            categoryColorPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.colorsHorizontalInset),
+            categoryColorPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.colorsHorizontalInset),
             categoryColorPicker.topAnchor.constraint(equalTo: helpLabel.bottomAnchor, constant: Constants.verticalSpacing),
             categoryColorPicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constants.verticalInset),
         ])
@@ -163,14 +168,26 @@ final class NewCategoryViewController: UIViewController {
         colorPicker.delegate = self
         present(colorPicker, animated: true, completion: nil)
     }
+    
+    @objc
+    private func areaOutsideTextfieldTapped() {
+        textField.resignFirstResponder()
+    }
 }
 
 
 // MARK: - UIColorPickerViewControllerDelegate
 
 extension NewCategoryViewController: UIColorPickerViewControllerDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
         selectedColor = viewController.selectedColor
+        textField.resignFirstResponder()
     }
 }
 
@@ -180,6 +197,7 @@ extension NewCategoryViewController: NewCategoryColorPickerViewDelegate {
     
     func categoryColorPicker(_ colorPicker: NewCategoryColorPickerView, didSelectColor color: UIColor) {
         selectedColor = color
+        textField.resignFirstResponder()
     }
     
 }
