@@ -44,10 +44,6 @@ public final class CategoryFetchController: NSObject {
         }
     }
 
-    private enum Constants {
-        static let frcCacheName = "com.qstrnd.Persistence.categoryFRCCache"
-    }
-
     // MARK: - Public
 
     public weak var delegate: CategoryFetchControllerDelegate?
@@ -129,7 +125,7 @@ public final class CategoryFetchController: NSObject {
                     fetchRequest: self.getFetchRequest(),
                     managedObjectContext: context,
                     sectionNameKeyPath: nil,
-                    cacheName: Constants.frcCacheName
+                    cacheName: nil
                 )
 
                 frc.delegate = self

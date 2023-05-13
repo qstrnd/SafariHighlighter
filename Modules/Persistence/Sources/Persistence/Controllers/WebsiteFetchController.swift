@@ -44,10 +44,6 @@ public final class WebsiteFetchController: NSObject {
         }
     }
 
-    private enum Constants {
-        static let frcCacheName = "com.qstrnd.Persistence.websiteFRCCache"
-    }
-
     // MARK: - Public
 
     public weak var delegate: WebsiteFetchControllerDelegate?
@@ -125,7 +121,7 @@ public final class WebsiteFetchController: NSObject {
                     fetchRequest: self.getFetchRequest(),
                     managedObjectContext: context,
                     sectionNameKeyPath: nil,
-                    cacheName: Constants.frcCacheName
+                    cacheName: nil
                 )
 
                 frc.delegate = self

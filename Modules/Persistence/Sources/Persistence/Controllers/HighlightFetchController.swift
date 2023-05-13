@@ -48,10 +48,6 @@ public final class HighlightFetchController: NSObject {
         }
     }
 
-    private enum Constants {
-        static let frcCacheName = "com.qstrnd.Persistence.highlightFRCCache"
-    }
-
     // MARK: - Public
 
     public weak var delegate: HighlightFetchControllerDelegate?
@@ -129,7 +125,7 @@ public final class HighlightFetchController: NSObject {
                     fetchRequest: self.getFetchRequest(),
                     managedObjectContext: context,
                     sectionNameKeyPath: nil,
-                    cacheName: Constants.frcCacheName
+                    cacheName: nil
                 )
 
                 frc.delegate = self
@@ -159,7 +155,7 @@ public final class HighlightFetchController: NSObject {
     private func getSortDescriptorForCurrentOptions() -> NSSortDescriptor {
         switch options.sortOrder {
         case .creationDate:
-            return NSSortDescriptor(key: "creationDate", ascending: true)
+            return NSSortDescriptor(key: "creationDate", ascending: false)
         case .name:
             return NSSortDescriptor(key: "name", ascending: true)
         }
