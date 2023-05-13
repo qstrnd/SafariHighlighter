@@ -8,14 +8,20 @@
 import Foundation
 import Common
 
+private let appStorageGroupSuitname = "group.com.qstrnd.SafariHighlighter"
+
 final class AppStorage {
     
-    @Storage(key: "selectedTab", defaultValue: 0)
+    @Storage(suiteName: appStorageGroupSuitname, key: "selectedTab", defaultValue: 0)
     var selectedTab: Int
     
-    @Storage(key: "groupedHighlightsSelectedSegment", defaultValue: 0)
+    @Storage(suiteName: appStorageGroupSuitname, key: "groupedHighlightsSelectedSegment", defaultValue: 0)
     var groupedHighlightsSelectedSegment: Int
     
-    @Storage(key: "isTutorialShown", defaultValue: false)
+    @Storage(suiteName: appStorageGroupSuitname, key: "isTutorialShown", defaultValue: false)
     var isTutorialShown: Bool
+    
+    @Storage(suiteName: appStorageGroupSuitname, key: "areInitialCategoriesGenerated", defaultValue: false)
+    var areInitialCategoriesGenerated: Bool
+    
 }

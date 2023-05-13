@@ -9,22 +9,23 @@ import Foundation
 
 @propertyWrapper
 public struct Storage<T> {
+    
     private let key: String
     private let defaultValue: T
+    private let userDefaults: UserDefaults
     
-    public init(key: String, defaultValue: T) {
+    public init(suiteName: String, key: String, defaultValue: T) {
         self.key = key
         self.defaultValue = defaultValue
+        self.userDefaults = UserDefaults(suiteName: suiteName)!
     }
     
     public var wrappedValue: T {
         get {
-            // Read value from UserDefaults
-            return UserDefaults.standard.value(forKey: key) as? T ?? defaultValue
+            userDefaults.value(forKey: key) as? T ?? defaultValue
         }
         set {
-            // Set value to UserDefaults
-            UserDefaults.standard.set(newValue, forKey: key)
+            userDefaults.set(newValue, forKey: key)
         }
     }
 }
