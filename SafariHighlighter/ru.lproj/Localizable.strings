@@ -14,9 +14,9 @@
 
 // Highlights
 
-"highlights-deletionConfirmationTitle" = "Удаление заметок";
+"highlights-deletionConfirmationTitle" = "Удаление хайлайтов";
 
-"highlights-deletionConfirmationSubtitle" = "Вы уверены, что хотите удалить эти заметки?";
+"highlights-deletionConfirmationSubtitle" = "Вы уверены, что хотите удалить эти хайлайты?";
 
 
 // General
