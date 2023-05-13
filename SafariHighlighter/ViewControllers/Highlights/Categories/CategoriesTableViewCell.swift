@@ -14,7 +14,7 @@ final class CategoriesTableViewCell: UITableViewCell {
     struct Model {
         let color: UIColor
         let title: String
-        let subtitle: String
+        let subtitle: String?
     }
     
     private enum Constants {
@@ -44,7 +44,9 @@ final class CategoriesTableViewCell: UITableViewCell {
     func set(model: Model) {
         circleView.backgroundColor = model.color
         titleLabel.text = model.title
+        
         subtitleLabel.text = model.subtitle
+        subtitleLabel.isHidden = model.subtitle == nil
     }
     
     // MARK: - Private

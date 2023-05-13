@@ -18,7 +18,7 @@ final class CategoriesCellViewModelMapper: NSObject {
         .init(
             color: color(for: category.name),
             title: category.name,
-            subtitle: "4"
+            subtitle: numberOfHighlightsString(for: category.numberOfHighlights)
         )
     }
     
@@ -41,5 +41,11 @@ final class CategoriesCellViewModelMapper: NSObject {
         default:
             return .gray
         }
+    }
+    
+    private func numberOfHighlightsString(for numberOfHighlights: Int?) -> String? {
+        guard let numberOfHighlights, numberOfHighlights > 0 else { return nil }
+        
+        return "\(numberOfHighlights)"
     }
 }

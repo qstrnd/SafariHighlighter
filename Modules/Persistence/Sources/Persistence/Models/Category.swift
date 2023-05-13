@@ -13,20 +13,26 @@ public struct Category {
     public let uniqueId: UUID
     public let creationDate: Date
     public let name: String
+    
+    /// `Nil` if not fetched
+    public let numberOfHighlights: Int?
 
     public init(
         uniqueId: UUID = .init(),
         creationDate: Date = .init(),
-        name: String
+        name: String,
+        numberOfHighlights: Int? = nil
     ) {
         self.uniqueId = uniqueId
         self.creationDate = creationDate
         self.name = name
+        self.numberOfHighlights = numberOfHighlights
     }
 
     init(from persistedCategory: PersistedCategory) {
         self.uniqueId = persistedCategory.uniqueId!
         self.creationDate = persistedCategory.creationDate!
         self.name = persistedCategory.name!
+        self.numberOfHighlights = persistedCategory.highlights?.count ?? 0
     }
 }
