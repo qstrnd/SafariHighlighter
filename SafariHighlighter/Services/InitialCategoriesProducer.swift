@@ -24,8 +24,6 @@ final class InitialCategoriesProducer {
         categoryService.create(categories: initialCategories) { [unowned self] result in
             guard case .success = result else { return }
             
-            self.saveInitialCategoriesIds()
-            
             completion()
         }
     }
@@ -36,20 +34,12 @@ final class InitialCategoriesProducer {
     private let appStorage: AppStorage
     
     private var initialCategories = [
-        Category(name: Localized.Colors.red),
-        Category(name: Localized.Colors.orange),
-        Category(name: Localized.Colors.yellow),
-        Category(name: Localized.Colors.green),
-        Category(name: Localized.Colors.blue),
-        Category(name: Localized.Colors.purple)
+        Category(name: Localized.Colors.red, hexColor: "#FF3B30"),
+        Category(name: Localized.Colors.orange, hexColor: "#FF9500"),
+        Category(name: Localized.Colors.yellow, hexColor: "#FFCC00"),
+        Category(name: Localized.Colors.green, hexColor: "#34C759"),
+        Category(name: Localized.Colors.blue, hexColor: "#007AFF"),
+        Category(name: Localized.Colors.purple, hexColor: "#AF52DE")
     ]
     
-    private func saveInitialCategoriesIds() {
-        appStorage.initialCategoriesIdRed       = initialCategories[0].uniqueId
-        appStorage.initialCategoriesIdOrange    = initialCategories[1].uniqueId
-        appStorage.initialCategoriesIdYellow    = initialCategories[2].uniqueId
-        appStorage.initialCategoriesIdGreen     = initialCategories[3].uniqueId
-        appStorage.initialCategoriesIdBlue      = initialCategories[4].uniqueId
-        appStorage.initialCategoriesIdPurple    = initialCategories[5].uniqueId
-    }
 }

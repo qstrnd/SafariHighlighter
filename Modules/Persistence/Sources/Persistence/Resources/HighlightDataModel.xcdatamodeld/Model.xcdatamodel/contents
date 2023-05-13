@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="PersistedCategory" representedClassName="PersistedCategory" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="hexColor" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
         <attribute name="uniqueId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="highlights" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PersistedHighlight" inverseName="category" inverseEntity="PersistedHighlight"/>

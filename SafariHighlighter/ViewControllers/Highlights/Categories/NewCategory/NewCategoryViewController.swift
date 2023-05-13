@@ -159,7 +159,11 @@ final class NewCategoryViewController: UIViewController {
     
     @objc
     private func saveButtonTapped() {
-        highlightsCoordinator.dismiss()
+        let category = Category(name: name ?? "", hexColor: selectedColor?.toHexString() ?? "")
+        
+        categoryService.create(category: category) { [weak self] _ in
+            self?.highlightsCoordinator.dismiss()
+        }
     }
             
     @objc

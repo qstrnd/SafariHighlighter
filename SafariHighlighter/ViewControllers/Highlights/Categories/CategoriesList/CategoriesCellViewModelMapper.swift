@@ -20,7 +20,7 @@ final class CategoriesCellViewModelMapper {
     
     func cellModel(from category: Category) -> CategoriesTableViewCell.Model {
         .init(
-            color: color(for: category.uniqueId),
+            color: color(for: category),
             title: category.name,
             subtitle: numberOfHighlightsString(for: category.numberOfHighlights)
         )
@@ -30,23 +30,10 @@ final class CategoriesCellViewModelMapper {
     
     private let appStorage: AppStorage
     
-    private func color(for categoryId: UUID) -> UIColor {
-        switch categoryId {
-        case appStorage.initialCategoriesIdRed:
-            return .systemRed
-        case appStorage.initialCategoriesIdOrange:
-            return .systemOrange
-        case appStorage.initialCategoriesIdYellow:
-            return .systemYellow
-        case appStorage.initialCategoriesIdGreen:
-            return .systemGreen
-        case appStorage.initialCategoriesIdBlue:
-            return .systemBlue
-        case appStorage.initialCategoriesIdPurple:
-            return .systemPurple
-        default:
-            return .gray
-        }
+    private func color(for category: Category) -> UIColor {
+        guard let categoryColor = UIColor(hex: category.hexColor) else { return .gray }
+        
+        return categoryColor
     }
     
     private func numberOfHighlightsString(for numberOfHighlights: Int?) -> String? {

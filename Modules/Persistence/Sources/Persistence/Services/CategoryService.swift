@@ -115,6 +115,7 @@ public final class CategoryService: NSObject {
         persistedCategory.name = category.name
         persistedCategory.creationDate = category.creationDate
         persistedCategory.uniqueId = category.uniqueId
+        persistedCategory.hexColor = category.hexColor
     }
 
     // MARK: Context saving
