@@ -22,11 +22,12 @@ public enum HighlightsGroupBy {
     }
 }
 
-protocol HighlightsCoordinatorProtocol: CoordinatorProtocol {
+protocol HighlightsCoordinatorProtocol: CoordinatorProtocol, CategoriesCoordinatorProtocol {
     func openHighlights(groupBy: HighlightsGroupBy)
+    func dismiss()
 }
 
-final class HighlightsCoordinator: HighlightsCoordinatorProtocol {
+final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
     
     // MARK: - Internal
 
@@ -36,6 +37,10 @@ final class HighlightsCoordinator: HighlightsCoordinatorProtocol {
     ) {
         self.persistanceExecutorFactory = persistanceExecutorFactory
         self.appStorage = appStorage
+    }
+    
+    func dismiss() {
+        navigationCoordinator?.perform(navigation: .dismissLast)
     }
     
     // MARK: - Private
@@ -52,10 +57,10 @@ final class HighlightsCoordinator: HighlightsCoordinatorProtocol {
     }
     
     private func buildCategoriesController() -> CategoriesViewController {
-        let sortOrder = CategoryFetchController.Options.SortOrder(rawValue: appStorage.categoriesSortOrderRaw ?? "") ?? .creationDate
+        let sortOrder = CategoryFetchController.Options.SortField(rawValue: appStorage.categoriesSortOrderRaw ?? "") ?? .creationDate
         
         let categoryFetchController = CategoryFetchController(
-            options: .init(sortOrder: sortOrder, showOnlyCategoriesWithHighlights: false),
+            options: .init(sortOrder: sortOrder, sortOrderAsceding: appStorage.categoriesSortOrderAscending),
             persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor()
         )
         
@@ -146,5 +151,19 @@ extension HighlightsCoordinator {
         case .website(let website):
             return .website(uniqueId: website.uniqueId)
         }
+    }
+}
+
+// MARK: - CategoriesCoordinatorProtocol
+extension HighlightsCoordinator {
+    func openNewCategory() {
+        let newCategoryVC = NewCategoryViewController(
+            categoryService: CategoryService(persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor()),
+            highlightsCoordinator: self
+        )
+        
+        let navVC = UINavigationController(rootViewController: newCategoryVC)
+        
+        navigationCoordinator?.perform(navigation: .present(vc: navVC))
     }
 }

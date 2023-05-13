@@ -52,6 +52,10 @@ final class NavigationCoordinator: NSObject, NavigationCoordinatorProtocol {
     private func present(vc: UIViewController) {
         navigations.append(.present(vc: vc))
         
+        if #available(iOS 15.0, *) {
+            vc.sheetPresentationController?.delegate = self
+        }
+        
         navigationController.present(vc, animated: true)
     }
     
@@ -83,7 +87,7 @@ final class NavigationCoordinator: NSObject, NavigationCoordinatorProtocol {
     }
     
     private func findLastPresentedController() -> (vc: UIViewController, navigationIndex: Int)? {
-        for index in navigations.count ... 0 {
+        for index in 0 ..< navigations.reversed().count {
             let navigation = navigations[index]
             
             switch navigation {
@@ -112,7 +116,7 @@ final class NavigationCoordinator: NSObject, NavigationCoordinatorProtocol {
     }
     
     private func findLastPushedController() -> (vc: UIViewController, navigationIndex: Int)? {
-        for index in navigations.count ... 0 {
+        for index in 0 ..< navigations.reversed().count  {
             let navigation = navigations[index]
             
             switch navigation {
@@ -132,3 +136,15 @@ final class NavigationCoordinator: NSObject, NavigationCoordinatorProtocol {
 
 extension NavigationCoordinator: UINavigationControllerDelegate {}
  
+// MARK: - UISheetPresentationControllerDelegate
+
+extension NavigationCoordinator: UISheetPresentationControllerDelegate {
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        let presentedVC = presentationController.presentedViewController
+        guard let navigationIndex = navigations.firstIndex(of: .present(vc: presentedVC)) else { return }
+
+        navigations.removeSubrange(navigationIndex...)
+    }
+    
+}

@@ -110,12 +110,21 @@ extension WebsitesViewController: HighlightsGrouping {
     var name: String {
         Localized.GroupedHighlights.websites
     }
-
-    var navigationItems: [UIBarButtonItem] {
+    
+    var rightNavigationItems: [UIBarButtonItem] {
         let newItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         
         return [newItemButton]
     }
+
+    var leftNavigationItems: [UIBarButtonItem] { [] }
+//        let sortButton = UIBarButtonItem(
+//            title: Localized.General.sort,
+//            menu: sortMenuForCurrentOptions()
+//        )
+//
+//        return [sortButton]
+//    }
 }
 
 // MARK: - WebsiteFetchControllerDelegate

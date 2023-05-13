@@ -16,6 +16,7 @@ protocol HighlightsGroupingDelegate: AnyObject {
 protocol HighlightsGrouping: AnyObject {
     var view: UIView! { get }
     var name: String { get }
-    var navigationItems: [UIBarButtonItem] { get }
+    var rightNavigationItems: [UIBarButtonItem] { get }
+    var leftNavigationItems: [UIBarButtonItem] { get }
     var delegate: HighlightsGroupingDelegate? { get set }
 }

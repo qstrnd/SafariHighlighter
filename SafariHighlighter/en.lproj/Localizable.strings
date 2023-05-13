@@ -35,6 +35,21 @@
 
 "categories-sortByNumberOfHighlights" = "By Number of Highlights";
 
+"categories-sortByCreationDate" = "By Creation Date";
+
+"categories-sortByName" = "By Name";
+
+"categories-sortOrder" = "Order";
+
+"categories-sortAscending" = "Ascending";
+
+"categories-sortDescending" = "Descending";
+
+"categories-newCategory" = "New Category";
+
+"categories-newCategoryNameHint" = "Name your category";
+
+"categories-newCategoryColorHint" = "Tap on the Palette button above to open the Color Picker or choose one of the colors below";
 
 
 // Grouped Highlights

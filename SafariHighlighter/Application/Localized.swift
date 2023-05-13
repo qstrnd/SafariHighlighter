@@ -36,6 +36,23 @@ enum Localized {
         static let sortByDefault = NSLocalizedString("categories-sortByDefault", comment: "")
         
         static let sortByNumberOfHighlights = NSLocalizedString("categories-sortByNumberOfHighlights", comment: "")
+        
+        static let sortByCreationDate = NSLocalizedString("categories-sortByCreationDate", comment: "")
+        
+        static let sortByName = NSLocalizedString("categories-sortByName", comment: "")
+        
+        static let sortOrder = NSLocalizedString("categories-sortOrder", comment: "")
+        
+        static let sortAscending = NSLocalizedString("categories-sortAscending", comment: "")
+        
+        static let sortDescending = NSLocalizedString("categories-sortDescending", comment: "")
+        
+        static let newCategory = NSLocalizedString("categories-newCategory", comment: "")
+        
+        static let newCategoryNameHint = NSLocalizedString("categories-newCategoryNameHint", comment: "")
+
+        static let newCategoryColorHint = NSLocalizedString("categories-newCategoryColorHint", comment: "")
+        
     }
     
     enum GroupedHighlights {

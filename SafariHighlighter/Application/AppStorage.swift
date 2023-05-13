@@ -27,6 +27,9 @@ final class AppStorage {
     @Storage(suiteName: appStorageGroupSuitname, key: "categoriesSortOptionRaw", defaultValue: nil)
     var categoriesSortOrderRaw: String?
     
+    @Storage(suiteName: appStorageGroupSuitname, key: "categoriesSortOrderAscending", defaultValue: true)
+    var categoriesSortOrderAscending: Bool
+    
     // MARK: Initial categories
     
     @Storage(suiteName: appStorageGroupSuitname, key: "initialCategoriesIdRed", defaultValue: nil)

@@ -68,7 +68,8 @@ final class GroupedHighlightsViewController: UIViewController {
     }
 
     private func updateNavigationItems(forControllerAt index: Int) {
-        navigationItem.rightBarButtonItems = groupingVCs[index].navigationItems
+        navigationItem.rightBarButtonItems = groupingVCs[index].rightNavigationItems
+        navigationItem.leftBarButtonItems = groupingVCs[index].leftNavigationItems
     }
 
     // MARK: Content controllers

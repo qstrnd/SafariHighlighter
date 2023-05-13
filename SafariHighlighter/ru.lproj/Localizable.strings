@@ -21,7 +21,7 @@
 
 // General
 
-"general-sort" = "Сортировка";
+"general-sort" = "Сорт.";
 
 "general-delete" = "Удалить";
 
@@ -34,6 +34,22 @@
 "categories-sortByDefault" = "По умолчанию";
 
 "categories-sortByNumberOfHighlights" = "По количеству заметок";
+
+"categories-sortByCreationDate" = "По дате создания";
+
+"categories-sortByName" = "По имени";
+
+"categories-sortOrder" = "Порядок сортировки";
+
+"categories-sortAscending" = "По возрастанию";
+
+"categories-sortDescending" = "По убыванию";
+
+"categories-newCategory" = "Новая категория";
+
+"categories-newCategoryNameHint" = "Название вашей категории";
+
+"categories-newCategoryColorHint" = "Нажмите на кнопку Палитры сверху, чтобы открыть Палитру цветов или выберите один из цветов ниже";
 
 
 // Grouped Highlights

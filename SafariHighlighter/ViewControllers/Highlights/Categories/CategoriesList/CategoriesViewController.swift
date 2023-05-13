@@ -88,8 +88,14 @@ extension CategoriesViewController: HighlightsGrouping {
     var name: String {
         Localized.GroupedHighlights.categories
     }
+    
+    var rightNavigationItems: [UIBarButtonItem] {
+        let newItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        
+        return [newItemButton]
+    }
 
-    var navigationItems: [UIBarButtonItem] {
+    var leftNavigationItems: [UIBarButtonItem] {
         let sortButton = UIBarButtonItem(
             title: Localized.General.sort,
             menu: sortMenuForCurrentOptions()
@@ -99,19 +105,41 @@ extension CategoriesViewController: HighlightsGrouping {
     }
     
     private func sortMenuForCurrentOptions() -> UIMenu {
+        let sortFieldOptions = sortFieldOptionMenu()
+        let sortDirection = sortDirectionMenu()
+
+        return UIMenu(title: "", children: [sortFieldOptions, sortDirection])
+    }
+    
+    private func sortFieldOptionMenu() -> UIMenu {
         let currentSortOrder = categoryFetchController.options.sortOrder
-                
-        let actions: [(title: String, sortOrder: CategoryFetchController.Options.SortOrder)] = [
-            (Localized.Categories.sortByDefault, .creationDate),
-            (Localized.Categories.sortByNumberOfHighlights, .numberOfHighlights)
+        let sortOrderAsceding = categoryFetchController.options.sortOrderAsceding
+        
+        let actions: [(title: String, sortOrder: CategoryFetchController.Options.SortField, image: UIImage?)] = [
+            (
+                Localized.Categories.sortByCreationDate,
+                .creationDate,
+                UIImage(systemName: "calendar")
+            ),
+            (
+                Localized.Categories.sortByNumberOfHighlights,
+                .numberOfHighlights,
+                UIImage(systemName: "number.square")
+            ),
+            (
+                Localized.Categories.sortByName,
+                .name,
+                UIImage(systemName: "a.square")
+            )
         ]
 
         let menuChildren = actions.map { action in
             UIAction(
                 title: action.title,
-                image: currentSortOrder == action.sortOrder ? UIImage(systemName: "checkmark") : nil
+                image: action.image,
+                state: currentSortOrder == action.sortOrder ? .on : .off
             ) { [unowned self] _ in
-                self.categoryFetchController.updateOptions(.init(sortOrder: action.sortOrder, showOnlyCategoriesWithHighlights: false)) {
+                self.categoryFetchController.updateOptions(.init(sortOrder: action.sortOrder, sortOrderAsceding: sortOrderAsceding)) {
                     self.tableView.reloadData()
                     self.delegate?.highlightGroupingRequestNavigationItemsUpdate(self)
                     
@@ -119,8 +147,50 @@ extension CategoriesViewController: HighlightsGrouping {
                 }
             }
         }
+        
+        return UIMenu(title: "", options: .displayInline, children: menuChildren)
+    }
+    
+    private func sortDirectionMenu() -> UIMenu {
+        let currentSortOrder = categoryFetchController.options.sortOrder
+        let sortOrderAsceding = categoryFetchController.options.sortOrderAsceding
+        
+        let actions: [(title: String, sortOrderAscending: Bool, image: UIImage?)] = [
+            (
+                Localized.Categories.sortAscending,
+                true,
+                UIImage(named: "ascending-16")
+            ),
+            (
+                Localized.Categories.sortDescending,
+                false,
+                UIImage(named: "descending-16")
+            )
+        ]
+        
+        let menuChildren = actions.map { action in
+            UIAction(
+                title: action.title,
+                image: action.image,
+                state: sortOrderAsceding == action.sortOrderAscending ? .on : .off
+            ) { [unowned self] _ in
+                self.categoryFetchController.updateOptions(.init(sortOrder: currentSortOrder, sortOrderAsceding: action.sortOrderAscending)) {
+                    self.tableView.reloadData()
+                    self.delegate?.highlightGroupingRequestNavigationItemsUpdate(self)
+                    
+                    self.appStorage.categoriesSortOrderAscending = action.sortOrderAscending
+                }
+            }
+        }
+        
+        return UIMenu(title: Localized.Categories.sortOrder, options: .displayInline, children: menuChildren)
+    }
+    
+    // MARK: Actions
 
-        return UIMenu(title: "", children: menuChildren)
+    @objc
+    private func addButtonTapped() {
+        highlightsCoordinator.openNewCategory()
     }
 }
 

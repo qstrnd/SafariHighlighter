@@ -25,22 +25,25 @@ public final class CategoryFetchController: NSObject {
     typealias CategoryController = NSFetchedResultsController<PersistedCategory>
 
     public struct Options {
-        public enum SortOrder: String {
+        public enum SortField: String {
             case creationDate
             case name
             case numberOfHighlights
 
-            static let `default` = SortOrder.creationDate
+            static let `default` = SortField.creationDate
         }
 
-        public let sortOrder: SortOrder
+        public let sortOrder: SortField
+        public let sortOrderAsceding: Bool
         public let showOnlyCategoriesWithHighlights: Bool
 
         public init(
-            sortOrder: CategoryFetchController.Options.SortOrder,
-            showOnlyCategoriesWithHighlights: Bool
+            sortOrder: CategoryFetchController.Options.SortField,
+            sortOrderAsceding: Bool,
+            showOnlyCategoriesWithHighlights: Bool = false
         ) {
             self.sortOrder = sortOrder
+            self.sortOrderAsceding = sortOrderAsceding
             self.showOnlyCategoriesWithHighlights = showOnlyCategoriesWithHighlights
         }
     }
@@ -134,9 +137,18 @@ public final class CategoryFetchController: NSObject {
             preconditionFailure("Requested sorted objects before fetch was performed")
         }
         
-        _fetchedObjectsSortedByNumberOfHighlights = frc.fetchedObjects?.sorted(by: {
-            $0.highlights?.count ?? 0 > $1.highlights?.count ?? 0
-        }) ?? []
+        let sortClosure: (PersistedCategory, PersistedCategory) -> Bool
+        if options.sortOrderAsceding {
+            sortClosure = {
+                $0.highlights?.count ?? 0 < $1.highlights?.count ?? 0
+            }
+        } else {
+            sortClosure = {
+                $0.highlights?.count ?? 0 > $1.highlights?.count ?? 0
+            }
+        }
+        
+        _fetchedObjectsSortedByNumberOfHighlights = frc.fetchedObjects?.sorted(by: sortClosure) ?? []
         
         return _fetchedObjectsSortedByNumberOfHighlights
     }
@@ -186,9 +198,9 @@ public final class CategoryFetchController: NSObject {
     private func getSortDescriptorForCurrentOptions() -> NSSortDescriptor {
         switch options.sortOrder {
         case .creationDate, .numberOfHighlights:
-            return NSSortDescriptor(key: "creationDate", ascending: true)
+            return NSSortDescriptor(key: "creationDate", ascending: options.sortOrderAsceding)
         case .name:
-            return NSSortDescriptor(key: "name", ascending: true)
+            return NSSortDescriptor(key: "name", ascending: options.sortOrderAsceding)
         }
     }
 

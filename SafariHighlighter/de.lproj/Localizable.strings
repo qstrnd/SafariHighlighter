@@ -22,7 +22,7 @@
 
 // General
 
-"general-sort" = "Sortierung";
+"general-sort" = "Sort.";
 
 "general-delete" = "Löschen";
 
@@ -36,6 +36,21 @@
 
 "categories-sortByNumberOfHighlights" = "Nach Anzahl der Highlights";
 
+"categories-sortByCreationDate" = "Nach Erstellungsdatum";
+
+"categories-sortByName" = "Nach Name";
+
+"categories-sortOrder" = "Sortierreihenfolge";
+
+"categories-sortAscending" = "Aufsteigend";
+
+"categories-sortDescending" = "Absteigend";
+
+"categories-newCategory" = "Neue Kategorie";
+
+"categories-newCategoryNameHint" = "Benennen Sie Ihre Kategorie";
+
+"categories-newCategoryColorHint" = "Tippen Sie auf die Schaltfläche Palette oben, um den Farbauswahl zu öffnen oder wählen Sie eine der folgenden Farben";
 
 
 // Grouped Highlights

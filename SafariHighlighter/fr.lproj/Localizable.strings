@@ -36,6 +36,23 @@
 
 "categories-sortByNumberOfHighlights" = "Par nombre de mises en évidence";
 
+"categories-sortByCreationDate" = "Par date de création";
+
+"categories-sortByName" = "Par nom";
+
+"categories-sortOrder" = "Ordre de tri";
+
+"categories-sortAscending" = "Croissant";
+
+"categories-sortDescending" = "Décroissant";
+
+"categories-newCategory" = "Nouvelle catégorie";
+
+"categories-newCategoryNameHint" = "Nommez votre catégorie";
+
+"categories-newCategoryColorHint" = "Appuyez sur le bouton Palette ci-dessus pour ouvrir le sélecteur de couleurs ou choisissez l'une des couleurs ci-dessous";
+
+
 // Grouped Highlights
 
 "groupedHighlights-categories" = "Catégories";
