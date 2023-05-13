@@ -14,6 +14,7 @@ final class CategoriesViewController: UITableViewController {
 
     private enum Constants {
         static let cellReuseId = "categoryCell"
+        static let tableViewHeight: CGFloat = 44
     }
 
     // MARK: - Internal
@@ -48,6 +49,7 @@ final class CategoriesViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(CategoriesTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
+        tableView.rowHeight = Constants.tableViewHeight
     }
     
 
@@ -71,6 +73,24 @@ final class CategoriesViewController: UITableViewController {
         let category = categoryFetchController.object(at: indexPath)
 
         highlightsCoordinator.openHighlights(groupBy: .category(category))
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            let highlight = categoryFetchController.object(at: indexPath)
+            categoryService.delete(category: highlight)
+        default:
+            break
+        }
     }
 
     // MARK: - Private

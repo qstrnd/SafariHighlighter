@@ -174,7 +174,6 @@ final class PersistentManager: persistanceExecutor {
 
     private func performBlock(on context: NSManagedObjectContext, _ block: @escaping (NSManagedObjectContext) -> Void) {
         context.perform {
-            Logger.persistence.log("Perform persistence-related operation on thread: %@", type: .info, Thread.current.name)
             block(context)
         }
     }
