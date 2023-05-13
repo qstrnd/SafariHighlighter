@@ -17,6 +17,9 @@
 
 "general-sort" = "Trier";
 
+"general-delete" = "Supprimer";
+
+
 // Categories
 
 "categories-sortByDefault" = "Par défaut";

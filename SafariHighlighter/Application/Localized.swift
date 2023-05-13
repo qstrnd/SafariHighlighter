@@ -18,6 +18,8 @@ enum Localized {
     
     enum General {
         static let sort = NSLocalizedString("general-sort", comment: "")
+        
+        static let delete = NSLocalizedString("general-delete", comment: "")
     }
     
     enum Categories {

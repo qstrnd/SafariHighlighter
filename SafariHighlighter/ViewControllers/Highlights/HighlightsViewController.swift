@@ -45,9 +45,10 @@ final class HighlightsViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
+        tableView.allowsMultipleSelectionDuringEditing = true
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-
+        updateBarButtonItems()
+        
         navigationItem.title = title
     }
 
@@ -86,15 +87,56 @@ final class HighlightsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+        return tableView.isEditing ? indexPath : nil
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            updateDeleteButton()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            updateDeleteButton()
+        }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: true)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = !tableView.isEditing
+        updateDeleteButton()
+        
+        updateBarButtonItems()
     }
 
     // MARK: - Private
 
-    let highlightFetchController: HighlightFetchController
-    let highlightService: HighlightService
-    let relationshipService: RelationshipService
-    let groupByTrait: HighlightsGroupBy
+    private let highlightFetchController: HighlightFetchController
+    private let highlightService: HighlightService
+    private let relationshipService: RelationshipService
+    private let groupByTrait: HighlightsGroupBy
+    
+    private lazy var addHighlightButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+    
+    private lazy var batchDeleteButtonItem = UIBarButtonItem(title: Localized.General.delete, style: .done, target: self, action: #selector(batchDeleteButtonTapped))
+    
+    private func updateBarButtonItems() {
+        navigationItem.hidesBackButton = tableView.isEditing
+
+        if tableView.isEditing {
+            navigationItem.rightBarButtonItems = [editButtonItem]
+            navigationItem.leftBarButtonItem = batchDeleteButtonItem
+        } else {
+            navigationItem.leftBarButtonItem = nil
+            navigationItem.rightBarButtonItems = [editButtonItem, addHighlightButtonItem]
+        }
+    }
+    
+    private func updateDeleteButton() {
+        batchDeleteButtonItem.isEnabled = !(tableView.indexPathsForSelectedRows?.isEmpty ?? true)
+    }
 
     // MARK: Actions
 
@@ -108,6 +150,17 @@ final class HighlightsViewController: UITableViewController {
             relationshipService.associate(highlight: newHighlight, with: category)
         case .website(let website):
             relationshipService.associate(highlight: newHighlight, with: website)
+        }
+    }
+    
+    @objc
+    private func batchDeleteButtonTapped() {
+        let highlights = tableView.indexPathsForSelectedRows?.map {
+            highlightFetchController.object(at: $0)
+        } ?? []
+        
+        highlightService.delete(highlights: highlights) { [unowned self] _ in
+            setEditing(false, animated: true)
         }
     }
 
