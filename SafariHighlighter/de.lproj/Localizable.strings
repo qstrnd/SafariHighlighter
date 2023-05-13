@@ -13,13 +13,22 @@
 "tabs-settings" = "Einstellungen";
 
 
+// Highlights
+
+"highlights-deletionConfirmationTitle" = "Highlights löschen";
+
+"highlights-deletionConfirmationSubtitle" = "Sind Sie sicher, dass Sie diese Highlights löschen möchten?";
+
+
 // General
 
 "general-sort" = "Sortierung";
 
 "general-delete" = "Löschen";
 
+"general-yes" = "Ja";
 
+"general-no" = "Nein";
 
 // Categories
 

@@ -13,12 +13,22 @@
 
 "tabs-settings" = "Paramètres";
 
+
+// Highlights
+
+"highlights-deletionConfirmationTitle" = "Supprimer les surlignages";
+
+"highlights-deletionConfirmationSubtitle" = "Êtes-vous sûr de vouloir supprimer ces surlignages?";
+
 // General
 
 "general-sort" = "Trier";
 
 "general-delete" = "Supprimer";
 
+"general-yes" = "Oui";
+
+"general-no" = "Non";
 
 // Categories
 

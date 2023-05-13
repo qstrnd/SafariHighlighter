@@ -20,6 +20,16 @@ enum Localized {
         static let sort = NSLocalizedString("general-sort", comment: "")
         
         static let delete = NSLocalizedString("general-delete", comment: "")
+        
+        static let yes = NSLocalizedString("general-yes", comment: "")
+        
+        static let no = NSLocalizedString("general-no", comment: "")
+    }
+    
+    enum Highlights {
+        static let deletionConfirmationTitle = NSLocalizedString("highlights-deletionConfirmationTitle", comment: "")
+
+        static let deletionConfirmationSubtitle = NSLocalizedString("highlights-deletionConfirmationSubtitle", comment: "")
     }
     
     enum Categories {

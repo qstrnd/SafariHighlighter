@@ -19,6 +19,15 @@
 
 "general-delete" = "Delete";
 
+"general-yes" = "Yes";
+
+"general-no" = "No";
+
+// Highlights
+
+"highlights-deletionConfirmationTitle" = "Highlights deletion";
+
+"highlights-deletionConfirmationSubtitle" = "Are you sure you want to delete these highlights?";
 
 // Categories
 

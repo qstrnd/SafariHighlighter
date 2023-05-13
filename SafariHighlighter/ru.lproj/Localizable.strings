@@ -12,12 +12,22 @@
 "tabs-highlights" = "Хайлайты";
 "tabs-settings" = "Настройки";
 
+// Highlights
+
+"highlights-deletionConfirmationTitle" = "Удаление заметок";
+
+"highlights-deletionConfirmationSubtitle" = "Вы уверены, что хотите удалить эти заметки?";
+
+
 // General
 
 "general-sort" = "Сортировка";
 
 "general-delete" = "Удалить";
 
+"general-yes" = "Да";
+
+"general-no" = "Нет";
 
 // Categories
 

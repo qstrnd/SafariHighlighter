@@ -41,6 +41,7 @@
 		B85124752A0F7049003AD592 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */; };
 		B85124772A0F7565003AD592 /* CategoriesCellViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124762A0F7565003AD592 /* CategoriesCellViewModelMapper.swift */; };
 		B851247A2A0F7F0E003AD592 /* InitialCategoriesProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124792A0F7F0E003AD592 /* InitialCategoriesProducer.swift */; };
+		B851247D2A0FAC60003AD592 /* ConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851247C2A0FAC60003AD592 /* ConfirmationDialog.swift */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
 		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
@@ -125,6 +126,7 @@
 		B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		B85124762A0F7565003AD592 /* CategoriesCellViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCellViewModelMapper.swift; sourceTree = "<group>"; };
 		B85124792A0F7F0E003AD592 /* InitialCategoriesProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialCategoriesProducer.swift; sourceTree = "<group>"; };
+		B851247C2A0FAC60003AD592 /* ConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialog.swift; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
 		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */,
+				B851247B2A0FAC51003AD592 /* Helpers */,
 				B898B97F29F440B4000A36D0 /* Application */,
 				B85123342A0E792B003AD592 /* SwiftUIScreens */,
 				B8ACADD52A096699005E45EC /* ViewControllers */,
@@ -329,6 +332,14 @@
 				B85124792A0F7F0E003AD592 /* InitialCategoriesProducer.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		B851247B2A0FAC51003AD592 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B851247C2A0FAC60003AD592 /* ConfirmationDialog.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		B871AC8B29D8B07600A5E720 /* Messages */ = {
@@ -531,6 +542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85123392A0E7A44003AD592 /* SettingsCell.swift in Sources */,
+				B851247D2A0FAC60003AD592 /* ConfirmationDialog.swift in Sources */,
 				B851245C2A0EAB97003AD592 /* SettingsHeaderView.swift in Sources */,
 				B8ACADD42A096694005E45EC /* HighlightsGrouping.swift in Sources */,
 				B851233D2A0E7C1E003AD592 /* LinkCoordinator.swift in Sources */,

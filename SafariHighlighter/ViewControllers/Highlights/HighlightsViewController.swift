@@ -91,24 +91,11 @@ final class HighlightsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView.isEditing {
-            updateDeleteButton()
-        }
+        updateDeleteButton()
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if tableView.isEditing {
-            updateDeleteButton()
-        }
-    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: true)
-        
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = !tableView.isEditing
         updateDeleteButton()
-        
-        updateBarButtonItems()
     }
 
     // MARK: - Private
@@ -118,19 +105,31 @@ final class HighlightsViewController: UITableViewController {
     private let relationshipService: RelationshipService
     private let groupByTrait: HighlightsGroupBy
     
-    private lazy var addHighlightButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+    private var isInModalEditing = false
     
+    private lazy var addHighlightButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
     private lazy var batchDeleteButtonItem = UIBarButtonItem(title: Localized.General.delete, style: .done, target: self, action: #selector(batchDeleteButtonTapped))
+    private lazy var enableBatchEditingButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableBatchEditingButtonTapped))
+    private lazy var disableBatchEditingButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(disableBatchEditingButtonTapped))
+    
+    private func updateForCurrentMode() {
+        setEditing(isInModalEditing, animated: true)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = !isInModalEditing
+        
+        updateDeleteButton()
+        updateBarButtonItems()
+    }
     
     private func updateBarButtonItems() {
         navigationItem.hidesBackButton = tableView.isEditing
 
         if tableView.isEditing {
-            navigationItem.rightBarButtonItems = [editButtonItem]
+            navigationItem.rightBarButtonItems = [disableBatchEditingButtonItem]
             navigationItem.leftBarButtonItem = batchDeleteButtonItem
         } else {
             navigationItem.leftBarButtonItem = nil
-            navigationItem.rightBarButtonItems = [editButtonItem, addHighlightButtonItem]
+            navigationItem.rightBarButtonItems = [enableBatchEditingButtonItem, addHighlightButtonItem]
         }
     }
     
@@ -155,15 +154,36 @@ final class HighlightsViewController: UITableViewController {
     
     @objc
     private func batchDeleteButtonTapped() {
-        let highlights = tableView.indexPathsForSelectedRows?.map {
-            highlightFetchController.object(at: $0)
-        } ?? []
-        
-        highlightService.delete(highlights: highlights) { [unowned self] _ in
-            setEditing(false, animated: true)
+        ConfirmationDialog.show(
+            from: self,
+            title: Localized.Highlights.deletionConfirmationTitle,
+            message: Localized.Highlights.deletionConfirmationSubtitle
+        ) { [unowned self] in
+            let highlights = tableView.indexPathsForSelectedRows?.map {
+                highlightFetchController.object(at: $0)
+            } ?? []
+            
+            highlightService.delete(highlights: highlights) { [unowned self] _ in
+                isInModalEditing = false
+                updateForCurrentMode()
+            }
         }
     }
+    
+    @objc
+    private func enableBatchEditingButtonTapped() {
+        isInModalEditing = true
+        
+        updateForCurrentMode()
+    }
 
+    @objc
+    private func disableBatchEditingButtonTapped() {
+        isInModalEditing = false
+        
+        updateForCurrentMode()
+    }
+    
 }
 
 // MARK: - HighlightFetchControllerDelegate
