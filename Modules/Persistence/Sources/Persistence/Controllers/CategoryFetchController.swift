@@ -225,8 +225,9 @@ extension CategoryFetchController: NSFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         if options.sortOrder == .numberOfHighlights {
             isFullReloadUpdateInProgress = true
+        } else {
+            delegate?.categoryFetchControllerWillBeginUpdates(self)
         }
-        delegate?.categoryFetchControllerWillBeginUpdates(self)
     }
 
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -235,8 +236,9 @@ extension CategoryFetchController: NSFetchedResultsControllerDelegate {
             
             isFullReloadUpdateInProgress = false
             _fetchedObjectsSortedByNumberOfHighlights = []
+        } else {
+            delegate?.categoryFetchControllerDidFinishUpdates(self)
         }
-        delegate?.categoryFetchControllerDidFinishUpdates(self)
     }
 
     public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {

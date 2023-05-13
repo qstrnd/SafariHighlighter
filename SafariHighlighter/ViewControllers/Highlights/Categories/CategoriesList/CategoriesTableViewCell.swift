@@ -67,11 +67,12 @@ final class CategoriesTableViewCell: UITableViewCell {
         
         // Configure title label
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
         contentView.addSubview(titleLabel)
         
         // Configure subtitle label
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.setContentHuggingPriority(.required, for: .horizontal)
+        subtitleLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         contentView.addSubview(subtitleLabel)
         
         // Add constraints
