@@ -31,16 +31,16 @@ final class HighlightsCoordinator: HighlightsCoordinatorProtocol {
     // MARK: - Internal
 
     init(
-        persistenceExecutorFactory: PersistenceExecutorFactory,
+        persistanceExecutorFactory: persistanceExecutorFactory,
         appStorage: AppStorage
     ) {
-        self.persistenceExecutorFactory = persistenceExecutorFactory
+        self.persistanceExecutorFactory = persistanceExecutorFactory
         self.appStorage = appStorage
     }
     
     // MARK: - Private
     
-    private let persistenceExecutorFactory: PersistenceExecutorFactory
+    private let persistanceExecutorFactory: persistanceExecutorFactory
     private let appStorage: AppStorage
     private var navigationCoordinator: NavigationCoordinator?
     
@@ -54,12 +54,13 @@ final class HighlightsCoordinator: HighlightsCoordinatorProtocol {
     private func buildCategoriesController() -> CategoriesViewController {
         let categoryFetchController = CategoryFetchController(
             options: .init(sortOrder: .creationDate, showOnlyCategoriesWithHighlights: false),
-            persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
+            persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor()
         )
         
-        let categoryService = CategoryService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
+        let categoryService = CategoryService(persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor())
         
         let categoriesViewController = CategoriesViewController(
+            appStorage: appStorage,
             categoryFetchController: categoryFetchController,
             categoryService: categoryService,
             highlightsCoordinator: self
@@ -71,10 +72,10 @@ final class HighlightsCoordinator: HighlightsCoordinatorProtocol {
     private func buildWebsitesController() -> WebsitesViewController {
         let websiteFetchController = WebsiteFetchController(
             options: .init(sortOrder: .creationDate, showOnlyWebsitesWithHighlights: false),
-            persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
+            persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor()
         )
         
-        let websiteService = WebsiteService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
+        let websiteService = WebsiteService(persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor())
         
         let websitesViewController = WebsitesViewController(
             websiteFetchController: websiteFetchController,
@@ -110,18 +111,18 @@ extension HighlightsCoordinator {
 
         let highlightFetchController = HighlightFetchController(
             options: .init(sortOrder: .creationDate, groupBy: groupByOption),
-            persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
+            persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor()
         )
 
-        let highlightService = HighlightService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
-        let categoryService = CategoryService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
-        let websiteService = WebsiteService(persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor())
+        let highlightService = HighlightService(persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor())
+        let categoryService = CategoryService(persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor())
+        let websiteService = WebsiteService(persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor())
 
         let relationshipService = RelationshipService(
             highlighService: highlightService,
             categoryService: categoryService,
             websiteService: websiteService,
-            persistanceExecutor: persistenceExecutorFactory.getSharedPersistenceExecutor()
+            persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor()
         )
 
         let highlightsViewController = HighlightsViewController(

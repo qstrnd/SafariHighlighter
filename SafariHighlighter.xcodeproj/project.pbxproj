@@ -40,6 +40,7 @@
 		B851246D2A0F6D1D003AD592 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B851246F2A0F6D1D003AD592 /* InfoPlist.strings */; };
 		B85124752A0F7049003AD592 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */; };
 		B85124772A0F7565003AD592 /* CategoriesCellViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124762A0F7565003AD592 /* CategoriesCellViewModelMapper.swift */; };
+		B851247A2A0F7F0E003AD592 /* InitialCategoriesProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124792A0F7F0E003AD592 /* InitialCategoriesProducer.swift */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
 		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
@@ -123,6 +124,7 @@
 		B85124722A0F6D20003AD592 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		B85124762A0F7565003AD592 /* CategoriesCellViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCellViewModelMapper.swift; sourceTree = "<group>"; };
+		B85124792A0F7F0E003AD592 /* InitialCategoriesProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialCategoriesProducer.swift; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
 		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				B898B97F29F440B4000A36D0 /* Application */,
 				B85123342A0E792B003AD592 /* SwiftUIScreens */,
 				B8ACADD52A096699005E45EC /* ViewControllers */,
+				B85124782A0F7EAA003AD592 /* Services */,
 				B898B88829F43EF3000A36D0 /* Navigation */,
 				B81D471E29D575E900DB603C /* Assets.xcassets */,
 				B81D471F29D575E900DB603C /* Info.plist */,
@@ -318,6 +321,14 @@
 				B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		B85124782A0F7EAA003AD592 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B85124792A0F7F0E003AD592 /* InitialCategoriesProducer.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		B871AC8B29D8B07600A5E720 /* Messages */ = {
@@ -545,6 +556,7 @@
 				B85123422A0E894C003AD592 /* Navigation.swift in Sources */,
 				B85124772A0F7565003AD592 /* CategoriesCellViewModelMapper.swift in Sources */,
 				B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */,
+				B851247A2A0F7F0E003AD592 /* InitialCategoriesProducer.swift in Sources */,
 				B8ACADDC2A0A27C7005E45EC /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

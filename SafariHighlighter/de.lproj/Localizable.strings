@@ -39,3 +39,18 @@
 "settings-termsAndPrivacyPolicy" = "Nutzungsbedingungen & Datenschutzerklärung";
 
 "settings-acknowledgements" = "Danksagungen";
+
+
+// Colors
+
+"colors-red" = "Rot";
+
+"colors-orange" = "Orange";
+
+"colors-yellow" = "Gelb";
+
+"colors-green" = "Grün";
+
+"colors-blue" = "Blau";
+
+"colors-purple" = "Lila";

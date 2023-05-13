@@ -39,3 +39,19 @@
 "settings-termsAndPrivacyPolicy" = "Условия использования и политика конфиденциальности";
 
 "settings-acknowledgements" = "Благодарности";
+
+
+// Colors
+
+"colors-red" = "Красный";
+
+"colors-orange" = "Оранжевый";
+
+"colors-yellow" = "Желтый";
+
+"colors-green" = "Зеленый";
+
+"colors-blue" = "Синий";
+
+"colors-purple" = "Фиолетовый";
+

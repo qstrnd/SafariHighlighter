@@ -8,15 +8,19 @@
 import UIKit
 import Persistence
 
-final class CategoriesCellViewModelMapper: NSObject {
+final class CategoriesCellViewModelMapper {
     
     typealias Category = Persistence.Category
     
     // MARK: - Internal
     
+    init(appStorage: AppStorage) {
+        self.appStorage = appStorage
+    }
+    
     func cellModel(from category: Category) -> CategoriesTableViewCell.Model {
         .init(
-            color: color(for: category.name),
+            color: color(for: category.uniqueId),
             title: category.name,
             subtitle: numberOfHighlightsString(for: category.numberOfHighlights)
         )
@@ -24,19 +28,21 @@ final class CategoriesCellViewModelMapper: NSObject {
     
     // MARK: - Private
     
-    private func color(for categoryName: String) -> UIColor {
-        switch categoryName {
-        case "red":
+    private let appStorage: AppStorage
+    
+    private func color(for categoryId: UUID) -> UIColor {
+        switch categoryId {
+        case appStorage.initialCategoriesIdRed:
             return .systemRed
-        case "orange":
+        case appStorage.initialCategoriesIdOrange:
             return .systemOrange
-        case "yellow":
+        case appStorage.initialCategoriesIdYellow:
             return .systemYellow
-        case "green":
+        case appStorage.initialCategoriesIdGreen:
             return .systemGreen
-        case "blue":
+        case appStorage.initialCategoriesIdBlue:
             return .systemBlue
-        case "purple":
+        case appStorage.initialCategoriesIdPurple:
             return .systemPurple
         default:
             return .gray

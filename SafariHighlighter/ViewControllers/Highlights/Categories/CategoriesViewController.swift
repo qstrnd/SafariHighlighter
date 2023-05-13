@@ -19,6 +19,7 @@ final class CategoriesViewController: UITableViewController {
     // MARK: - Internal
 
     init(
+        appStorage: AppStorage,
         categoryFetchController: CategoryFetchController,
         categoryService: CategoryService,
         highlightsCoordinator: HighlightsCoordinatorProtocol
@@ -26,6 +27,7 @@ final class CategoriesViewController: UITableViewController {
         self.categoryFetchController = categoryFetchController
         self.categoryService = categoryService
         self.highlightsCoordinator = highlightsCoordinator
+        self.categoriesCellViewModelMapper = CategoriesCellViewModelMapper(appStorage: appStorage)
 
         super.init(nibName: nil, bundle: nil)
 
@@ -91,7 +93,7 @@ final class CategoriesViewController: UITableViewController {
     private let categoryFetchController: CategoryFetchController
     private let categoryService: CategoryService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
-    private let categoriesCellViewModelMapper = CategoriesCellViewModelMapper()
+    private let categoriesCellViewModelMapper: CategoriesCellViewModelMapper
 
     // MARK: Actions
 

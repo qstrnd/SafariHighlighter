@@ -13,27 +13,34 @@ final class CompositionRoot {
     
     // MARK: - Internal
     
-    static var shared: CompositionRoot!
+    static var shared = CompositionRoot()
     
-    init(windowScene: UIWindowScene) {
-        self.windowScene = windowScene
-    }
-    
-    let windowScene: UIWindowScene
+    var windowScene: UIWindowScene!
     
     lazy var appStorage: AppStorage = {
         AppStorage()
     }()
     
-    lazy var persistentExecutorFactory: PersistenceExecutorFactory = {
-        PersistenceExecutorFactory(
-            initialStoreOptions: .init(isPersistenceEnabled: false, isCloudSyncEnabled: false)
+    lazy var persistentExecutorFactory: persistanceExecutorFactory = {
+        persistanceExecutorFactory(
+            initialStoreOptions: .init(isPersistenceEnabled: true, isCloudSyncEnabled: false)
+        )
+    }()
+    
+    lazy var categoryService: CategoryService = {
+        CategoryService(persistanceExecutor: persistentExecutorFactory.getSharedpersistanceExecutor())
+    }()
+    
+    lazy var initialCategoriesProducer: InitialCategoriesProducer = {
+        InitialCategoriesProducer(
+            categoryService: categoryService,
+            appStorage: appStorage
         )
     }()
     
     lazy var highlightsCoordinator: HighlightsCoordinatorProtocol = {
         HighlightsCoordinator(
-            persistenceExecutorFactory: persistentExecutorFactory,
+            persistanceExecutorFactory: persistentExecutorFactory,
             appStorage: appStorage
         )
     }()
@@ -49,4 +56,8 @@ final class CompositionRoot {
             appStorage: appStorage
         )
     }()
+    
+    // MARK: - Private
+    
+    init() {}
 }

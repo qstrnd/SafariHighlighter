@@ -46,4 +46,19 @@ enum Localized {
         static let acknowledgements = NSLocalizedString("settings-acknowledgements", comment: "")
         
     }
+    
+    enum Colors {
+        static let red = NSLocalizedString("colors-red", comment: "")
+        
+        static let orange = NSLocalizedString("colors-orange", comment: "")
+        
+        static let yellow = NSLocalizedString("colors-yellow", comment: "")
+        
+        static let green = NSLocalizedString("colors-green", comment: "")
+        
+        static let blue = NSLocalizedString("colors-blue", comment: "")
+        
+        static let purple = NSLocalizedString("colors-purple", comment: "")
+        
+    }
 }

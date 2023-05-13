@@ -43,3 +43,17 @@
 
 "settings-acknowledgements" = "Remerciements";
 
+
+// Colors
+
+"colors-red" = "Rouge";
+
+"colors-orange" = "Orange";
+
+"colors-yellow" = "Jaune";
+
+"colors-green" = "Vert";
+
+"colors-blue" = "Bleu";
+
+"colors-purple" = "Violet";

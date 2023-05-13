@@ -1,5 +1,5 @@
 //
-//  PersistenceExecutorFactory.swift
+//  persistanceExecutorFactory.swift
 //
 //
 //  Created by Andrey Yakovlev on 01.05.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class PersistenceExecutorFactory: NSObject {
+public final class persistanceExecutorFactory: NSObject {
     private var persistentManager: PersistentManager?
 
     private let initialStoreOptions: PersistentStoreOptions
@@ -16,7 +16,7 @@ public final class PersistenceExecutorFactory: NSObject {
         self.initialStoreOptions = initialStoreOptions
     }
 
-    public func getSharedPersistenceExecutor() -> PersistenceExecutor {
+    public func getSharedpersistanceExecutor() -> persistanceExecutor {
         if let persistentManager = persistentManager {
             return persistentManager
         }

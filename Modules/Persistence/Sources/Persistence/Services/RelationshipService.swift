@@ -19,7 +19,7 @@ public final class RelationshipService: NSObject {
         highlighService: HighlightService,
         categoryService: CategoryService,
         websiteService: WebsiteService,
-        persistanceExecutor: PersistenceExecutor
+        persistanceExecutor: persistanceExecutor
     ) {
         self.highlighService = highlighService
         self.categoryService = categoryService
@@ -54,7 +54,7 @@ public final class RelationshipService: NSObject {
     private let highlighService: HighlightService
     private let categoryService: CategoryService
     private let websiteService: WebsiteService
-    private let persistanceExecutor: PersistenceExecutor
+    private let persistanceExecutor: persistanceExecutor
 
     // MARK: Context saving
 
