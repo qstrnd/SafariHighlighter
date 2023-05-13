@@ -38,6 +38,8 @@
 		B85124632A0F655B003AD592 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B85124652A0F655B003AD592 /* Localizable.strings */; };
 		B851246A2A0F66EC003AD592 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124692A0F66EC003AD592 /* Localized.swift */; };
 		B851246D2A0F6D1D003AD592 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B851246F2A0F6D1D003AD592 /* InfoPlist.strings */; };
+		B85124752A0F7049003AD592 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */; };
+		B85124772A0F7565003AD592 /* CategoriesCellViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124762A0F7565003AD592 /* CategoriesCellViewModelMapper.swift */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
 		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
@@ -119,6 +121,8 @@
 		B85124702A0F6D1F003AD592 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B85124712A0F6D20003AD592 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B85124722A0F6D20003AD592 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
+		B85124762A0F7565003AD592 /* CategoriesCellViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCellViewModelMapper.swift; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
 		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
@@ -306,6 +310,16 @@
 			path = Screen;
 			sourceTree = "<group>";
 		};
+		B85124732A0F7034003AD592 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */,
+				B85124762A0F7565003AD592 /* CategoriesCellViewModelMapper.swift */,
+				B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		B871AC8B29D8B07600A5E720 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,7 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				B8ACADD62A096DBB005E45EC /* GroupedHighlights */,
-				B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */,
+				B85124732A0F7034003AD592 /* Categories */,
 				B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */,
 				B8ACADD72A097766005E45EC /* HighlightsViewController.swift */,
 			);
@@ -516,6 +530,7 @@
 				B8ACADD82A097766005E45EC /* HighlightsViewController.swift in Sources */,
 				B81D470B29D575E800DB603C /* AppDelegate.swift in Sources */,
 				B8ACADDE2A0A2824005E45EC /* SettingsView.swift in Sources */,
+				B85124752A0F7049003AD592 /* CategoriesTableViewCell.swift in Sources */,
 				B898B88A29F43F08000A36D0 /* HighlightsCoordinator.swift in Sources */,
 				B85123302A0E659C003AD592 /* AcknowledgmentsView.swift in Sources */,
 				B85123322A0E7915003AD592 /* SettingsViewModel.swift in Sources */,
@@ -528,6 +543,7 @@
 				B851246A2A0F66EC003AD592 /* Localized.swift in Sources */,
 				B85124502A0E906A003AD592 /* CompositionRoot.swift in Sources */,
 				B85123422A0E894C003AD592 /* Navigation.swift in Sources */,
+				B85124772A0F7565003AD592 /* CategoriesCellViewModelMapper.swift in Sources */,
 				B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */,
 				B8ACADDC2A0A27C7005E45EC /* SettingsViewController.swift in Sources */,
 			);

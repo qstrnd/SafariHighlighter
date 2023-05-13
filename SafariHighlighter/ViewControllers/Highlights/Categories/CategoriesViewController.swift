@@ -42,7 +42,7 @@ final class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
+        tableView.register(CategoriesTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
     }
     
 
@@ -53,10 +53,11 @@ final class CategoriesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath) as! CategoriesTableViewCell
 
         let category = categoryFetchController.object(at: indexPath)
-        cell.textLabel?.text = category.creationDate.description
+        let categoryViewModel = categoriesCellViewModelMapper.cellModel(from: category)
+        cell.set(model: categoryViewModel)
 
         return cell
     }
@@ -90,6 +91,7 @@ final class CategoriesViewController: UITableViewController {
     private let categoryFetchController: CategoryFetchController
     private let categoryService: CategoryService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
+    private let categoriesCellViewModelMapper = CategoriesCellViewModelMapper()
 
     // MARK: Actions
 
