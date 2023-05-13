@@ -44,7 +44,7 @@ final class WebsitesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
+        tableView.register(WebsiteTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
     }
 
 
@@ -55,10 +55,11 @@ final class WebsitesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath) as! WebsiteTableViewCell
 
         let website = websiteFetchController.object(at: indexPath)
-        cell.textLabel?.text = website.creationDate.description
+        
+        cell.set(model: .init(logo: nil, title: website.name, subtitle: website.url.absoluteString, count: "4"))
 
         return cell
     }

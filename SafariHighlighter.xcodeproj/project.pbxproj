@@ -46,6 +46,7 @@
 		B85124832A0FDD95003AD592 /* CategoriesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124822A0FDD95003AD592 /* CategoriesCoordinator.swift */; };
 		B85124852A0FEBF0003AD592 /* NewCategoryColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124842A0FEBF0003AD592 /* NewCategoryColorPickerView.swift */; };
 		B85124872A100E40003AD592 /* ColorCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124862A100E40003AD592 /* ColorCircleView.swift */; };
+		B851248A2A101C4C003AD592 /* WebsiteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124892A101C4C003AD592 /* WebsiteTableViewCell.swift */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
 		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
@@ -135,6 +136,7 @@
 		B85124822A0FDD95003AD592 /* CategoriesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCoordinator.swift; sourceTree = "<group>"; };
 		B85124842A0FEBF0003AD592 /* NewCategoryColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryColorPickerView.swift; sourceTree = "<group>"; };
 		B85124862A100E40003AD592 /* ColorCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCircleView.swift; sourceTree = "<group>"; };
+		B85124892A101C4C003AD592 /* WebsiteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteTableViewCell.swift; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
 		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
@@ -370,6 +372,15 @@
 			path = CategoriesList;
 			sourceTree = "<group>";
 		};
+		B85124882A101BF6003AD592 /* Websites */ = {
+			isa = PBXGroup;
+			children = (
+				B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */,
+				B85124892A101C4C003AD592 /* WebsiteTableViewCell.swift */,
+			);
+			path = Websites;
+			sourceTree = "<group>";
+		};
 		B871AC8B29D8B07600A5E720 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,7 +443,7 @@
 			children = (
 				B8ACADD62A096DBB005E45EC /* GroupedHighlights */,
 				B85124732A0F7034003AD592 /* Categories */,
-				B8ACADCF2A096378005E45EC /* WebsitesViewController.swift */,
+				B85124882A101BF6003AD592 /* Websites */,
 				B8ACADD72A097766005E45EC /* HighlightsViewController.swift */,
 			);
 			path = Highlights;
@@ -578,6 +589,7 @@
 				B8ACADD22A096653005E45EC /* GroupedHighlightsViewController.swift in Sources */,
 				B851247F2A0FDD19003AD592 /* NewCategoryViewController.swift in Sources */,
 				B83041B82A002DFA00EF9AC5 /* CategoriesViewController.swift in Sources */,
+				B851248A2A101C4C003AD592 /* WebsiteTableViewCell.swift in Sources */,
 				B85124582A0EAB5F003AD592 /* SettingsHeaderViewModel.swift in Sources */,
 				B8ACADD82A097766005E45EC /* HighlightsViewController.swift in Sources */,
 				B81D470B29D575E800DB603C /* AppDelegate.swift in Sources */,
