@@ -34,6 +34,7 @@ final class HighlightsViewController: UITableViewController {
         highlightFetchController.delegate = self
         highlightFetchController.fetchResults { [unowned self] in
             self.tableView.reloadData()
+            self.updatePlaceholderVisibility()
         }
     }
 
@@ -47,7 +48,9 @@ final class HighlightsViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
         tableView.allowsMultipleSelectionDuringEditing = true
 
+        setupViews()
         updateBarButtonItems()
+        updatePlaceholderVisibility()
         
         navigationItem.title = title
     }
@@ -111,6 +114,24 @@ final class HighlightsViewController: UITableViewController {
     private lazy var batchDeleteButtonItem = UIBarButtonItem(title: Localized.General.delete, style: .done, target: self, action: #selector(batchDeleteButtonTapped))
     private lazy var enableBatchEditingButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableBatchEditingButtonTapped))
     private lazy var disableBatchEditingButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(disableBatchEditingButtonTapped))
+    
+    private lazy var placeholderViewController = PlaceholderViewController(text: Localized.Highlights.noHighlights)
+    
+    private func setupViews() {
+        
+        placeholderViewController.willMove(toParent: self)
+        addChild(placeholderViewController)
+        view.addSubview(placeholderViewController.view)
+        placeholderViewController.didMove(toParent: self)
+        
+        let placeholderView = placeholderViewController.view!
+        tableView.backgroundView = placeholderView
+        
+    }
+    
+    private func updatePlaceholderVisibility() {
+        placeholderViewController.view.isHidden = highlightFetchController.numberOfHighlights() != 0 || isInModalEditing
+    }
     
     private func updateForCurrentMode() {
         setEditing(isInModalEditing, animated: true)
@@ -190,6 +211,7 @@ final class HighlightsViewController: UITableViewController {
 extension HighlightsViewController: HighlightFetchControllerDelegate {
     func highlightFetchController(_ controller: Persistence.HighlightFetchController, didUpdateHighlightsAt indexPath: [IndexPath]) {
         tableView.reloadRows(at: indexPath, with: .automatic)
+        updatePlaceholderVisibility()
     }
 
     func highlightFetchController(_ controller: Persistence.HighlightFetchController, didAddHighlights indexPath: [IndexPath]) {
@@ -206,6 +228,7 @@ extension HighlightsViewController: HighlightFetchControllerDelegate {
 
     func highlightFetchControllerDidFinishUpdates(_ controller: Persistence.HighlightFetchController) {
         tableView.endUpdates()
+        updatePlaceholderVisibility()
     }
 
 }

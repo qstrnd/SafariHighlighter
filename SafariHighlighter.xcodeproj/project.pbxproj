@@ -49,7 +49,7 @@
 		B851248A2A101C4C003AD592 /* WebsiteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124892A101C4C003AD592 /* WebsiteTableViewCell.swift */; };
 		B851248F2A1026BB003AD592 /* WebsiteCellViewConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851248E2A1026BB003AD592 /* WebsiteCellViewConfigurator.swift */; };
 		B85124922A10BA08003AD592 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124912A10BA08003AD592 /* ImageCacheService.swift */; };
-		B85124D32A10E6B0003AD592 /* SplitPlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124D22A10E6B0003AD592 /* SplitPlaceholderViewController.swift */; };
+		B85124D32A10E6B0003AD592 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124D22A10E6B0003AD592 /* PlaceholderViewController.swift */; };
 		B85124D62A10E70C003AD592 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124D52A10E70C003AD592 /* PlaceholderView.swift */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
@@ -143,7 +143,7 @@
 		B85124892A101C4C003AD592 /* WebsiteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteTableViewCell.swift; sourceTree = "<group>"; };
 		B851248E2A1026BB003AD592 /* WebsiteCellViewConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteCellViewConfigurator.swift; sourceTree = "<group>"; };
 		B85124912A10BA08003AD592 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
-		B85124D22A10E6B0003AD592 /* SplitPlaceholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitPlaceholderViewController.swift; sourceTree = "<group>"; };
+		B85124D22A10E6B0003AD592 /* PlaceholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
 		B85124D52A10E70C003AD592 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
@@ -452,7 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				B8ACADDB2A0A27C7005E45EC /* SettingsViewController.swift */,
-				B85124D22A10E6B0003AD592 /* SplitPlaceholderViewController.swift */,
+				B85124D22A10E6B0003AD592 /* PlaceholderViewController.swift */,
 				B8ACADD92A0A265A005E45EC /* Highlights */,
 			);
 			path = ViewControllers;
@@ -623,7 +623,7 @@
 				B8ACADD82A097766005E45EC /* HighlightsViewController.swift in Sources */,
 				B85124D62A10E70C003AD592 /* PlaceholderView.swift in Sources */,
 				B81D470B29D575E800DB603C /* AppDelegate.swift in Sources */,
-				B85124D32A10E6B0003AD592 /* SplitPlaceholderViewController.swift in Sources */,
+				B85124D32A10E6B0003AD592 /* PlaceholderViewController.swift in Sources */,
 				B8ACADDE2A0A2824005E45EC /* SettingsView.swift in Sources */,
 				B85124872A100E40003AD592 /* ColorCircleView.swift in Sources */,
 				B85124752A0F7049003AD592 /* CategoryTableViewCell.swift in Sources */,

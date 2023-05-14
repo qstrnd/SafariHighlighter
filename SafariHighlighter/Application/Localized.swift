@@ -30,6 +30,8 @@ enum Localized {
         static let deletionConfirmationTitle = NSLocalizedString("highlights-deletionConfirmationTitle", comment: "")
 
         static let deletionConfirmationSubtitle = NSLocalizedString("highlights-deletionConfirmationSubtitle", comment: "")
+        
+        static let noHighlights = NSLocalizedString("highlights-noHighlights", comment: "")
     }
     
     enum Sort {

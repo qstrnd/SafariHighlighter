@@ -99,8 +99,10 @@ final class GroupedHighlightsViewController: UIViewController {
         childVC.willMove(toParent: self)
         view.addSubview(childVC.view)
         addChild(childVC)
-        childVC.view.frame = view.frame
         childVC.didMove(toParent: self)
+        
+        let childView = childVC.view!
+        view.addSubviewAlignedToEdges(childView)
     }
 
     // MARK: Actions

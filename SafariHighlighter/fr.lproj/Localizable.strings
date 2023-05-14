@@ -20,6 +20,8 @@
 
 "highlights-deletionConfirmationSubtitle" = "Êtes-vous sûr de vouloir supprimer ces surlignages?";
 
+"highlights-noHighlights" = "Pas de surlignages ici pour l'instant";
+
 // General
 
 "general-sort" = "Trier";

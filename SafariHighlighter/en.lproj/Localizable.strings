@@ -29,6 +29,8 @@
 
 "highlights-deletionConfirmationSubtitle" = "Are you sure you want to delete these highlights?";
 
+"highlights-noHighlights" = "No highlights here yet";
+
 // Sort
 
 "sort-sortByDefault" = "By Default";

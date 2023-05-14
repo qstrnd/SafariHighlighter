@@ -47,7 +47,7 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
     }
     
     func closeHighlights() {
-        guard let placeholderVC = splitPlaceholderViewController else { return }
+        guard let placeholderVC = placeholderViewController else { return }
         splitViewController?.showDetailViewController(placeholderVC, sender: nil)
     }
     
@@ -58,7 +58,7 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
     private var navigationCoordinator: NavigationCoordinator?
     private let imageCacheService: ImageCacheServiceProtocol
     private var splitViewController: UISplitViewController?
-    private var splitPlaceholderViewController: UIViewController?
+    private var placeholderViewController: UIViewController?
     
     private func buildGroupedHighlightsViewController() -> UIViewController {
         let categoriesVC = buildCategoriesController()
@@ -121,7 +121,7 @@ extension HighlightsCoordinator {
             return highlightsNavigationVC
         } else {
             
-            let placeholderVC = SplitPlaceholderViewController()
+            let placeholderVC = PlaceholderViewController()
             
             let splitVC = UISplitViewController()
             splitVC.preferredDisplayMode = .oneBesideSecondary
@@ -130,7 +130,7 @@ extension HighlightsCoordinator {
             splitVC.viewControllers = [highlightsNavigationVC, placeholderVC]
             
             self.splitViewController = splitVC
-            self.splitPlaceholderViewController = placeholderVC
+            self.placeholderViewController = placeholderVC
             
             return splitVC
         }

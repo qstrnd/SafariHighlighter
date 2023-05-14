@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct PlaceholderView: View {
+    
+    @State var text: String
+    
     var body: some View {
-        Image("highlighter-bw-256")
+        VStack {
+            Image("highlighter-bw-256")
+            Text(text)
+                .font(.callout)
+                .foregroundColor(.secondaryLabel)
+        }
     }
 }
 
 struct PlaceholderView_Previews: PreviewProvider {
     static var previews: some View {
-        PlaceholderView()
+        PlaceholderView(text: "Some text")
     }
 }

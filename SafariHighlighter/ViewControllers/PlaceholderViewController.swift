@@ -1,19 +1,19 @@
 //
-//  SettingsViewController.swift
+//  PlaceholderViewController.swift
 //  SafariHighlighter
 //
-//  Created by Andrey Yakovlev on 09.05.2023.
+//  Created by Andrey Yakovlev on 14.05.2023.
 //
 
 import UIKit
 import SwiftUI
 
-final class SettingsViewController: UIViewController {
+final class PlaceholderViewController: UIViewController {
 
     // MARK: - Internal
 
-    init(coordinator: SettingsCoordinatorProtocol) {
-        self.coordinator = coordinator
+    init(text: String = "") {
+        hostingController = UIHostingController(rootView: PlaceholderView(text: text))
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -30,15 +30,13 @@ final class SettingsViewController: UIViewController {
         view.addSubview(hostingController.view)
         hostingController.didMove(toParent: self)
         
-        let settingsView = hostingController.view!
-        view.addSubviewAlignedToEdges(settingsView)
+        let placeholderView = hostingController.view!
+        view.addSubviewAlignedToEdges(placeholderView)
         
     }
 
     // MARK: - Private
     
-    private let coordinator: SettingsCoordinatorProtocol
-
-    private lazy var hostingController = UIHostingController(rootView: SettingsView(viewModel: SettingsViewModel(coordinator: coordinator)))
+    private let hostingController: UIHostingController<PlaceholderView>
 
 }
