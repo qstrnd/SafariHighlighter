@@ -31,7 +31,7 @@ final class CategoriesViewController: UITableViewController {
         self.categoryService = categoryService
         self.highlightsCoordinator = highlightsCoordinator
         self.appStorage = appStorage
-        self.categoriesCellViewModelMapper = CategoriesCellViewModelMapper()
+        self.categoriesCellViewModelMapper = CategoryCellViewModelMapper()
 
         super.init(nibName: nil, bundle: nil)
 
@@ -48,7 +48,7 @@ final class CategoriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(CategoriesTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
+        tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
         tableView.rowHeight = Constants.tableViewHeight
     }
     
@@ -60,7 +60,7 @@ final class CategoriesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath) as! CategoriesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath) as! CategoryTableViewCell
 
         let category = categoryFetchController.object(at: indexPath)
         let categoryViewModel = categoriesCellViewModelMapper.cellModel(from: category)
@@ -99,7 +99,7 @@ final class CategoriesViewController: UITableViewController {
     private let categoryFetchController: CategoryFetchController
     private let categoryService: CategoryService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
-    private let categoriesCellViewModelMapper: CategoriesCellViewModelMapper
+    private let categoriesCellViewModelMapper: CategoryCellViewModelMapper
 
 }
 

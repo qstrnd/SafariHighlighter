@@ -1,5 +1,5 @@
 //
-//  CategoriesCellViewModelMapper.swift
+//  CategoryCellViewModelMapper.swift
 //  SafariHighlighter
 //
 //  Created by Andrey Yakovlev on 13.05.2023.
@@ -8,13 +8,13 @@
 import UIKit
 import Persistence
 
-final class CategoriesCellViewModelMapper {
+final class CategoryCellViewModelMapper {
     
     typealias Category = Persistence.Category
     
     // MARK: - Internal
     
-    func cellModel(from category: Category) -> CategoriesTableViewCell.Model {
+    func cellModel(from category: Category) -> CategoryTableViewCell.Model {
         .init(
             color: color(for: category),
             title: category.name,

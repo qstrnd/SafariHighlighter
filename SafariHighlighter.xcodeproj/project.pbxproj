@@ -38,8 +38,8 @@
 		B85124632A0F655B003AD592 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B85124652A0F655B003AD592 /* Localizable.strings */; };
 		B851246A2A0F66EC003AD592 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124692A0F66EC003AD592 /* Localized.swift */; };
 		B851246D2A0F6D1D003AD592 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B851246F2A0F6D1D003AD592 /* InfoPlist.strings */; };
-		B85124752A0F7049003AD592 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */; };
-		B85124772A0F7565003AD592 /* CategoriesCellViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124762A0F7565003AD592 /* CategoriesCellViewModelMapper.swift */; };
+		B85124752A0F7049003AD592 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124742A0F7049003AD592 /* CategoryTableViewCell.swift */; };
+		B85124772A0F7565003AD592 /* CategoryCellViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124762A0F7565003AD592 /* CategoryCellViewModelMapper.swift */; };
 		B851247A2A0F7F0E003AD592 /* InitialCategoriesProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124792A0F7F0E003AD592 /* InitialCategoriesProducer.swift */; };
 		B851247D2A0FAC60003AD592 /* ConfirmationDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851247C2A0FAC60003AD592 /* ConfirmationDialog.swift */; };
 		B851247F2A0FDD19003AD592 /* NewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851247E2A0FDD19003AD592 /* NewCategoryViewController.swift */; };
@@ -130,8 +130,8 @@
 		B85124702A0F6D1F003AD592 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B85124712A0F6D20003AD592 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B85124722A0F6D20003AD592 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
-		B85124762A0F7565003AD592 /* CategoriesCellViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCellViewModelMapper.swift; sourceTree = "<group>"; };
+		B85124742A0F7049003AD592 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		B85124762A0F7565003AD592 /* CategoryCellViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModelMapper.swift; sourceTree = "<group>"; };
 		B85124792A0F7F0E003AD592 /* InitialCategoriesProducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialCategoriesProducer.swift; sourceTree = "<group>"; };
 		B851247C2A0FAC60003AD592 /* ConfirmationDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationDialog.swift; sourceTree = "<group>"; };
 		B851247E2A0FDD19003AD592 /* NewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryViewController.swift; sourceTree = "<group>"; };
@@ -371,8 +371,8 @@
 			isa = PBXGroup;
 			children = (
 				B83041B72A002DFA00EF9AC5 /* CategoriesViewController.swift */,
-				B85124762A0F7565003AD592 /* CategoriesCellViewModelMapper.swift */,
-				B85124742A0F7049003AD592 /* CategoriesTableViewCell.swift */,
+				B85124762A0F7565003AD592 /* CategoryCellViewModelMapper.swift */,
+				B85124742A0F7049003AD592 /* CategoryTableViewCell.swift */,
 			);
 			path = CategoriesList;
 			sourceTree = "<group>";
@@ -610,7 +610,7 @@
 				B81D470B29D575E800DB603C /* AppDelegate.swift in Sources */,
 				B8ACADDE2A0A2824005E45EC /* SettingsView.swift in Sources */,
 				B85124872A100E40003AD592 /* ColorCircleView.swift in Sources */,
-				B85124752A0F7049003AD592 /* CategoriesTableViewCell.swift in Sources */,
+				B85124752A0F7049003AD592 /* CategoryTableViewCell.swift in Sources */,
 				B898B88A29F43F08000A36D0 /* HighlightsCoordinator.swift in Sources */,
 				B85123302A0E659C003AD592 /* AcknowledgmentsView.swift in Sources */,
 				B85123322A0E7915003AD592 /* SettingsViewModel.swift in Sources */,
@@ -627,7 +627,7 @@
 				B85124502A0E906A003AD592 /* CompositionRoot.swift in Sources */,
 				B85124832A0FDD95003AD592 /* CategoriesCoordinator.swift in Sources */,
 				B85123422A0E894C003AD592 /* Navigation.swift in Sources */,
-				B85124772A0F7565003AD592 /* CategoriesCellViewModelMapper.swift in Sources */,
+				B85124772A0F7565003AD592 /* CategoryCellViewModelMapper.swift in Sources */,
 				B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */,
 				B851247A2A0F7F0E003AD592 /* InitialCategoriesProducer.swift in Sources */,
 				B8ACADDC2A0A27C7005E45EC /* SettingsViewController.swift in Sources */,

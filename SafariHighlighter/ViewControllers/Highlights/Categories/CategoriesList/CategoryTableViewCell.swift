@@ -1,5 +1,5 @@
 //
-//  CategoriesTableViewCell.swift
+//  CategoryTableViewCell.swift
 //  SafariHighlighter
 //
 //  Created by Andrey Yakovlev on 13.05.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CategoriesTableViewCell: UITableViewCell {
+final class CategoryTableViewCell: UITableViewCell {
     
     // MARK: - Nested
     
