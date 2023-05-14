@@ -21,6 +21,7 @@ final class WebsiteTableViewCell: UITableViewCell {
     
     private enum Constants {
         static let previewSize = CGSize(square: 44)
+        static let previewLogoSize = CGSize(square: 32)
         static let horizontalInset: CGFloat = 16
         static let horizontalSpacing: CGFloat = 16
         static let verticalInset: CGFloat = 12
@@ -68,6 +69,7 @@ final class WebsiteTableViewCell: UITableViewCell {
     private let countLabel = UILabel()
     private let stackView = UIStackView()
     private let logoImageView = UIImageView()
+    private let logoImageBackgroundView = UIView()
     
     private func configureSubviews() {
         titleLabel.font = .preferredFont(forTextStyle: .body)
@@ -81,15 +83,19 @@ final class WebsiteTableViewCell: UITableViewCell {
         stackView.spacing = Constants.verticalSpacing
         stackView.alignment = .leading
         
-        logoImageView.backgroundColor = .quaternarySystemFill
-        logoImageView.layer.cornerRadius = 8
+        logoImageBackgroundView.backgroundColor = .quaternarySystemFill
+        logoImageBackgroundView.layer.cornerRadius = 8
+        
         logoImageView.tintColor = .white
         
     }
     
     private func configureLayout() {
+        logoImageBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(logoImageBackgroundView)
+        
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(logoImageView)
+        logoImageBackgroundView.addSubview(logoImageView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(stackView)
@@ -103,18 +109,21 @@ final class WebsiteTableViewCell: UITableViewCell {
         contentView.addSubview(countLabel)
 
         NSLayoutConstraint.activate([
-            logoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.horizontalSpacing),
-            logoImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.verticalInset),
-            logoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.verticalInset),
-            logoImageView.widthAnchor.constraint(equalToConstant: Constants.previewSize.width),
-            logoImageView.heightAnchor.constraint(equalToConstant: Constants.previewSize.height),
+            logoImageBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.horizontalSpacing),
+            logoImageBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.verticalInset),
+            logoImageBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.verticalInset),
+            logoImageBackgroundView.widthAnchor.constraint(equalToConstant: Constants.previewSize.width),
+            logoImageBackgroundView.heightAnchor.constraint(equalToConstant: Constants.previewSize.height),
             
-            // Count label constraints
+            logoImageView.centerYAnchor.constraint(equalTo: logoImageBackgroundView.centerYAnchor),
+            logoImageView.centerXAnchor.constraint(equalTo: logoImageBackgroundView.centerXAnchor),
+            logoImageView.heightAnchor.constraint(equalToConstant: Constants.previewLogoSize.height),
+            logoImageView.widthAnchor.constraint(equalToConstant: Constants.previewLogoSize.width),
+            
             countLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.horizontalInset),
             countLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-            // Title label constraints
-            stackView.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: Constants.horizontalSpacing),
+            stackView.leadingAnchor.constraint(equalTo: logoImageBackgroundView.trailingAnchor, constant: Constants.horizontalSpacing),
             stackView.trailingAnchor.constraint(equalTo: countLabel.leadingAnchor, constant: -Constants.horizontalSpacing),
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
