@@ -31,7 +31,7 @@ final class CategoriesViewController: UITableViewController {
         self.categoryService = categoryService
         self.highlightsCoordinator = highlightsCoordinator
         self.appStorage = appStorage
-        self.categoriesCellViewModelMapper = CategoriesCellViewModelMapper(appStorage: appStorage)
+        self.categoriesCellViewModelMapper = CategoriesCellViewModelMapper()
 
         super.init(nibName: nil, bundle: nil)
 

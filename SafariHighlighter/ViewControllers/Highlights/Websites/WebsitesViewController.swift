@@ -59,8 +59,8 @@ final class WebsitesViewController: UITableViewController {
 
         let website = websiteFetchController.object(at: indexPath)
         
-        cell.set(model: .init(logo: nil, title: website.name, subtitle: website.url.absoluteString, count: "4"))
-
+        websiteCellConfigurator.configure(website: website, in: cell)
+        
         return cell
     }
 
@@ -93,13 +93,13 @@ final class WebsitesViewController: UITableViewController {
     private let websiteFetchController: WebsiteFetchController
     private let websiteService: WebsiteService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
-
+    private let websiteCellConfigurator = WebsiteCellViewConfigurator()
 
     // MARK: Actions
 
     @objc
     private func addButtonTapped() {
-        let newWebsite = Website(name: "New Website", url: URL(string: "https://qstrnd.com")!)
+        let newWebsite = Website(name: "New Website", url: URL(string: "https://google.com")!)
 
         websiteService.create(website: newWebsite)
     }

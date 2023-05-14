@@ -12,7 +12,8 @@ final class WebsiteTableViewCell: UITableViewCell {
     // MARK: - Nested
     
     struct Model {
-        let logo: UIImage?
+        let uniqueId: UUID
+        var logo: UIImage?
         let title: String?
         let subtitle: String?
         let count: String?
@@ -27,6 +28,8 @@ final class WebsiteTableViewCell: UITableViewCell {
     }
     
     // MARK: Internal
+    
+    var uniqueId: UUID?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,6 +47,8 @@ final class WebsiteTableViewCell: UITableViewCell {
     }
     
     func set(model: Model) {
+        uniqueId = model.uniqueId
+        
         titleLabel.text = model.title
         titleLabel.isHidden = model.title == nil
         

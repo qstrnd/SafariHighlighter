@@ -14,10 +14,6 @@ final class CategoriesCellViewModelMapper {
     
     // MARK: - Internal
     
-    init(appStorage: AppStorage) {
-        self.appStorage = appStorage
-    }
-    
     func cellModel(from category: Category) -> CategoriesTableViewCell.Model {
         .init(
             color: color(for: category),
@@ -27,8 +23,6 @@ final class CategoriesCellViewModelMapper {
     }
     
     // MARK: - Private
-    
-    private let appStorage: AppStorage
     
     private func color(for category: Category) -> UIColor {
         guard let categoryColor = UIColor(hex: category.hexColor) else { return .gray }
