@@ -53,6 +53,11 @@
 
 "categories-newCategoryColorHint" = "Tap on the Palette button above to open the Color Picker or choose one of the colors below";
 
+"categories-sortCategories" = "Sort Categories";
+
+// Websites
+
+"websites-sortWebsites" = "Sort Websites";
 
 // Grouped Highlights
 

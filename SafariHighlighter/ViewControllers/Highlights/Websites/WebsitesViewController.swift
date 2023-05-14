@@ -137,7 +137,7 @@ extension WebsitesViewController: HighlightsGrouping {
         let sortFieldOptions = sortFieldOptionMenu()
         let sortDirection = sortDirectionMenu()
 
-        return UIMenu(title: "", children: [sortFieldOptions, sortDirection])
+        return UIMenu(title: Localized.Websites.sortWebsites, children: [sortFieldOptions, sortDirection])
     }
     
     private func sortFieldOptionMenu() -> UIMenu {
@@ -212,7 +212,7 @@ extension WebsitesViewController: HighlightsGrouping {
             }
         }
         
-        return UIMenu(title: Localized.Sort.sortOrder, options: .displayInline, children: menuChildren)
+        return UIMenu(title: "", options: .displayInline, children: menuChildren)
     }
 }
 

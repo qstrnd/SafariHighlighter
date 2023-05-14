@@ -128,7 +128,7 @@ extension CategoriesViewController: HighlightsGrouping {
         let sortFieldOptions = sortFieldOptionMenu()
         let sortDirection = sortDirectionMenu()
 
-        return UIMenu(title: "", children: [sortFieldOptions, sortDirection])
+        return UIMenu(title: Localized.Categories.sortCategories, children: [sortFieldOptions, sortDirection])
     }
     
     private func sortFieldOptionMenu() -> UIMenu {
@@ -203,7 +203,7 @@ extension CategoriesViewController: HighlightsGrouping {
             }
         }
         
-        return UIMenu(title: Localized.Sort.sortOrder, options: .displayInline, children: menuChildren)
+        return UIMenu(title: "", options: .displayInline, children: menuChildren)
     }
     
     // MARK: Actions

@@ -53,6 +53,11 @@
 
 "categories-newCategoryColorHint" = "Нажмите на кнопку Палитры сверху, чтобы открыть Палитру цветов или выберите один из цветов ниже";
 
+"categories-sortCategories" = "Сортировка категорий";
+
+// Websites
+
+"websites-sortWebsites" = "Сортировка веб-сайтов";
 
 // Grouped Highlights
 

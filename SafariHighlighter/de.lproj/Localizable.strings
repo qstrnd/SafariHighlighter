@@ -46,14 +46,23 @@
 
 "sort-sortDescending" = "Absteigend";
 
-// Categories
 
+
+// Categories
 
 "categories-newCategory" = "Neue Kategorie";
 
 "categories-newCategoryNameHint" = "Benennen Sie Ihre Kategorie";
 
 "categories-newCategoryColorHint" = "Tippen Sie auf die Schaltfläche Palette oben, um den Farbauswahl zu öffnen oder wählen Sie eine der folgenden Farben";
+
+"categories-sortCategories" = "Kategorien sortieren";
+
+
+
+// Websites
+
+"websites-sortWebsites" = "Webseiten sortieren";
 
 
 // Grouped Highlights

@@ -46,6 +46,7 @@
 
 "sort-sortDescending" = "Décroissant";
 
+
 // Categories
 
 "categories-newCategory" = "Nouvelle catégorie";
@@ -53,6 +54,15 @@
 "categories-newCategoryNameHint" = "Nommez votre catégorie";
 
 "categories-newCategoryColorHint" = "Appuyez sur le bouton Palette ci-dessus pour ouvrir le sélecteur de couleurs ou choisissez l'une des couleurs ci-dessous";
+
+"categories-sortCategories" = "Trier les catégories";
+
+
+
+// Websites
+
+"websites-sortWebsites" = "Trier les sites web";
+
 
 
 // Grouped Highlights

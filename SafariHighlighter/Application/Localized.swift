@@ -57,6 +57,14 @@ enum Localized {
 
         static let newCategoryColorHint = NSLocalizedString("categories-newCategoryColorHint", comment: "")
         
+        static let sortCategories = NSLocalizedString("categories-sortCategories", comment: "")
+        
+    }
+    
+    enum Websites {
+        
+        static let sortWebsites = NSLocalizedString("websites-sortWebsites", comment: "")
+
     }
     
     enum GroupedHighlights {
