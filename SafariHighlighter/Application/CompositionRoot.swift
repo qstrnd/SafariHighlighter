@@ -21,6 +21,10 @@ final class CompositionRoot {
         AppStorage()
     }()
     
+    lazy var imageCacheService: ImageCacheServiceProtocol = {
+        ImageCacheService()
+    }()
+    
     lazy var persistentExecutorFactory: persistanceExecutorFactory = {
         persistanceExecutorFactory(
             initialStoreOptions: .init(isPersistenceEnabled: true, isCloudSyncEnabled: false)
@@ -41,7 +45,8 @@ final class CompositionRoot {
     lazy var highlightsCoordinator: HighlightsCoordinatorProtocol = {
         HighlightsCoordinator(
             persistanceExecutorFactory: persistentExecutorFactory,
-            appStorage: appStorage
+            appStorage: appStorage,
+            imageCacheService: imageCacheService
         )
     }()
     

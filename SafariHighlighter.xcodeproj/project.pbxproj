@@ -48,6 +48,7 @@
 		B85124872A100E40003AD592 /* ColorCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124862A100E40003AD592 /* ColorCircleView.swift */; };
 		B851248A2A101C4C003AD592 /* WebsiteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124892A101C4C003AD592 /* WebsiteTableViewCell.swift */; };
 		B851248F2A1026BB003AD592 /* WebsiteCellViewConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B851248E2A1026BB003AD592 /* WebsiteCellViewConfigurator.swift */; };
+		B85124922A10BA08003AD592 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85124912A10BA08003AD592 /* ImageCacheService.swift */; };
 		B871AC8829D8AAB100A5E720 /* common.js in Resources */ = {isa = PBXBuildFile; fileRef = B871AC8729D8AAB100A5E720 /* common.js */; };
 		B871AC8A29D8AE8700A5E720 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8929D8AE8700A5E720 /* Message.swift */; };
 		B871AC8D29D8B09500A5E720 /* LoadTagsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871AC8C29D8B09400A5E720 /* LoadTagsMessage.swift */; };
@@ -139,6 +140,7 @@
 		B85124862A100E40003AD592 /* ColorCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCircleView.swift; sourceTree = "<group>"; };
 		B85124892A101C4C003AD592 /* WebsiteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteTableViewCell.swift; sourceTree = "<group>"; };
 		B851248E2A1026BB003AD592 /* WebsiteCellViewConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteCellViewConfigurator.swift; sourceTree = "<group>"; };
+		B85124912A10BA08003AD592 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighter.entitlements; sourceTree = "<group>"; };
 		B871AC8629D89DE900A5E720 /* SafariHighlighterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SafariHighlighterExtension.entitlements; sourceTree = "<group>"; };
 		B871AC8729D8AAB100A5E720 /* common.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = common.js; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				B871AC8529D89DDE00A5E720 /* SafariHighlighter.entitlements */,
 				B851247B2A0FAC51003AD592 /* Helpers */,
 				B898B97F29F440B4000A36D0 /* Application */,
+				B85124902A10B9E4003AD592 /* Services */,
 				B85123342A0E792B003AD592 /* SwiftUIScreens */,
 				B8ACADD52A096699005E45EC /* ViewControllers */,
 				B85124782A0F7EAA003AD592 /* Services */,
@@ -382,6 +385,15 @@
 				B851248E2A1026BB003AD592 /* WebsiteCellViewConfigurator.swift */,
 			);
 			path = Websites;
+			sourceTree = "<group>";
+		};
+		B85124902A10B9E4003AD592 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B85124912A10BA08003AD592 /* ImageCacheService.swift */,
+			);
+			name = Services;
+			path = Helpers/Services;
 			sourceTree = "<group>";
 		};
 		B871AC8B29D8B07600A5E720 /* Messages */ = {
@@ -609,6 +621,7 @@
 				B851233F2A0E7D0E003AD592 /* NavigationCoordinator.swift in Sources */,
 				B87F91BC2A0A59A900740E40 /* TutorialView.swift in Sources */,
 				B85124852A0FEBF0003AD592 /* NewCategoryColorPickerView.swift in Sources */,
+				B85124922A10BA08003AD592 /* ImageCacheService.swift in Sources */,
 				B81D471529D575E800DB603C /* SceneDelegate.swift in Sources */,
 				B851246A2A0F66EC003AD592 /* Localized.swift in Sources */,
 				B85124502A0E906A003AD592 /* CompositionRoot.swift in Sources */,

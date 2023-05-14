@@ -23,11 +23,14 @@ final class WebsitesViewController: UITableViewController {
     init(
         websiteFetchController: WebsiteFetchController,
         websiteService: WebsiteService,
-        highlightsCoordinator: HighlightsCoordinatorProtocol
+        highlightsCoordinator: HighlightsCoordinatorProtocol,
+        imageCacheService: ImageCacheServiceProtocol
     ) {
         self.websiteFetchController = websiteFetchController
         self.websiteService = websiteService
         self.highlightsCoordinator = highlightsCoordinator
+        
+        self.websiteCellConfigurator = WebsiteCellViewConfigurator(imageCacheService: imageCacheService)
 
         super.init(nibName: nil, bundle: nil)
 
@@ -93,7 +96,7 @@ final class WebsitesViewController: UITableViewController {
     private let websiteFetchController: WebsiteFetchController
     private let websiteService: WebsiteService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
-    private let websiteCellConfigurator = WebsiteCellViewConfigurator()
+    private let websiteCellConfigurator: WebsiteCellViewConfigurator
 
     // MARK: Actions
 

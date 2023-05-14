@@ -13,6 +13,12 @@ final class WebsiteCellViewConfigurator {
     
     // MARK: - Internal
     
+    init(
+        imageCacheService: ImageCacheServiceProtocol
+    ) {
+        self.imageCacheService = imageCacheService
+    }
+    
     func configure(website: Website, in cell: WebsiteTableViewCell) {
         
         var model = WebsiteTableViewCell.Model(
@@ -25,21 +31,31 @@ final class WebsiteCellViewConfigurator {
         
         cell.set(model: model)
         
-        
         guard let faviconUrl = formFaviconUrl(from: website.url) else { return }
         
-        loadImage(from: faviconUrl) { image in
-            DispatchQueue.main.async {
-                guard cell.uniqueId == model.uniqueId else { return }
-                
+        imageCacheService.loadCachedImage(for: faviconUrl) { [weak self] cachedImage in
+            guard let self = self else { return }
+            
+            if let image = cachedImage {
                 model.logo = image
-                
-                cell.set(model: model)
+                self.update(cell: cell, model: model)
+            } else {
+                self.loadImage(from: faviconUrl) { downloadedImage in
+                    guard let image = downloadedImage else { return }
+                    
+                    self.imageCacheService.save(image: image, for: faviconUrl)
+                    
+                    model.logo = image
+                    self.update(cell: cell, model: model)
+                }
             }
         }
+        
     }
     
     // MARK: - Private
+    
+    private let imageCacheService: ImageCacheServiceProtocol
     
     private func numberOfHighlightsString(for numberOfHighlights: Int?) -> String? {
         guard let numberOfHighlights, numberOfHighlights > 0 else { return nil }
@@ -59,6 +75,8 @@ final class WebsiteCellViewConfigurator {
     }
     
     private func loadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
+        // TODO: Add some logic to check for existing download tasks in case multiple requests to the same url are made
+        
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 completion(nil)
@@ -68,5 +86,13 @@ final class WebsiteCellViewConfigurator {
             completion(image)
         }
         task.resume()
+    }
+    
+    private func update(cell: WebsiteTableViewCell, model: WebsiteTableViewCell.Model) {
+        DispatchQueue.main.async {
+            guard cell.uniqueId == model.uniqueId else { return }
+            
+            cell.set(model: model)
+        }
     }
 }

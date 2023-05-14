@@ -33,10 +33,12 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
 
     init(
         persistanceExecutorFactory: persistanceExecutorFactory,
-        appStorage: AppStorage
+        appStorage: AppStorage,
+        imageCacheService: ImageCacheServiceProtocol
     ) {
         self.persistanceExecutorFactory = persistanceExecutorFactory
         self.appStorage = appStorage
+        self.imageCacheService = imageCacheService
     }
     
     func dismiss() {
@@ -48,6 +50,7 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
     private let persistanceExecutorFactory: persistanceExecutorFactory
     private let appStorage: AppStorage
     private var navigationCoordinator: NavigationCoordinator?
+    private let imageCacheService: ImageCacheServiceProtocol
     
     private func buildGroupedHighlightsViewController() -> UIViewController {
         let categoriesVC = buildCategoriesController()
@@ -87,7 +90,8 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
         let websitesViewController = WebsitesViewController(
             websiteFetchController: websiteFetchController,
             websiteService: websiteService,
-            highlightsCoordinator: self
+            highlightsCoordinator: self,
+            imageCacheService: imageCacheService
         )
         
         return websitesViewController
