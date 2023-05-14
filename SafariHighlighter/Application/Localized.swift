@@ -65,6 +65,10 @@ enum Localized {
         
         static let sortWebsites = NSLocalizedString("websites-sortWebsites", comment: "")
 
+        static let deletionConfirmationTitle = NSLocalizedString("websites-deletionConfirmationTitle", comment: "")
+
+        static let deletionConfirmationSubtitle = NSLocalizedString("websites-deletionConfirmationSubtitle", comment: "")
+        
     }
     
     enum GroupedHighlights {

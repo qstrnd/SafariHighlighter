@@ -59,6 +59,10 @@
 
 "websites-sortWebsites" = "Sort Websites";
 
+"websites-deletionConfirmationTitle" = "Websites deletion";
+
+"websites-deletionConfirmationSubtitle" = "Are you sure you want to delete these websites?";
+
 // Grouped Highlights
 
 "groupedHighlights-categories" = "Categories";

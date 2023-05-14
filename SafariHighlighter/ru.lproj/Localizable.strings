@@ -59,6 +59,10 @@
 
 "websites-sortWebsites" = "Сортировка веб-сайтов";
 
+"websites-deletionConfirmationTitle" = "Удаление веб-сайтов";
+
+"websites-deletionConfirmationSubtitle" = "Вы уверены, что хотите удалить эти веб-сайты?";
+
 // Grouped Highlights
 
 "groupedHighlights-categories" = "Категории";

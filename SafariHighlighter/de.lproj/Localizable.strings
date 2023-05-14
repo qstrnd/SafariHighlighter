@@ -64,6 +64,10 @@
 
 "websites-sortWebsites" = "Webseiten sortieren";
 
+"websites-deletionConfirmationTitle" = "Webseiten löschen";
+
+"websites-deletionConfirmationSubtitle" = "Sind Sie sicher, dass Sie diese Webseiten löschen möchten?";
+
 
 // Grouped Highlights
 

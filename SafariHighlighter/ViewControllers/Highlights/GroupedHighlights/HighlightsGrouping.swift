@@ -18,5 +18,10 @@ protocol HighlightsGrouping: AnyObject {
     var name: String { get }
     var rightNavigationItems: [UIBarButtonItem] { get }
     var leftNavigationItems: [UIBarButtonItem] { get }
+    var showSegmentedControl: Bool { get }
     var delegate: HighlightsGroupingDelegate? { get set }
+}
+
+extension HighlightsGrouping {
+    var showSegmentedControl: Bool { true }
 }

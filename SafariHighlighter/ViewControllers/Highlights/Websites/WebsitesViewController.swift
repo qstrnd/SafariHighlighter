@@ -50,6 +50,7 @@ final class WebsitesViewController: UITableViewController {
         super.viewDidLoad()
 
         tableView.register(WebsiteTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
+        tableView.allowsMultipleSelectionDuringEditing = true
     }
 
 
@@ -88,18 +89,47 @@ final class WebsitesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let website = websiteFetchController.object(at: indexPath)
-
-        highlightsCoordinator.openHighlights(groupBy: .website(website))
+        if isInModalEditing {
+            updateDeleteButton()
+        } else {
+            let website = websiteFetchController.object(at: indexPath)
+            
+            highlightsCoordinator.openHighlights(groupBy: .website(website))
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if isInModalEditing { updateDeleteButton() }
     }
 
     // MARK: - Private
+    
+    private var isInModalEditing = false
 
     private let appStorage: AppStorage
     private let websiteFetchController: WebsiteFetchController
     private let websiteService: WebsiteService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
     private let websiteCellConfigurator: WebsiteCellViewConfigurator
+    
+    private lazy var addWebsiteButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+    
+    private lazy var batchDeleteButtonItem = UIBarButtonItem(title: Localized.General.delete, style: .done, target: self, action: #selector(batchDeleteButtonTapped))
+    private lazy var enableBatchEditingButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(enableBatchEditingButtonTapped))
+    private lazy var disableBatchEditingButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(disableBatchEditingButtonTapped))
+    
+    private func updateDeleteButton() {
+        batchDeleteButtonItem.isEnabled = !(tableView.indexPathsForSelectedRows?.isEmpty ?? true)
+    }
+    
+    private func updateForCurrentMode() {
+        setEditing(isInModalEditing, animated: true)
+        
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = !isInModalEditing
+        
+        updateDeleteButton()
+        delegate?.highlightGroupingRequestNavigationItemsUpdate(self)
+    }
 
     // MARK: Actions
 
@@ -108,6 +138,38 @@ final class WebsitesViewController: UITableViewController {
         let newWebsite = Website(name: "New Website", url: URL(string: "https://google.com")!)
 
         websiteService.create(website: newWebsite)
+    }
+    
+    @objc
+    private func batchDeleteButtonTapped() {
+        ConfirmationDialog.show(
+            from: self,
+            title: Localized.Websites.deletionConfirmationTitle,
+            message: Localized.Websites.deletionConfirmationSubtitle
+        ) { [unowned self] in
+            let websites = tableView.indexPathsForSelectedRows?.map {
+                websiteFetchController.object(at: $0)
+            } ?? []
+            
+            websiteService.delete(websites: websites) { [unowned self] _ in
+                isInModalEditing = false
+                updateForCurrentMode()
+            }
+        }
+    }
+    
+    @objc
+    private func enableBatchEditingButtonTapped() {
+        isInModalEditing = true
+        
+        updateForCurrentMode()
+    }
+
+    @objc
+    private func disableBatchEditingButtonTapped() {
+        isInModalEditing = false
+        
+        updateForCurrentMode()
     }
 
 }
@@ -119,18 +181,28 @@ extension WebsitesViewController: HighlightsGrouping {
     }
     
     var rightNavigationItems: [UIBarButtonItem] {
-        let newItemButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        
-        return [newItemButton]
+        if isInModalEditing {
+            return [disableBatchEditingButtonItem]
+        } else {
+            return [enableBatchEditingButtonItem, addWebsiteButtonItem]
+        }
     }
     
     var leftNavigationItems: [UIBarButtonItem] {
-        let sortButton = UIBarButtonItem(
-            title: Localized.General.sort,
-            menu: sortMenuForCurrentOptions()
-        )
+        if isInModalEditing {
+            return [batchDeleteButtonItem]
+        } else {
+            let sortButton = UIBarButtonItem(
+                title: Localized.General.sort,
+                menu: sortMenuForCurrentOptions()
+            )
 
-        return [sortButton]
+            return [sortButton]
+        }
+    }
+    
+    var showSegmentedControl: Bool {
+        !isInModalEditing
     }
     
     private func sortMenuForCurrentOptions() -> UIMenu {
