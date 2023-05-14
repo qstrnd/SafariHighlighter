@@ -21,11 +21,13 @@ final class WebsitesViewController: UITableViewController {
     weak var delegate: HighlightsGroupingDelegate?
 
     init(
+        appStorage: AppStorage,
         websiteFetchController: WebsiteFetchController,
         websiteService: WebsiteService,
         highlightsCoordinator: HighlightsCoordinatorProtocol,
         imageCacheService: ImageCacheServiceProtocol
     ) {
+        self.appStorage = appStorage
         self.websiteFetchController = websiteFetchController
         self.websiteService = websiteService
         self.highlightsCoordinator = highlightsCoordinator
@@ -93,6 +95,7 @@ final class WebsitesViewController: UITableViewController {
 
     // MARK: - Private
 
+    private let appStorage: AppStorage
     private let websiteFetchController: WebsiteFetchController
     private let websiteService: WebsiteService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
@@ -120,15 +123,97 @@ extension WebsitesViewController: HighlightsGrouping {
         
         return [newItemButton]
     }
+    
+    var leftNavigationItems: [UIBarButtonItem] {
+        let sortButton = UIBarButtonItem(
+            title: Localized.General.sort,
+            menu: sortMenuForCurrentOptions()
+        )
 
-    var leftNavigationItems: [UIBarButtonItem] { [] }
-//        let sortButton = UIBarButtonItem(
-//            title: Localized.General.sort,
-//            menu: sortMenuForCurrentOptions()
-//        )
-//
-//        return [sortButton]
-//    }
+        return [sortButton]
+    }
+    
+    private func sortMenuForCurrentOptions() -> UIMenu {
+        let sortFieldOptions = sortFieldOptionMenu()
+        let sortDirection = sortDirectionMenu()
+
+        return UIMenu(title: "", children: [sortFieldOptions, sortDirection])
+    }
+    
+    private func sortFieldOptionMenu() -> UIMenu {
+        let currentSortOrder = websiteFetchController.options.sortOrder
+        let sortOrderAsceding = websiteFetchController.options.sortOrderAsceding
+        
+        let actions: [(title: String, sortOrder: WebsiteFetchController.Options.SortField, image: UIImage?)] = [
+            (
+                Localized.Sort.sortByCreationDate,
+                .creationDate,
+                UIImage(systemName: "calendar")
+            ),
+            (
+                Localized.Sort.sortByNumberOfHighlights,
+                .numberOfHighlights,
+                UIImage(systemName: "number.square")
+            ),
+            (
+                Localized.Sort.sortByName,
+                .name,
+                UIImage(systemName: "a.square")
+            )
+        ]
+
+        let menuChildren = actions.map { action in
+            UIAction(
+                title: action.title,
+                image: action.image,
+                state: currentSortOrder == action.sortOrder ? .on : .off
+            ) { [unowned self] _ in
+                self.websiteFetchController.updateOptions(.init(sortOrder: action.sortOrder, sortOrderAsceding: sortOrderAsceding)) {
+                    self.tableView.reloadData()
+                    self.delegate?.highlightGroupingRequestNavigationItemsUpdate(self)
+                    
+                    self.appStorage.websitesSortOrderRaw = action.sortOrder.rawValue
+                }
+            }
+        }
+        
+        return UIMenu(title: "", options: .displayInline, children: menuChildren)
+    }
+    
+    private func sortDirectionMenu() -> UIMenu {
+        let currentSortOrder = websiteFetchController.options.sortOrder
+        let sortOrderAsceding = websiteFetchController.options.sortOrderAsceding
+        
+        let actions: [(title: String, sortOrderAscending: Bool, image: UIImage?)] = [
+            (
+                Localized.Sort.sortAscending,
+                true,
+                UIImage(named: "ascending-16")
+            ),
+            (
+                Localized.Sort.sortDescending,
+                false,
+                UIImage(named: "descending-16")
+            )
+        ]
+        
+        let menuChildren = actions.map { action in
+            UIAction(
+                title: action.title,
+                image: action.image,
+                state: sortOrderAsceding == action.sortOrderAscending ? .on : .off
+            ) { [unowned self] _ in
+                self.websiteFetchController.updateOptions(.init(sortOrder: currentSortOrder, sortOrderAsceding: action.sortOrderAscending)) {
+                    self.tableView.reloadData()
+                    self.delegate?.highlightGroupingRequestNavigationItemsUpdate(self)
+                    
+                    self.appStorage.websitesSortOrderAscending = action.sortOrderAscending
+                }
+            }
+        }
+        
+        return UIMenu(title: Localized.Sort.sortOrder, options: .displayInline, children: menuChildren)
+    }
 }
 
 // MARK: - WebsiteFetchControllerDelegate
@@ -151,6 +236,10 @@ extension WebsitesViewController: WebsiteFetchControllerDelegate {
 
     func websiteFetchControllerDidFinishUpdates(_ controller: Persistence.WebsiteFetchController) {
         tableView.endUpdates()
+    }
+    
+    func websiteFetchControllerDidRequestDataReload(_ controller: Persistence.WebsiteFetchController) {
+        tableView.reloadData()
     }
 
 }

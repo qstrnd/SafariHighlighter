@@ -32,20 +32,24 @@ enum Localized {
         static let deletionConfirmationSubtitle = NSLocalizedString("highlights-deletionConfirmationSubtitle", comment: "")
     }
     
+    enum Sort {
+        static let sortByDefault = NSLocalizedString("sort-sortByDefault", comment: "")
+        
+        static let sortByNumberOfHighlights = NSLocalizedString("sort-sortByNumberOfHighlights", comment: "")
+        
+        static let sortByCreationDate = NSLocalizedString("sort-sortByCreationDate", comment: "")
+        
+        static let sortByName = NSLocalizedString("sort-sortByName", comment: "")
+        
+        static let sortOrder = NSLocalizedString("sort-sortOrder", comment: "")
+        
+        static let sortAscending = NSLocalizedString("sort-sortAscending", comment: "")
+        
+        static let sortDescending = NSLocalizedString("sort-sortDescending", comment: "")
+        
+    }
+    
     enum Categories {
-        static let sortByDefault = NSLocalizedString("categories-sortByDefault", comment: "")
-        
-        static let sortByNumberOfHighlights = NSLocalizedString("categories-sortByNumberOfHighlights", comment: "")
-        
-        static let sortByCreationDate = NSLocalizedString("categories-sortByCreationDate", comment: "")
-        
-        static let sortByName = NSLocalizedString("categories-sortByName", comment: "")
-        
-        static let sortOrder = NSLocalizedString("categories-sortOrder", comment: "")
-        
-        static let sortAscending = NSLocalizedString("categories-sortAscending", comment: "")
-        
-        static let sortDescending = NSLocalizedString("categories-sortDescending", comment: "")
         
         static let newCategory = NSLocalizedString("categories-newCategory", comment: "")
         

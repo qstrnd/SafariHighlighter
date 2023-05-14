@@ -30,4 +30,9 @@ final class AppStorage {
     @Storage(suiteName: appStorageGroupSuitname, key: "categoriesSortOrderAscending", defaultValue: true)
     var categoriesSortOrderAscending: Bool
     
+    @Storage(suiteName: appStorageGroupSuitname, key: "websitesSortOrderRaw", defaultValue: nil)
+    var websitesSortOrderRaw: String?
+    
+    @Storage(suiteName: appStorageGroupSuitname, key: "websitesSortOrderAscending", defaultValue: false)
+    var websitesSortOrderAscending: Bool
 }

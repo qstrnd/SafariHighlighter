@@ -29,21 +29,23 @@
 
 "general-no" = "Нет";
 
+// Sort
+
+"sort-sortByDefault" = "По умолчанию";
+
+"sort-sortByNumberOfHighlights" = "По количеству заметок";
+
+"sort-sortByCreationDate" = "По дате создания";
+
+"sort-sortByName" = "По имени";
+
+"sort-sortOrder" = "Порядок сортировки";
+
+"sort-sortAscending" = "По возрастанию";
+
+"sort-sortDescending" = "По убыванию";
+
 // Categories
-
-"categories-sortByDefault" = "По умолчанию";
-
-"categories-sortByNumberOfHighlights" = "По количеству заметок";
-
-"categories-sortByCreationDate" = "По дате создания";
-
-"categories-sortByName" = "По имени";
-
-"categories-sortOrder" = "Порядок сортировки";
-
-"categories-sortAscending" = "По возрастанию";
-
-"categories-sortDescending" = "По убыванию";
 
 "categories-newCategory" = "Новая категория";
 

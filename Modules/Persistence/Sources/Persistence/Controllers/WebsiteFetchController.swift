@@ -15,6 +15,7 @@ public protocol WebsiteFetchControllerDelegate: AnyObject {
 
     func websiteFetchControllerWillBeginUpdates(_ controller: WebsiteFetchController)
     func websiteFetchControllerDidFinishUpdates(_ controller: WebsiteFetchController)
+    func websiteFetchControllerDidRequestDataReload(_ controller: WebsiteFetchController)
 }
 
 public final class WebsiteFetchController: NSObject {
@@ -24,22 +25,26 @@ public final class WebsiteFetchController: NSObject {
     typealias WebsiteController = NSFetchedResultsController<PersistedWebsite>
 
     public struct Options {
-        public enum SortOrder {
+        public enum SortField: String {
             case creationDate
             case name
             case url
+            case numberOfHighlights
 
-            static let `default` = SortOrder.creationDate
+            static let `default` = SortField.creationDate
         }
 
-        let sortOrder: SortOrder
-        let showOnlyWebsitesWithHighlights: Bool
+        public let sortOrder: SortField
+        public let showOnlyWebsitesWithHighlights: Bool
+        public let sortOrderAsceding: Bool
 
         public init(
-            sortOrder: WebsiteFetchController.Options.SortOrder,
-            showOnlyWebsitesWithHighlights: Bool
+            sortOrder: WebsiteFetchController.Options.SortField,
+            sortOrderAsceding: Bool,
+            showOnlyWebsitesWithHighlights: Bool = false
         ) {
             self.sortOrder = sortOrder
+            self.sortOrderAsceding = sortOrderAsceding
             self.showOnlyWebsitesWithHighlights = showOnlyWebsitesWithHighlights
         }
     }
@@ -51,8 +56,13 @@ public final class WebsiteFetchController: NSObject {
     public var options: Options {
         didSet {
             fetchedResultsController = nil // clean frc configured for old options
-            fetchResults()
+            _fetchedObjectsSortedByNumberOfHighlights = []
         }
+    }
+    
+    public func updateOptions(_ newOptions: Options, completion:  (() -> Void)? = nil) {
+        options = newOptions
+        fetchResults(completion)
     }
 
     public init(
@@ -93,9 +103,16 @@ public final class WebsiteFetchController: NSObject {
         guard let frc = fetchedResultsController else {
             preconditionFailure("Requested the object that wasn't fetched")
         }
+        
+        let persistedWebsite: PersistedWebsite
+        switch options.sortOrder {
+        case .numberOfHighlights:
+            persistedWebsite = fetchedObjectsSortedByNumberOfHighlights[indexPath.row]
+        default:
+            persistedWebsite = frc.object(at: indexPath)
+        }
 
-        let persitedWebsite = frc.object(at: indexPath)
-        let website = Website(from: persitedWebsite)
+        let website = Website(from: persistedWebsite)
 
         return website
     }
@@ -105,6 +122,37 @@ public final class WebsiteFetchController: NSObject {
     private let persistanceExecutor: PersistenceOperationsExecuting
 
     private var fetchedResultsController: WebsiteController?
+    
+    private var isFullReloadUpdateInProgress = false
+    
+    private var _fetchedObjectsSortedByNumberOfHighlights: [PersistedWebsite] = []
+    
+    /// Sorting with aggregate functions is not supported in mysql :(
+    /// That's why this property is used to store objects that are sorted AFTER fetch
+    private var fetchedObjectsSortedByNumberOfHighlights: [PersistedWebsite] {
+        guard _fetchedObjectsSortedByNumberOfHighlights.isEmpty else {
+            return _fetchedObjectsSortedByNumberOfHighlights
+        }
+        
+        guard let frc = fetchedResultsController else {
+            preconditionFailure("Requested sorted objects before fetch was performed")
+        }
+        
+        let sortClosure: (PersistedWebsite, PersistedWebsite) -> Bool
+        if options.sortOrderAsceding {
+            sortClosure = {
+                $0.highlights?.count ?? 0 < $1.highlights?.count ?? 0
+            }
+        } else {
+            sortClosure = {
+                $0.highlights?.count ?? 0 > $1.highlights?.count ?? 0
+            }
+        }
+        
+        _fetchedObjectsSortedByNumberOfHighlights = frc.fetchedObjects?.sorted(by: sortClosure) ?? []
+        
+        return _fetchedObjectsSortedByNumberOfHighlights
+    }
 
     private func getFetchResultsController(_ completion: @escaping (WebsiteController) -> Void) {
         DispatchQueue.performOnMain {
@@ -150,12 +198,12 @@ public final class WebsiteFetchController: NSObject {
 
     private func getSortDescriptorForCurrentOptions() -> NSSortDescriptor {
         switch options.sortOrder {
-        case .creationDate:
-            return NSSortDescriptor(key: "creationDate", ascending: true)
+        case .creationDate, .numberOfHighlights:
+            return NSSortDescriptor(key: "creationDate", ascending: options.sortOrderAsceding)
         case .name:
-            return NSSortDescriptor(key: "name", ascending: true)
+            return NSSortDescriptor(key: "name", ascending: options.sortOrderAsceding)
         case .url:
-            return NSSortDescriptor(key: "url", ascending: true)
+            return NSSortDescriptor(key: "url", ascending: options.sortOrderAsceding)
         }
     }
 
@@ -178,14 +226,26 @@ public final class WebsiteFetchController: NSObject {
 // MARK: - NSFetchedResultsControllerDelegate
 extension WebsiteFetchController: NSFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.websiteFetchControllerWillBeginUpdates(self)
+        if options.sortOrder == .numberOfHighlights {
+            isFullReloadUpdateInProgress = true
+        } else {
+            delegate?.websiteFetchControllerWillBeginUpdates(self)
+        }
     }
 
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.websiteFetchControllerDidFinishUpdates(self)
+        if isFullReloadUpdateInProgress {
+            delegate?.websiteFetchControllerDidRequestDataReload(self)
+            
+            isFullReloadUpdateInProgress = false
+            _fetchedObjectsSortedByNumberOfHighlights = []
+        } else {
+            delegate?.websiteFetchControllerDidFinishUpdates(self)
+        }
     }
 
     public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard !isFullReloadUpdateInProgress else { return }
 
         switch type {
         case .insert:

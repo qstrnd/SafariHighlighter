@@ -30,21 +30,24 @@
 
 "general-no" = "Nein";
 
+// Sort
+
+"sort-sortByDefault" = "Standardmäßig";
+
+"sort-sortByNumberOfHighlights" = "Nach Anzahl der Highlights";
+
+"sort-sortByCreationDate" = "Nach Erstellungsdatum";
+
+"sort-sortByName" = "Nach Name";
+
+"sort-sortOrder" = "Sortierreihenfolge";
+
+"sort-sortAscending" = "Aufsteigend";
+
+"sort-sortDescending" = "Absteigend";
+
 // Categories
 
-"categories-sortByDefault" = "Standardmäßig";
-
-"categories-sortByNumberOfHighlights" = "Nach Anzahl der Highlights";
-
-"categories-sortByCreationDate" = "Nach Erstellungsdatum";
-
-"categories-sortByName" = "Nach Name";
-
-"categories-sortOrder" = "Sortierreihenfolge";
-
-"categories-sortAscending" = "Aufsteigend";
-
-"categories-sortDescending" = "Absteigend";
 
 "categories-newCategory" = "Neue Kategorie";
 

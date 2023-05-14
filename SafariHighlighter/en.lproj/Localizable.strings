@@ -29,21 +29,23 @@
 
 "highlights-deletionConfirmationSubtitle" = "Are you sure you want to delete these highlights?";
 
+// Sort
+
+"sort-sortByDefault" = "By Default";
+
+"sort-sortByNumberOfHighlights" = "By Number of Highlights";
+
+"sort-sortByCreationDate" = "By Creation Date";
+
+"sort-sortByName" = "By Name";
+
+"sort-sortOrder" = "Order";
+
+"sort-sortAscending" = "Ascending";
+
+"sort-sortDescending" = "Descending";
+
 // Categories
-
-"categories-sortByDefault" = "By Default";
-
-"categories-sortByNumberOfHighlights" = "By Number of Highlights";
-
-"categories-sortByCreationDate" = "By Creation Date";
-
-"categories-sortByName" = "By Name";
-
-"categories-sortOrder" = "Order";
-
-"categories-sortAscending" = "Ascending";
-
-"categories-sortDescending" = "Descending";
 
 "categories-newCategory" = "New Category";
 

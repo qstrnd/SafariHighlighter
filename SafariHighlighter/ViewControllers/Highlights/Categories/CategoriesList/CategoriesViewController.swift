@@ -137,17 +137,17 @@ extension CategoriesViewController: HighlightsGrouping {
         
         let actions: [(title: String, sortOrder: CategoryFetchController.Options.SortField, image: UIImage?)] = [
             (
-                Localized.Categories.sortByCreationDate,
+                Localized.Sort.sortByCreationDate,
                 .creationDate,
                 UIImage(systemName: "calendar")
             ),
             (
-                Localized.Categories.sortByNumberOfHighlights,
+                Localized.Sort.sortByNumberOfHighlights,
                 .numberOfHighlights,
                 UIImage(systemName: "number.square")
             ),
             (
-                Localized.Categories.sortByName,
+                Localized.Sort.sortByName,
                 .name,
                 UIImage(systemName: "a.square")
             )
@@ -177,12 +177,12 @@ extension CategoriesViewController: HighlightsGrouping {
         
         let actions: [(title: String, sortOrderAscending: Bool, image: UIImage?)] = [
             (
-                Localized.Categories.sortAscending,
+                Localized.Sort.sortAscending,
                 true,
                 UIImage(named: "ascending-16")
             ),
             (
-                Localized.Categories.sortDescending,
+                Localized.Sort.sortDescending,
                 false,
                 UIImage(named: "descending-16")
             )
@@ -203,7 +203,7 @@ extension CategoriesViewController: HighlightsGrouping {
             }
         }
         
-        return UIMenu(title: Localized.Categories.sortOrder, options: .displayInline, children: menuChildren)
+        return UIMenu(title: Localized.Sort.sortOrder, options: .displayInline, children: menuChildren)
     }
     
     // MARK: Actions

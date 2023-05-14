@@ -80,14 +80,17 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
     }
     
     private func buildWebsitesController() -> WebsitesViewController {
+        let sortOrder = WebsiteFetchController.Options.SortField(rawValue: appStorage.websitesSortOrderRaw ?? "") ?? .creationDate
+
         let websiteFetchController = WebsiteFetchController(
-            options: .init(sortOrder: .creationDate, showOnlyWebsitesWithHighlights: false),
+            options: .init(sortOrder: sortOrder, sortOrderAsceding: appStorage.websitesSortOrderAscending),
             persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor()
         )
         
         let websiteService = WebsiteService(persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor())
         
         let websitesViewController = WebsitesViewController(
+            appStorage: appStorage,
             websiteFetchController: websiteFetchController,
             websiteService: websiteService,
             highlightsCoordinator: self,
