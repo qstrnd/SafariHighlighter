@@ -49,4 +49,23 @@ final class ColorCircleView: UIView {
         
         layer.add(animation, forKey: "slowMovingAnimation")
     }
+    
+    func bounce() {
+        let viewToBounce = self
+        let originalFrame = viewToBounce.frame
+        
+        // Set up the animation parameters
+        let bounceDuration = 0.2
+        let bounceScale: CGFloat = 0.8
+        
+        // Perform the bounce animation
+        UIView.animate(withDuration: bounceDuration, animations: {
+            viewToBounce.transform = CGAffineTransform(scaleX: bounceScale, y: bounceScale)
+        }, completion: { _ in
+            UIView.animate(withDuration: bounceDuration, animations: {
+                viewToBounce.transform = CGAffineTransform.identity
+                viewToBounce.frame = originalFrame
+            })
+        })
+    }
 }

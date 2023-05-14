@@ -118,6 +118,7 @@ final class NewCategoryColorPickerView: UIView {
     @objc
     private func circleTapped(_ sender: UITapGestureRecognizer) {
         guard let circleView = sender.view as? ColorCircleView else { return }
+        circleView.bounce()
         delegate?.categoryColorPicker(self, didSelectColor: circleView.color)
     }
 }
