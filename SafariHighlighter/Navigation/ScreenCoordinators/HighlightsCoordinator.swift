@@ -25,6 +25,7 @@ public enum HighlightsGroupBy {
 protocol HighlightsCoordinatorProtocol: CoordinatorProtocol, CategoriesCoordinatorProtocol {
     func openHighlights(groupBy: HighlightsGroupBy)
     func dismiss()
+    func closeHighlights()
 }
 
 final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
@@ -45,12 +46,19 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
         navigationCoordinator?.perform(navigation: .dismissLast)
     }
     
+    func closeHighlights() {
+        guard let placeholderVC = splitPlaceholderViewController else { return }
+        splitViewController?.showDetailViewController(placeholderVC, sender: nil)
+    }
+    
     // MARK: - Private
     
     private let persistanceExecutorFactory: persistanceExecutorFactory
     private let appStorage: AppStorage
     private var navigationCoordinator: NavigationCoordinator?
     private let imageCacheService: ImageCacheServiceProtocol
+    private var splitViewController: UISplitViewController?
+    private var splitPlaceholderViewController: UIViewController?
     
     private func buildGroupedHighlightsViewController() -> UIViewController {
         let categoriesVC = buildCategoriesController()
@@ -105,11 +113,27 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
 extension HighlightsCoordinator {
     func buildInitialViewController() -> UIViewController {
         let groupedHighlightsVC = buildGroupedHighlightsViewController()
-        let highlightsNavigationVC = UINavigationController(rootViewController: groupedHighlightsVC)
         
+        let highlightsNavigationVC = UINavigationController(rootViewController: groupedHighlightsVC)
         navigationCoordinator = NavigationCoordinator(navigationController: highlightsNavigationVC)
         
-        return highlightsNavigationVC
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            return highlightsNavigationVC
+        } else {
+            
+            let placeholderVC = SplitPlaceholderViewController()
+            
+            let splitVC = UISplitViewController()
+            splitVC.preferredDisplayMode = .oneBesideSecondary
+            splitVC.delegate = self
+            
+            splitVC.viewControllers = [highlightsNavigationVC, placeholderVC]
+            
+            self.splitViewController = splitVC
+            self.splitPlaceholderViewController = placeholderVC
+            
+            return splitVC
+        }
     }
 }
 
@@ -117,7 +141,13 @@ extension HighlightsCoordinator {
 extension HighlightsCoordinator {
     func openHighlights(groupBy: HighlightsGroupBy) {
         let highlightsVC = buildHighlightsController(groupBy: groupBy)
-        navigationCoordinator?.perform(navigation: .push(vc: highlightsVC))
+        
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            navigationCoordinator?.perform(navigation: .push(vc: highlightsVC))
+        } else {
+            let navVC = UINavigationController(rootViewController: highlightsVC)
+            splitViewController?.showDetailViewController(navVC, sender: nil)
+        }
     }
     
     private func buildHighlightsController(groupBy: HighlightsGroupBy) -> UIViewController {
@@ -174,3 +204,6 @@ extension HighlightsCoordinator {
         navigationCoordinator?.perform(navigation: .present(vc: navVC))
     }
 }
+
+// MARK: - UISplitViewControllerDelegate
+extension HighlightsCoordinator: UISplitViewControllerDelegate {}

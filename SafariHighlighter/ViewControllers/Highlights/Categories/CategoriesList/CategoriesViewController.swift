@@ -72,6 +72,7 @@ final class CategoriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let category = categoryFetchController.object(at: indexPath)
 
+        lastOpenedId = category.uniqueId
         highlightsCoordinator.openHighlights(groupBy: .category(category))
     }
     
@@ -86,14 +87,22 @@ final class CategoriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            let highlight = categoryFetchController.object(at: indexPath)
-            categoryService.delete(category: highlight)
+            let category = categoryFetchController.object(at: indexPath)
+            categoryService.delete(category: category) { [weak self] _ in
+                guard let self else { return }
+                
+                if category.uniqueId == self.lastOpenedId {
+                    self.highlightsCoordinator.closeHighlights()
+                }
+            }
         default:
             break
         }
     }
 
     // MARK: - Private
+    
+    private var lastOpenedId: UUID?
 
     private let appStorage: AppStorage
     private let categoryFetchController: CategoryFetchController

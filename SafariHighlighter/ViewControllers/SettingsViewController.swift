@@ -28,8 +28,18 @@ final class SettingsViewController: UIViewController {
         hostingController.willMove(toParent: self)
         addChild(hostingController)
         view.addSubview(hostingController.view)
-        hostingController.view.frame = view.frame
         hostingController.didMove(toParent: self)
+        
+        let settingsView = hostingController.view!
+        settingsView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            settingsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            settingsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            settingsView.topAnchor.constraint(equalTo: view.topAnchor),
+            settingsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
     }
 
     // MARK: - Private

@@ -82,7 +82,13 @@ final class WebsitesViewController: UITableViewController {
         switch editingStyle {
         case .delete:
             let website = websiteFetchController.object(at: indexPath)
-            websiteService.delete(website: website)
+            websiteService.delete(website: website) { [weak self] _ in
+                guard let self else { return }
+                
+                if website.uniqueId == self.lastOpenedId {
+                    self.highlightsCoordinator.closeHighlights()
+                }
+            }
         default:
             break
         }
@@ -95,6 +101,7 @@ final class WebsitesViewController: UITableViewController {
             let website = websiteFetchController.object(at: indexPath)
             
             highlightsCoordinator.openHighlights(groupBy: .website(website))
+            lastOpenedId = website.uniqueId
         }
     }
     
@@ -105,6 +112,7 @@ final class WebsitesViewController: UITableViewController {
     // MARK: - Private
     
     private var isInModalEditing = false
+    private var lastOpenedId: UUID?
 
     private let appStorage: AppStorage
     private let websiteFetchController: WebsiteFetchController
@@ -154,6 +162,12 @@ final class WebsitesViewController: UITableViewController {
             websiteService.delete(websites: websites) { [unowned self] _ in
                 isInModalEditing = false
                 updateForCurrentMode()
+                
+                guard let lastOpenedId = self.lastOpenedId else { return }
+                let websitesUniqueIds = websites.map { $0.uniqueId }
+                if websitesUniqueIds.contains(lastOpenedId) {
+                    highlightsCoordinator.closeHighlights()
+                }
             }
         }
     }
