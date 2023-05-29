@@ -9,17 +9,17 @@
 
 // Tabs
 
-"tabs-highlights" = "Highlights";
+"tabs-highlights" = "Markierungen";
 "tabs-settings" = "Einstellungen";
 
 
-// Highlights
+// Markierungen
 
-"highlights-deletionConfirmationTitle" = "Highlights löschen";
+"highlights-deletionConfirmationTitle" = "Markierungen löschen";
 
-"highlights-deletionConfirmationSubtitle" = "Sind Sie sicher, dass Sie diese Highlights löschen möchten?";
+"highlights-deletionConfirmationSubtitle" = "Sind Sie sicher, dass Sie diese Markierungen löschen möchten?";
 
-"highlights-noHighlights" = "Noch keine Highlights hier";
+"highlights-noHighlights" = "Noch keine Markierungen hier";
 
 
 // General
