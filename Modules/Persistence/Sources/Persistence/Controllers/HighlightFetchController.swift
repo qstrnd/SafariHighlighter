@@ -91,17 +91,14 @@ public final class HighlightFetchController: NSObject {
         return fetchedResultsController?.fetchedObjects?.count ?? 0
     }
 
-    public func object(at indexPath: IndexPath) -> Highlight {
-        precondition(Thread.isMainThread, "Jobs related to frc must be executed on main thread")
-
-        guard let frc = fetchedResultsController else {
-            preconditionFailure("Requested the object that wasn't fetched")
-        }
-
-        let persitedHighlight = frc.object(at: indexPath)
-        let highlight = Highlight(from: persitedHighlight)
-
-        return highlight
+    public func highlight(at indexPath: IndexPath) -> Highlight {
+        let persitedHighlight = object(at: indexPath)
+        return Highlight(from: persitedHighlight)
+    }
+    
+    public func fullHighlight(at indexPath: IndexPath) -> FullHighlight {
+        let persitedHighlight = object(at: indexPath)
+        return FullHighlight(from: persitedHighlight)
     }
 
     // MARK: - Private
@@ -135,6 +132,16 @@ public final class HighlightFetchController: NSObject {
                 completion(frc)
             }
         }
+    }
+    
+    private func object(at indexPath: IndexPath) -> PersistedHighlight {
+        precondition(Thread.isMainThread, "Jobs related to frc must be executed on main thread")
+
+        guard let frc = fetchedResultsController else {
+            preconditionFailure("Requested the object that wasn't fetched")
+        }
+
+        return frc.object(at: indexPath)
     }
 
     // MARK: Fetching
