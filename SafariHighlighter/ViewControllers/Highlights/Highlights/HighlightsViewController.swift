@@ -45,7 +45,7 @@ final class HighlightsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
+        tableView.register(HighlightTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
         tableView.allowsMultipleSelectionDuringEditing = true
 
         setupViews()
@@ -63,11 +63,12 @@ final class HighlightsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath) as! HighlightTableViewCell
 
-        let highlight = highlightFetchController.object(at: indexPath)
-        cell.textLabel?.text = highlight.creationDate.description
-
+        let highlight = highlightFetchController.fullHighlight(at: indexPath)
+        let model = cellMapper.cellModel(from: highlight)
+        cell.set(model: model)
+        
         return cell
     }
 
@@ -82,7 +83,7 @@ final class HighlightsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            let highlight = highlightFetchController.object(at: indexPath)
+            let highlight = highlightFetchController.highlight(at: indexPath)
             highlightService.delete(highlight: highlight)
         default:
             break
@@ -107,6 +108,8 @@ final class HighlightsViewController: UITableViewController {
     private let highlightService: HighlightService
     private let relationshipService: RelationshipService
     private let groupByTrait: HighlightsGroupBy
+    
+    private let cellMapper = HighlightCellViewModelMapper()
     
     private var isInModalEditing = false
     
@@ -181,7 +184,7 @@ final class HighlightsViewController: UITableViewController {
             message: Localized.Highlights.deletionConfirmationSubtitle
         ) { [unowned self] in
             let highlights = tableView.indexPathsForSelectedRows?.map {
-                highlightFetchController.object(at: $0)
+                highlightFetchController.highlight(at: $0)
             } ?? []
             
             highlightService.delete(highlights: highlights) { [unowned self] _ in

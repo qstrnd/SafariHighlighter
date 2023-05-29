@@ -66,6 +66,8 @@
 		B8ACADD82A097766005E45EC /* HighlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADD72A097766005E45EC /* HighlightsViewController.swift */; };
 		B8ACADDC2A0A27C7005E45EC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADDB2A0A27C7005E45EC /* SettingsViewController.swift */; };
 		B8ACADDE2A0A2824005E45EC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADDD2A0A2824005E45EC /* SettingsView.swift */; };
+		B8E6FD082A25016700A8A943 /* HighlightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6FD072A25016700A8A943 /* HighlightTableViewCell.swift */; };
+		B8E6FD0A2A25049900A8A943 /* HighlightCellViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6FD092A25049900A8A943 /* HighlightCellViewModelMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +162,8 @@
 		B8ACADD72A097766005E45EC /* HighlightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsViewController.swift; sourceTree = "<group>"; };
 		B8ACADDB2A0A27C7005E45EC /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B8ACADDD2A0A2824005E45EC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B8E6FD072A25016700A8A943 /* HighlightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightTableViewCell.swift; sourceTree = "<group>"; };
+		B8E6FD092A25049900A8A943 /* HighlightCellViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCellViewModelMapper.swift; sourceTree = "<group>"; };
 		B8E7A94929FFB72B00C6D98B /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Common; sourceTree = "<group>"; };
 		B8E7A94A29FFB72B00C6D98B /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -473,7 +477,17 @@
 				B8ACADD62A096DBB005E45EC /* GroupedHighlights */,
 				B85124732A0F7034003AD592 /* Categories */,
 				B85124882A101BF6003AD592 /* Websites */,
+				B8E6FD062A25014F00A8A943 /* Highlights */,
+			);
+			path = Highlights;
+			sourceTree = "<group>";
+		};
+		B8E6FD062A25014F00A8A943 /* Highlights */ = {
+			isa = PBXGroup;
+			children = (
 				B8ACADD72A097766005E45EC /* HighlightsViewController.swift */,
+				B8E6FD072A25016700A8A943 /* HighlightTableViewCell.swift */,
+				B8E6FD092A25049900A8A943 /* HighlightCellViewModelMapper.swift */,
 			);
 			path = Highlights;
 			sourceTree = "<group>";
@@ -626,6 +640,7 @@
 				B85124D32A10E6B0003AD592 /* PlaceholderViewController.swift in Sources */,
 				B8ACADDE2A0A2824005E45EC /* SettingsView.swift in Sources */,
 				B85124872A100E40003AD592 /* ColorCircleView.swift in Sources */,
+				B8E6FD0A2A25049900A8A943 /* HighlightCellViewModelMapper.swift in Sources */,
 				B85124752A0F7049003AD592 /* CategoryTableViewCell.swift in Sources */,
 				B898B88A29F43F08000A36D0 /* HighlightsCoordinator.swift in Sources */,
 				B85123302A0E659C003AD592 /* AcknowledgmentsView.swift in Sources */,
@@ -646,6 +661,7 @@
 				B85124772A0F7565003AD592 /* CategoryCellViewModelMapper.swift in Sources */,
 				B8ACADD02A096378005E45EC /* WebsitesViewController.swift in Sources */,
 				B851247A2A0F7F0E003AD592 /* InitialCategoriesProducer.swift in Sources */,
+				B8E6FD082A25016700A8A943 /* HighlightTableViewCell.swift in Sources */,
 				B8ACADDC2A0A27C7005E45EC /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
