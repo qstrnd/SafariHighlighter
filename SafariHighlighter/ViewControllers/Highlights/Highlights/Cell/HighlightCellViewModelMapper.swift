@@ -26,11 +26,15 @@ final class HighlightCellViewModelMapper {
     // MARK: - Internal
     
     func cellModel(from highlight: FullHighlight) -> HighlightTableViewCell.Model {
-        .init(
+        let highlightInfo = CategoryWebsiteView.Model(
+            text: websiteInfo(for: highlight.website) ?? "",
+            color: color(for: highlight.category)
+        )
+        
+        return HighlightTableViewCell.Model(
             text: highlight.highlight.text,
-            color: color(for: highlight.category),
             date: dateFormatter.string(from: highlight.highlight.creationDate),
-            website: websiteInfo(for: highlight.website)
+            highlightInfo: highlightInfo
         )
     }
     

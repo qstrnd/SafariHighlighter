@@ -68,6 +68,7 @@
 		B8ACADDE2A0A2824005E45EC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACADDD2A0A2824005E45EC /* SettingsView.swift */; };
 		B8E6FD082A25016700A8A943 /* HighlightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6FD072A25016700A8A943 /* HighlightTableViewCell.swift */; };
 		B8E6FD0A2A25049900A8A943 /* HighlightCellViewModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6FD092A25049900A8A943 /* HighlightCellViewModelMapper.swift */; };
+		B8E6FD0D2A25121300A8A943 /* CategoryWebsiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6FD0C2A25121300A8A943 /* CategoryWebsiteView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +165,7 @@
 		B8ACADDD2A0A2824005E45EC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B8E6FD072A25016700A8A943 /* HighlightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightTableViewCell.swift; sourceTree = "<group>"; };
 		B8E6FD092A25049900A8A943 /* HighlightCellViewModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightCellViewModelMapper.swift; sourceTree = "<group>"; };
+		B8E6FD0C2A25121300A8A943 /* CategoryWebsiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryWebsiteView.swift; sourceTree = "<group>"; };
 		B8E7A94929FFB72B00C6D98B /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Common; sourceTree = "<group>"; };
 		B8E7A94A29FFB72B00C6D98B /* Persistence */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Persistence; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -485,11 +487,20 @@
 		B8E6FD062A25014F00A8A943 /* Highlights */ = {
 			isa = PBXGroup;
 			children = (
+				B8E6FD0B2A2511F500A8A943 /* Cell */,
 				B8ACADD72A097766005E45EC /* HighlightsViewController.swift */,
-				B8E6FD072A25016700A8A943 /* HighlightTableViewCell.swift */,
-				B8E6FD092A25049900A8A943 /* HighlightCellViewModelMapper.swift */,
 			);
 			path = Highlights;
+			sourceTree = "<group>";
+		};
+		B8E6FD0B2A2511F500A8A943 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B8E6FD092A25049900A8A943 /* HighlightCellViewModelMapper.swift */,
+				B8E6FD072A25016700A8A943 /* HighlightTableViewCell.swift */,
+				B8E6FD0C2A25121300A8A943 /* CategoryWebsiteView.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		B8E7A94829FFB72B00C6D98B /* Modules */ = {
@@ -629,6 +640,7 @@
 				B8ACADD42A096694005E45EC /* HighlightsGrouping.swift in Sources */,
 				B851233D2A0E7C1E003AD592 /* LinkCoordinator.swift in Sources */,
 				B85123482A0E8A6D003AD592 /* TabCoordinator.swift in Sources */,
+				B8E6FD0D2A25121300A8A943 /* CategoryWebsiteView.swift in Sources */,
 				B8ACADD22A096653005E45EC /* GroupedHighlightsViewController.swift in Sources */,
 				B851247F2A0FDD19003AD592 /* NewCategoryViewController.swift in Sources */,
 				B83041B82A002DFA00EF9AC5 /* CategoriesViewController.swift in Sources */,
