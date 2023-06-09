@@ -41,12 +41,16 @@ final class SettingsCoordinator: NSObject, SettingsCoordinatorProtocol {
     
     // MARK: - Internal
     
-    init(windowScene: UIWindowScene) {
+    init(
+        windowScene: UIWindowScene,
+        tracker: TrackerProtocol
+    ) {
         self.windowScene = windowScene
+        self.tracker = tracker
     }
     
     func buildInitialViewController() -> UIViewController {
-        let settingsVC = SettingsViewController(coordinator: self)
+        let settingsVC = SettingsViewController(coordinator: self, tracker: tracker)
         let navigationVC = UINavigationController(rootViewController: settingsVC)
         
         let navigationCoordinator = NavigationCoordinator(navigationController: navigationVC)
@@ -100,6 +104,7 @@ final class SettingsCoordinator: NSObject, SettingsCoordinatorProtocol {
     // MARK: - Private
     
     private let windowScene: UIWindowScene
+    private let tracker: TrackerProtocol
     private var linkCoordinator: LinkCoordinatorProtocol?
     private var navigationCoordinator: NavigationCoordinator?
     

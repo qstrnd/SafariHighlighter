@@ -20,6 +20,10 @@ final class CompositionRoot {
     lazy var appStorage: AppStorage = {
         AppStorage()
     }()
+
+    lazy var tracker: TrackerProtocol = {
+        Tracker()
+    }()
     
     lazy var imageCacheService: ImageCacheServiceProtocol = {
         ImageCacheService()
@@ -46,19 +50,21 @@ final class CompositionRoot {
         HighlightsCoordinator(
             persistanceExecutorFactory: persistentExecutorFactory,
             appStorage: appStorage,
-            imageCacheService: imageCacheService
+            imageCacheService: imageCacheService,
+            tracker: tracker
         )
     }()
     
     lazy var settingsCoordinator: SettingsCoordinatorProtocol = {
-        SettingsCoordinator(windowScene: windowScene)
+        SettingsCoordinator(windowScene: windowScene, tracker: tracker)
     }()
     
     lazy var tabsCoordinator: TabCoordinator = {
         TabCoordinator(
             highlightsCoordinator: highlightsCoordinator,
             settingsCoordinator: settingsCoordinator,
-            appStorage: appStorage
+            appStorage: appStorage,
+            tracker: tracker
         )
     }()
     

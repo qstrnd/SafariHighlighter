@@ -10,10 +10,18 @@ import SwiftUI
 
 final class SettingsViewController: UIViewController {
 
+    private enum Constants {
+        static let screenName = "settings_and_info"
+    }
+
     // MARK: - Internal
 
-    init(coordinator: SettingsCoordinatorProtocol) {
+    init(
+        coordinator: SettingsCoordinatorProtocol,
+        tracker: TrackerProtocol
+    ) {
         self.coordinator = coordinator
+        self.tracker = tracker
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,9 +43,16 @@ final class SettingsViewController: UIViewController {
         
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        tracker.trackScreenView(name: Constants.screenName)
+    }
+
     // MARK: - Private
     
     private let coordinator: SettingsCoordinatorProtocol
+    private let tracker: TrackerProtocol
 
     private lazy var hostingController = UIHostingController(rootView: SettingsView(viewModel: SettingsViewModel(coordinator: coordinator)))
 

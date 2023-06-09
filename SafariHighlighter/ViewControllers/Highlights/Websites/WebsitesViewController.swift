@@ -14,6 +14,7 @@ final class WebsitesViewController: UITableViewController {
 
     private enum Constants {
         static let cellReuseId = "websiteCell"
+        static let screenName = "websites_list"
     }
 
     // MARK: - Internal
@@ -25,12 +26,14 @@ final class WebsitesViewController: UITableViewController {
         websiteFetchController: WebsiteFetchController,
         websiteService: WebsiteService,
         highlightsCoordinator: HighlightsCoordinatorProtocol,
-        imageCacheService: ImageCacheServiceProtocol
+        imageCacheService: ImageCacheServiceProtocol,
+        tracker: TrackerProtocol
     ) {
         self.appStorage = appStorage
         self.websiteFetchController = websiteFetchController
         self.websiteService = websiteService
         self.highlightsCoordinator = highlightsCoordinator
+        self.tracker = tracker
         
         self.websiteCellConfigurator = WebsiteCellViewConfigurator(imageCacheService: imageCacheService)
 
@@ -51,6 +54,12 @@ final class WebsitesViewController: UITableViewController {
 
         tableView.register(WebsiteTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
         tableView.allowsMultipleSelectionDuringEditing = true
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        tracker.trackScreenView(name: Constants.screenName)
     }
 
 
@@ -119,6 +128,7 @@ final class WebsitesViewController: UITableViewController {
     private let websiteService: WebsiteService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
     private let websiteCellConfigurator: WebsiteCellViewConfigurator
+    private let tracker: TrackerProtocol
     
     private lazy var addWebsiteButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
     

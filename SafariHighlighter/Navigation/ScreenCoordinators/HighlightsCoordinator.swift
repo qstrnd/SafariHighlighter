@@ -35,11 +35,13 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
     init(
         persistanceExecutorFactory: persistanceExecutorFactory,
         appStorage: AppStorage,
-        imageCacheService: ImageCacheServiceProtocol
+        imageCacheService: ImageCacheServiceProtocol,
+        tracker: TrackerProtocol
     ) {
         self.persistanceExecutorFactory = persistanceExecutorFactory
         self.appStorage = appStorage
         self.imageCacheService = imageCacheService
+        self.tracker = tracker
     }
     
     func dismiss() {
@@ -55,6 +57,7 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
     
     private let persistanceExecutorFactory: persistanceExecutorFactory
     private let appStorage: AppStorage
+    private let tracker: TrackerProtocol
     private var navigationCoordinator: NavigationCoordinator?
     private let imageCacheService: ImageCacheServiceProtocol
     private var splitViewController: UISplitViewController?
@@ -81,7 +84,8 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
             appStorage: appStorage,
             categoryFetchController: categoryFetchController,
             categoryService: categoryService,
-            highlightsCoordinator: self
+            highlightsCoordinator: self,
+            tracker: tracker
         )
         
         return categoriesViewController
@@ -102,7 +106,8 @@ final class HighlightsCoordinator: NSObject, HighlightsCoordinatorProtocol {
             websiteFetchController: websiteFetchController,
             websiteService: websiteService,
             highlightsCoordinator: self,
-            imageCacheService: imageCacheService
+            imageCacheService: imageCacheService,
+            tracker: tracker
         )
         
         return websitesViewController
@@ -173,7 +178,8 @@ extension HighlightsCoordinator {
             highlightFetchController: highlightFetchController,
             highlightService: highlightService,
             relationshipService: relationshipService,
-            groupByTrait: groupBy
+            groupByTrait: groupBy,
+            tracker: tracker
         )
         
         highlightsViewController.title = groupBy.title
@@ -196,7 +202,8 @@ extension HighlightsCoordinator {
     func openNewCategory() {
         let newCategoryVC = NewCategoryViewController(
             categoryService: CategoryService(persistanceExecutor: persistanceExecutorFactory.getSharedpersistanceExecutor()),
-            highlightsCoordinator: self
+            highlightsCoordinator: self,
+            tracker: tracker
         )
         
         let navVC = UINavigationController(rootViewController: newCategoryVC)

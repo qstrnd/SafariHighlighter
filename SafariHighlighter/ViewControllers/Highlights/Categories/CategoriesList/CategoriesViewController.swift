@@ -15,6 +15,7 @@ final class CategoriesViewController: UITableViewController {
     private enum Constants {
         static let cellReuseId = "categoryCell"
         static let tableViewHeight: CGFloat = 44
+        static let screenName = "categories_list"
     }
 
     // MARK: - Internal
@@ -25,13 +26,15 @@ final class CategoriesViewController: UITableViewController {
         appStorage: AppStorage,
         categoryFetchController: CategoryFetchController,
         categoryService: CategoryService,
-        highlightsCoordinator: HighlightsCoordinatorProtocol
+        highlightsCoordinator: HighlightsCoordinatorProtocol,
+        tracker: TrackerProtocol
     ) {
         self.categoryFetchController = categoryFetchController
         self.categoryService = categoryService
         self.highlightsCoordinator = highlightsCoordinator
         self.appStorage = appStorage
         self.categoriesCellViewModelMapper = CategoryCellViewModelMapper()
+        self.tracker = tracker
 
         super.init(nibName: nil, bundle: nil)
 
@@ -50,6 +53,12 @@ final class CategoriesViewController: UITableViewController {
 
         tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: Constants.cellReuseId)
         tableView.rowHeight = Constants.tableViewHeight
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        tracker.trackScreenView(name: Constants.screenName)
     }
     
 
@@ -109,6 +118,7 @@ final class CategoriesViewController: UITableViewController {
     private let categoryService: CategoryService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
     private let categoriesCellViewModelMapper: CategoryCellViewModelMapper
+    private let tracker: TrackerProtocol
 
 }
 

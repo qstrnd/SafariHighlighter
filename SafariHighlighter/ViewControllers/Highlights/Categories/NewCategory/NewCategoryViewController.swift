@@ -17,16 +17,19 @@ final class NewCategoryViewController: UIViewController {
         static let colorButtonSize: CGSize = .init(square: 32)
         static let horizontalSpacing: CGFloat = 16
         static let verticalSpacing: CGFloat = 18
+        static let screenName = "new_category"
     }
     
     // MARK: Internal
     
     init(
         categoryService: CategoryService,
-        highlightsCoordinator: HighlightsCoordinatorProtocol
+        highlightsCoordinator: HighlightsCoordinatorProtocol,
+        tracker: TrackerProtocol
     ) {
         self.categoryService = categoryService
         self.highlightsCoordinator = highlightsCoordinator
+        self.tracker = tracker
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -62,6 +65,12 @@ final class NewCategoryViewController: UIViewController {
         setupHelpLabel()
         
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        tracker.trackScreenView(name: Constants.screenName)
+    }
     
     // MARK: - Private
     
@@ -81,6 +90,7 @@ final class NewCategoryViewController: UIViewController {
     
     private let categoryService: CategoryService
     private let highlightsCoordinator: HighlightsCoordinatorProtocol
+    private let tracker: TrackerProtocol
     
     private let textField = UITextField()
     private let colorPickerButton = UIButton()

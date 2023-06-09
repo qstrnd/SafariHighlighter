@@ -14,6 +14,10 @@ final class HighlightsViewController: UITableViewController {
 
     private enum Constants {
         static let cellReuseId = "highlightCell"
+        static let screenName = "highlights_list"
+        static let groupByParameter = "group_by"
+        static let categoryGroupByParameter = "category"
+        static let websiteGroupByParameter = "website"
     }
 
     // MARK: - Internal
@@ -22,12 +26,14 @@ final class HighlightsViewController: UITableViewController {
         highlightFetchController: HighlightFetchController,
         highlightService: HighlightService,
         relationshipService: RelationshipService,
-        groupByTrait: HighlightsGroupBy
+        groupByTrait: HighlightsGroupBy,
+        tracker: TrackerProtocol
     ) {
         self.highlightFetchController = highlightFetchController
         self.highlightService = highlightService
         self.relationshipService = relationshipService
         self.groupByTrait = groupByTrait
+        self.tracker = tracker
 
         super.init(nibName: nil, bundle: nil)
 
@@ -53,6 +59,12 @@ final class HighlightsViewController: UITableViewController {
         updatePlaceholderVisibility()
         
         navigationItem.title = title
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        tracker.trackScreenView(name: Constants.screenName, parameters: formScreenViewParameters())
     }
 
 
@@ -108,6 +120,7 @@ final class HighlightsViewController: UITableViewController {
     private let highlightService: HighlightService
     private let relationshipService: RelationshipService
     private let groupByTrait: HighlightsGroupBy
+    private let tracker: TrackerProtocol
     
     private let cellMapper = HighlightCellViewModelMapper()
     
@@ -119,6 +132,21 @@ final class HighlightsViewController: UITableViewController {
     private lazy var disableBatchEditingButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(disableBatchEditingButtonTapped))
     
     private lazy var placeholderViewController = PlaceholderViewController(text: Localized.Highlights.noHighlights)
+
+    private func formScreenViewParameters() -> [String: String] {
+        var groupByParameter: String
+
+        switch groupByTrait {
+        case .category:
+            groupByParameter = Constants.categoryGroupByParameter
+        case .website:
+            groupByParameter = Constants.websiteGroupByParameter
+        }
+
+        return [
+            Constants.groupByParameter: groupByParameter
+        ]
+    }
     
     private func setupViews() {
         

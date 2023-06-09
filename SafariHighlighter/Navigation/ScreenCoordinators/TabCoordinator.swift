@@ -15,11 +15,13 @@ final class TabCoordinator: NSObject, CoordinatorProtocol {
     init(
         highlightsCoordinator: CoordinatorProtocol,
         settingsCoordinator: CoordinatorProtocol,
-        appStorage: AppStorage
+        appStorage: AppStorage,
+        tracker: TrackerProtocol
     ) {
         self.highlightsCoordinator = highlightsCoordinator
         self.settingsCoordinator = settingsCoordinator
         self.appStorage = appStorage
+        self.tracker = tracker
     }
     
     func buildInitialViewController() -> UIViewController {
@@ -48,6 +50,7 @@ final class TabCoordinator: NSObject, CoordinatorProtocol {
     private let highlightsCoordinator: CoordinatorProtocol
     private let settingsCoordinator: CoordinatorProtocol
     private let appStorage: AppStorage
+    private let tracker: TrackerProtocol
     
     private var tabBarController: UITabBarController?
     
